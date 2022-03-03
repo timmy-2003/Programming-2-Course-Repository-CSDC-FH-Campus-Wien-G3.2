@@ -38,7 +38,7 @@ public class AppControllerTest {
         assertEquals(headlines, appController.getTopHeadlinesAustria());
     }
 
-    @Test
+   /* @Test
         public void getFilterList(){
         AppController appController = new AppController();
         List<Article> articles = new ArrayList<Article>();
@@ -52,7 +52,25 @@ public class AppControllerTest {
         List<Article> testlist = new ArrayList<Article>();
         testlist.add(new Article("author1","bitcoin"));
         assertEquals(testlist, appController.filterList(articles, "bitcoin"));
+    }*/
+
+    /***
+     * Test of the filter list size == 0 (implement -> get the articles list from actual articles not manually created)
+     */
+    @Test
+    public void filterListTest() {
+        AppController appController = new AppController();
+        List<Article> articles = new ArrayList<Article>();
+        articles.add(new Article("author1","bitcoin"));
+        articles.add(new Article("author2","football"));
+        articles.add(new Article("author3","politics"));
+        articles.add(new Article("author4","doge"));
+        articles.add(new Article("author5","sports"));
+
+        //assertEquals(appController.filterList(appController.getArticles(),"").size(), 0);
+        assertEquals(appController.filterList(articles,"").size(), 5);
     }
+
 
 
 

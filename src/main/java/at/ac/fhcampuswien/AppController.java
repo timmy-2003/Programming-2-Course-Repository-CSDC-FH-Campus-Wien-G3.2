@@ -2,6 +2,7 @@ package at.ac.fhcampuswien;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class AppController {
 
@@ -35,10 +36,13 @@ public class AppController {
     }
 
     protected static List<Article> filterList(List<Article> articles, String query) {
-       /* List<Article> tmp = new ArrayList<>();
-        if()
-        return tmp;*/
-        return null;
+        List<Article> tmp = new ArrayList<>();
+        for (Article a : articles) {
+            if (a.getTitle().toLowerCase().contains(query)) {
+                tmp.add(a);
+            }
+        }
+        return tmp;
     }
 
     private static List<Article> generateMockList() {
