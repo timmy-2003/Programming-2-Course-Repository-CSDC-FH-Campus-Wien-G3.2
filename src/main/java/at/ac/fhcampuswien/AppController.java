@@ -16,6 +16,10 @@ public class AppController {
         return articles.size();
     }
 
+    public List<Article> getArticles() {
+        return articles;
+    }
+
     public List<Article> getTopHeadlinesAustria (){
         return null;
     }
