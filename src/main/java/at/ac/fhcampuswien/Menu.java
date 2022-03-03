@@ -3,8 +3,8 @@ package at.ac.fhcampuswien;
 public class Menu {
 
     private AppController controller;
-    private final String INVALID_INPUT_MESSAGE = "Invalid input. Try again!";
-    private final String EXIT_MESSAGE = "See you soon!";
+    private static final String INVALID_INPUT_MESSAGE = "Invalid input. Try again!";
+    private static final String EXIT_MESSAGE = "See you soon!";
 
 
     public void start() {
@@ -27,15 +27,15 @@ public class Menu {
 
     }
 
-    private void printExitMessage() {
+    private static void printExitMessage() {
 
     }
 
-    private void printInvalidInputMessage() {
+    private static void printInvalidInputMessage() {
 
     }
 
-    private void printMenu() {
+    private static void printMenu() {
 
     }
 

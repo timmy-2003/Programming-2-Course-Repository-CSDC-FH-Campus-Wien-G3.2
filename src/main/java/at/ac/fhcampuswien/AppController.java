@@ -28,11 +28,11 @@ public class AppController {
         return null;
     }
 
-    protected List<Article> filterList (List<Article> articles, String query){
+    protected static List<Article> filterList (List<Article> articles, String query){
         return null;
     }
 
-    private List<Article> generateMockList(){
+    private static List<Article> generateMockList(){
         return null;
     }
 }
