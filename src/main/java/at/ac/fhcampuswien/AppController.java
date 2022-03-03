@@ -13,7 +13,7 @@ public class AppController {
     }
 
     public int getArticleCount() {
-        return 0;
+        return articles.size();
     }
 
     public List<Article> getTopHeadlinesAustria (){
@@ -24,7 +24,7 @@ public class AppController {
         return null;
     }
 
-    private List<Article> filterList (List<Article> articles, String query){
+    protected List<Article> filterList (List<Article> articles, String query){
         return null;
     }
 
