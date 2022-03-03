@@ -30,6 +30,15 @@ public class AppControllerTest {
         assertEquals(new ArrayList<Article>(), appController.getTopHeadlinesAustria());
     }
 
+    @Test
+    public void getTopHeadlinesAustriaTest2(){
+        List<Article> headlines = new ArrayList<Article>();
+        AppController appController = new AppController();
+        appController.setArticles(headlines);
+        assertEquals(headlines, appController.getTopHeadlinesAustria());
+    }
+
+
 
 
 
