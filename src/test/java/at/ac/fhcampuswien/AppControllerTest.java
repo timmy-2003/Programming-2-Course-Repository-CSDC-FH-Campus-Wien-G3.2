@@ -24,5 +24,13 @@ public class AppControllerTest {
         assertEquals(0,appController.getArticleCount());
     }
 
+    @Test
+    public void getTopHeadlinesAustriaTest1(){
+        AppController appController = new AppController();
+        assertEquals(new ArrayList<Article>(), appController.getTopHeadlinesAustria());
+    }
+
+
+
 
 }

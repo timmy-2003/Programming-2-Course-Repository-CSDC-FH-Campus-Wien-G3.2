@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AppController {
@@ -20,8 +21,12 @@ public class AppController {
         return articles;
     }
 
-    public List<Article> getTopHeadlinesAustria (){
-        return null;
+    public List<Article> getTopHeadlinesAustria () {
+        if (articles == null) {
+            return new ArrayList<Article>();
+        } else {
+            return articles;
+        }
     }
 
     public List<Article> getAllNewsBitcoin(){
