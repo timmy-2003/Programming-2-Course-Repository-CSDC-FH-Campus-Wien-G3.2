@@ -18,10 +18,10 @@ public class AppControllerTest {
     }
 
     @Test
-    public void getArticleCountTest(){
+    public void getArticleCountTest() {
         AppController appController = new AppController();
         appController.setArticles(new ArrayList<Article>());
-        assertEquals(0,appController.getArticleCount());
+        assertEquals(0, appController.getArticleCount());
     }
 
     @Test
@@ -37,6 +37,24 @@ public class AppControllerTest {
         appController.setArticles(headlines);
         assertEquals(headlines, appController.getTopHeadlinesAustria());
     }
+
+    @Test
+        public void getFilterList(){
+        AppController appController = new AppController();
+        List<Article> articles = new ArrayList<Article>();
+        articles.add(new Article("author1","bitcoin"));
+        articles.add(new Article("author2","football"));
+        articles.add(new Article("author3","politics"));
+        articles.add(new Article("author4","doge"));
+        articles.add(new Article("author5","sports"));
+        //appController.filterList(articles, "bitcoin");
+
+        List<Article> testlist = new ArrayList<Article>();
+        testlist.add(new Article("author1","bitcoin"));
+        assertEquals(testlist, appController.filterList(articles, "bitcoin"));
+    }
+
+
 
 
 

@@ -7,7 +7,8 @@ public class AppController {
 
     private List<Article> articles;
 
-    public AppController() {}
+    public AppController() {
+    }
 
     public void setArticles(List<Article> articles) {
         this.articles = articles;
@@ -21,7 +22,7 @@ public class AppController {
         return articles;
     }
 
-    public List<Article> getTopHeadlinesAustria () {
+    public List<Article> getTopHeadlinesAustria() {
         if (articles == null) {
             return new ArrayList<Article>();
         } else {
@@ -29,15 +30,18 @@ public class AppController {
         }
     }
 
-    public List<Article> getAllNewsBitcoin(){
+    public List<Article> getAllNewsBitcoin() {
         return null;
     }
 
-    protected static List<Article> filterList (List<Article> articles, String query){
+    protected static List<Article> filterList(List<Article> articles, String query) {
+       /* List<Article> tmp = new ArrayList<>();
+        if()
+        return tmp;*/
         return null;
     }
 
-    private static List<Article> generateMockList(){
+    private static List<Article> generateMockList() {
         return null;
     }
 }
