@@ -88,7 +88,7 @@ public class AppControllerTest {
         articles.add(new Article("author5", "sports"));
 
         appController.setArticles(articles);
-        assertEquals(appController.filterList(appController.getArticles(),"").size(), 5);
+        assertEquals(AppController.filterList(appController.getArticles(),"").size(), 5);
     }
 
     /***
@@ -109,6 +109,7 @@ public class AppControllerTest {
      */
 
     @Test
+    @DisplayName("Check if returned list contains the bitcoin article")
     public void bitcoinArticlesTest1(){
         List<Article> articles = new ArrayList<Article>();
         articles.add(new Article("author1", "this title contains the word bitcoin"));
@@ -127,6 +128,7 @@ public class AppControllerTest {
      */
 
     @Test
+    @DisplayName("Check length of returned list of articles")
     public void bitcoinArticlesTest2(){
         List<Article> articles = new ArrayList<Article>();
         articles.add(new Article("author1", "this title contains the word bitcoin"));
