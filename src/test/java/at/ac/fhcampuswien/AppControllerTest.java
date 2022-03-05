@@ -44,19 +44,19 @@ public class AppControllerTest {
     }
 
     /***
-     * Test of the filter list size == 0 (implement -> get the articles list from actual articles not manually created)
+     * testing the list on query=bitcoin
      */
     @Test
     public void filterListTest() {
-        List<Article> articles = new ArrayList<Article>();
+        List<Article> articles = new ArrayList<>();
         articles.add(new Article("author1", "bitcoin"));
         articles.add(new Article("author2", "football"));
         articles.add(new Article("author3", "politics"));
-        articles.add(new Article("author4", "doge"));
+        articles.add(new Article("author4", "dogecoin"));
         articles.add(new Article("author5", "sports"));
 
-        //assertEquals(appController.filterList(appController.getArticles(),"").size(), 0);
-        assertEquals(appController.filterList(articles, "").size(), 5);
+        appController.setArticles(articles);
+        assertEquals(appController.filterList(appController.getArticles(),"bitcoin").size(), 1);
     }
 
     @Test

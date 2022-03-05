@@ -18,8 +18,13 @@ public class Article {
         return title;
     }
 
+
+    /***
+     *
+     * @return
+     */
     @Override
     public String toString() {
-        return super.toString();
+        return "title: " + title + "\t" + "author: " + author;
     }
 }
