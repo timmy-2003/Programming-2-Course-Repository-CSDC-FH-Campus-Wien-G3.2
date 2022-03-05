@@ -1,7 +1,9 @@
 package at.ac.fhcampuswien;
 
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -12,11 +14,21 @@ public class AppControllerTest {
 
     private static AppController appController;
 
+    /***
+     * Exectution before all tests have finished
+     */
     @BeforeAll
     static void setup() {
         appController = new AppController();
     }
 
+    /***
+     * Exectution after all tests have finished
+     */
+    @AfterAll
+    public static void finish() {
+        System.out.println("Finished all tests");
+    }
 
     @Test
     public void setArticlesTest() {
@@ -26,12 +38,14 @@ public class AppControllerTest {
     }
 
     @Test
+    @DisplayName("Testing scenario of setting an empty list")
     public void getArticleCountTest() {
         appController.setArticles(new ArrayList<Article>());
         assertEquals(0, appController.getArticleCount());
     }
 
     @Test
+    @DisplayName("Testing scenario of getting top headlines with empty list")
     public void getTopHeadlinesAustriaTest1() {
         assertEquals(new ArrayList<Article>(), appController.getTopHeadlinesAustria());
     }
@@ -47,6 +61,7 @@ public class AppControllerTest {
      * testing the list on query=bitcoin
      */
     @Test
+    @DisplayName("Testing scenario of query=bitcoin")
     public void filterListTest1() {
         List<Article> articles = new ArrayList<>();
         articles.add(new Article("author1", "bitcoin"));
@@ -63,6 +78,7 @@ public class AppControllerTest {
      * testing the list on empty query
      */
     @Test
+    @DisplayName("Testing scenario of empty query")
     public void filterListTest2() {
         List<Article> articles = new ArrayList<>();
         articles.add(new Article("author1", "bitcoin"));
@@ -79,6 +95,7 @@ public class AppControllerTest {
      * testing empty list
      */
     @Test
+    @DisplayName("Testing scenario of empty list")
     public void filterListTest3() {
         List<Article> articles = new ArrayList<>();
 
