@@ -75,6 +75,17 @@ public class AppControllerTest {
         assertEquals(appController.filterList(appController.getArticles(),"").size(), 5);
     }
 
+    /***
+     * testing empty list
+     */
+    @Test
+    public void filterListTest3() {
+        List<Article> articles = new ArrayList<>();
+
+        appController.setArticles(articles);
+        assertEquals(appController.filterList(appController.getArticles(),"btc").size(), 0);
+    }
+
     @Test
     public void bitcoinArticlesTest(){
         List<Article> articles = new ArrayList<Article>();
