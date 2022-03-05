@@ -86,8 +86,13 @@ public class AppControllerTest {
         assertEquals(appController.filterList(appController.getArticles(),"btc").size(), 0);
     }
 
+
+    /**
+     * testing to see if the list returned by getAllNewsBitcoin returns the correct article
+     */
+
     @Test
-    public void bitcoinArticlesTest(){
+    public void bitcoinArticlesTest1(){
         List<Article> articles = new ArrayList<Article>();
         articles.add(new Article("author1", "this title contains the word bitcoin"));
         articles.add(new Article("author2", "football"));
@@ -99,4 +104,23 @@ public class AppControllerTest {
         assertTrue(appController.getAllNewsBitcoin().contains(articles.get(0)));
 
     }
+
+    /**
+     * second test case to make sure the list only contains the articles that contain the word bitcoin
+     */
+
+    @Test
+    public void bitcoinArticlesTest2(){
+        List<Article> articles = new ArrayList<Article>();
+        articles.add(new Article("author1", "this title contains the word bitcoin"));
+        articles.add(new Article("author2", "football"));
+        articles.add(new Article("author3", "politics"));
+        articles.add(new Article("author4", "doge"));
+        articles.add(new Article("author5", "sports"));
+        articles.add(new Article("author6", "another article about bitcoin"));
+
+        appController.setArticles(articles);
+        assertEquals(appController.getAllNewsBitcoin().size(), 2);
+    }
+
 }
