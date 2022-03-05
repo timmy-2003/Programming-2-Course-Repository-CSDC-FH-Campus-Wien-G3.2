@@ -32,7 +32,7 @@ public class AppController {
     }
 
     public List<Article> getAllNewsBitcoin() {
-        return null;
+        return filterList(articles, "bitcoin");
     }
 
     protected static List<Article> filterList(List<Article> articles, String query) {
