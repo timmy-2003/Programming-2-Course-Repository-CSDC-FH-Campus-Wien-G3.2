@@ -47,7 +47,7 @@ public class AppControllerTest {
      * testing the list on query=bitcoin
      */
     @Test
-    public void filterListTest() {
+    public void filterListTest1() {
         List<Article> articles = new ArrayList<>();
         articles.add(new Article("author1", "bitcoin"));
         articles.add(new Article("author2", "football"));
@@ -57,6 +57,22 @@ public class AppControllerTest {
 
         appController.setArticles(articles);
         assertEquals(appController.filterList(appController.getArticles(),"bitcoin").size(), 1);
+    }
+
+    /***
+     * testing the list on empty query
+     */
+    @Test
+    public void filterListTest2() {
+        List<Article> articles = new ArrayList<>();
+        articles.add(new Article("author1", "bitcoin"));
+        articles.add(new Article("author2", "football"));
+        articles.add(new Article("author3", "politics"));
+        articles.add(new Article("author4", "dogecoin"));
+        articles.add(new Article("author5", "sports"));
+
+        appController.setArticles(articles);
+        assertEquals(appController.filterList(appController.getArticles(),"").size(), 5);
     }
 
     @Test
