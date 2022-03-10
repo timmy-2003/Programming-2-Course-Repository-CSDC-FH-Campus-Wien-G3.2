@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 public class NewsController {
 
     @FXML
-    private Label label;
+    private Label label2;
 
     public void initialize() {
         // TODO
@@ -14,7 +14,7 @@ public class NewsController {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        label.setText("Hello World!");
+        label2.setText("Hello World!");
     }
 
 }
