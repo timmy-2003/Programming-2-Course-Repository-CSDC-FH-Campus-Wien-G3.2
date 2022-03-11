@@ -20,8 +20,11 @@ public class App extends Application {
         loader.setLocation(getClass().getResource("/fxml/newsapp.fxml"));
         Parent root = loader.load();
 
-        Scene scene = new Scene(root, 1148, 725);
+        Scene scene = new Scene(root, 1400, 800);
         stage.setScene(scene);
+        stage.setMinWidth(1400);
+        stage.setMinHeight(800);
+        stage.setMaximized(true);
         stage.show();
     }
 }
