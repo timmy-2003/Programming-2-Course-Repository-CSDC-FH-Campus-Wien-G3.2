@@ -5,56 +5,78 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="800.0" prefHeight="725.0" prefWidth="1148.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.NewsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="800.0" prefHeight="725.0" prefWidth="1148.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.NewsController">
    <children>
-      <AnchorPane layoutY="-1.0" prefHeight="725.0" prefWidth="277.0" style="-fx-background-color: #393351;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-1.0">
+      <VBox layoutY="100.0" prefHeight="625.0" prefWidth="212.0" style="-fx-background-color: #393351;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
-            <VBox layoutX="-1.0" layoutY="101.0" prefHeight="624.0" prefWidth="287.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="101.0">
-               <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="287.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="A" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic></Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="B" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Y" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                  </Button>
-                  <Button fx:id="exitButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="60.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="EXIT" textAlignment="CENTER" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="29.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/ExitApplication.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-            <Pane prefHeight="121.0" prefWidth="286.0">
-               <children>
-                  <Label layoutX="72.0" layoutY="38.0" text="NEWS APP" textFill="WHITE">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="46.0" prefWidth="287.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Get Toplines Austria" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/newspaper.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Get Toplines Bitcoin" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/btc.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Count Articles" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/article.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="exitButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Exit" textAlignment="CENTER" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="-1.0" prefHeight="100.0" prefWidth="1148.0" style="-fx-background-color: #2F2B43;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="23.0" layoutY="31.0" prefHeight="38.0" prefWidth="177.0" text="NEWS APP" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/newsapp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
          </children>
       </AnchorPane>
-      <Pane layoutX="286.0" layoutY="-3.0" prefHeight="725.0" prefWidth="864.0" />
-      <Pane layoutX="296.0" layoutY="7.0" prefHeight="725.0" prefWidth="864.0" />
    </children>
 </AnchorPane>
