@@ -1,10 +1,15 @@
 package at.ac.fhcampuswien;
+
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +17,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-
+//needed: 4 BUTTONS
+// ELEMENT for "get top headlines austria || ELEMENT for "get all news btc" || LABEL or smth for display Count Articles || QUIT Program - maybe also button and Alert -> "quitting text"
 public class NewsController {
     Timer timer = new Timer();
 
@@ -23,15 +29,21 @@ public class NewsController {
     private Button btnGetToplinesAustria;
 
     @FXML
-    private TableView<?> tvNews;
+    private TableView<Article> tvNews;
+    @FXML
+    private TableColumn<Article, String> title;
+    @FXML
+    private TableColumn<Article, String> author;
 
+    ObservableList<Article> list = FXCollections.observableArrayList(
+            new Article("Daniel", "BTC"),
+            new Article("Anna", "ETH"),
+            new Article("xx", "Austria"),
+            new Article("yy", "Germany"));
 
-
-    //needed: 4 BUTTONS
-    // ELEMENT for "get top headlines austria || ELEMENT for "get all news btc" || LABEL or smth for display Count Articles || QUIT Program - maybe also button and Alert -> "quitting text"
 
     @FXML
-    public void exitApplication(){
+    public void exitApplication() {
         exitButton.setText("See you soon!");
         timer.schedule(new TimerTask() {
             @Override
@@ -44,29 +56,17 @@ public class NewsController {
     }
 
     /***
-     * test list for testing
+     * test list for testing, replacing with actual list when ready with filtering "austria"
      * @param event
      */
     @FXML
     void GetTopLinesAustria(ActionEvent event) {
-        List<Article> testlist = new ArrayList<Article>();
-        Article emp1 = new Article("Liam","20000");
-        testlist.add(emp1);
-        Article emp2 = new Article("Noah","2002300");
-        testlist.add(emp2);
-        Article emp3 = new Article("William","2011000");
-        testlist.add(emp3);
-        Article emp4 = new Article("James","31000");
-        testlist.add(emp4);
-        Article emp5 = new Article("Benjamin","2X0");
-        testlist.add(emp5);
-
-
-        /*tbv.getColumns().add(cl1);
-        tbv.getColumns().add(cl2);
-        for (Employee emp : employeeList){
-            tbv.getItems().add(emp);
-        }*/
+        author.setCellValueFactory(new PropertyValueFactory<Article,String>("Title"));
+        title.setCellValueFactory(new PropertyValueFactory<Article,String>("Author"));
+        tvNews.setItems(list);
+    }
+    @FXML
+    void GetTopLinesBitcoin(ActionEvent event) {
 
     }
 

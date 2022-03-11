@@ -21,7 +21,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Get Toplines Bitcoin" textFill="WHITE">
+            <Button fx:id="btnGetToplinesBitcoin" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesBitcoin" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Get Toplines Bitcoin" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -86,10 +86,10 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <TableView prefHeight="200.0" prefWidth="359.0" style="-fx-background-color: black; -fx-border-color: red;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="580.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="tvNews" prefHeight="200.0" prefWidth="359.0" style="-fx-background-color: white; -fx-border-color: red;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="580.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Author" />
-                            <TableColumn prefWidth="75.0" text="Title" />
+                            <TableColumn fx:id="title" prefWidth="75.0" text="Title" />
+                            <TableColumn fx:id="author" prefWidth="75.0" text="Author" />
                           </columns>
                         </TableView>
                      </children>
