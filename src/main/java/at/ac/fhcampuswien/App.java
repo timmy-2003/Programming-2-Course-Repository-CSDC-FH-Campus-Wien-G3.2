@@ -20,7 +20,6 @@ public class App extends Application {
         loader.setLocation(getClass().getResource("/fxml/newsapp.fxml"));
         Parent root = loader.load();
 
-       //Parent root = FXMLLoader.load(getClass().getResourceAsStream("main.fxml"));
         Scene scene = new Scene(root, 1148, 725);
         stage.setScene(scene);
         stage.show();
