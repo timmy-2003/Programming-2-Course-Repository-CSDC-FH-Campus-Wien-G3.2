@@ -41,6 +41,12 @@ public class NewsController {
             new Article("xx", "Austria"),
             new Article("yy", "Germany"));
 
+    ObservableList<Article> list2 = FXCollections.observableArrayList(
+            new Article("CNN", "BTC"),
+            new Article("BBC", "BTC"),
+            new Article("Krone", "DOGE"),
+            new Article("Zeitimbild", "Austria"));
+
 
     @FXML
     public void exitApplication() {
@@ -61,13 +67,20 @@ public class NewsController {
      */
     @FXML
     void GetTopLinesAustria(ActionEvent event) {
-        author.setCellValueFactory(new PropertyValueFactory<Article,String>("Title"));
-        title.setCellValueFactory(new PropertyValueFactory<Article,String>("Author"));
+        author.setCellValueFactory(new PropertyValueFactory<Article,String>("Author"));
+        title.setCellValueFactory(new PropertyValueFactory<Article,String>("Title"));
         tvNews.setItems(list);
     }
+
+    /***
+     * test list for testing, replacing with actual list when ready with filtering "btc"
+     * @param event
+     */
     @FXML
     void GetTopLinesBitcoin(ActionEvent event) {
-
+        author.setCellValueFactory(new PropertyValueFactory<Article,String>("Author"));
+        title.setCellValueFactory(new PropertyValueFactory<Article,String>("Title"));
+        tvNews.setItems(list2);
     }
 
 }
