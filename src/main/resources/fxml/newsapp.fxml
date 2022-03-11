@@ -2,6 +2,10 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +16,7 @@
    <children>
       <VBox layoutY="100.0" prefHeight="625.0" prefWidth="212.0" style="-fx-background-color: #393351;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="46.0" prefWidth="287.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Get Toplines Austria" textFill="WHITE">
+            <Button fx:id="btnGetToplinesAustria" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesAustria" prefHeight="46.0" prefWidth="287.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Get Toplines Austria" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -78,5 +82,41 @@
             </Label>
          </children>
       </AnchorPane>
+      <TabPane layoutX="212.0" layoutY="100.0" prefHeight="625.0" prefWidth="939.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="212.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="100.0">
+        <tabs>
+          <Tab text="News">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="708.0" layoutY="54.0" prefHeight="75.0" prefWidth="147.0" text="NEWS" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TableView prefHeight="200.0" prefWidth="359.0" style="-fx-background-color: black; -fx-border-color: red;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="580.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Author" />
+                            <TableColumn prefWidth="75.0" text="Title" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Stats">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="359.0" layoutY="192.0" text="STATS" textFill="WHITE">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>
