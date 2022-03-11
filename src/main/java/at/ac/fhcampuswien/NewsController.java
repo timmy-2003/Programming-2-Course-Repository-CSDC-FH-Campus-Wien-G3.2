@@ -5,6 +5,9 @@ import javafx.scene.control.Label;
 
 public class NewsController {
 
+    //needed: 4 BUTTONS
+    // ELEMENT for "get top headlines austria || ELEMENT for "get all news btc" || LABEL or smth for display Count Articles || QUIT Program - maybe also button and Alert -> "quitting text"
+
     @FXML
     private Label label2;
 

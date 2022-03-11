@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
 
-<VBox>
-    <children>
-        <Label text="Hello world FXML 2"/>
-    </children>
-</VBox>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutY="-1.0" prefHeight="400.0" prefWidth="134.0" style="-fx-background-color: #393351;">
+         <children>
+            <VBox layoutX="-1.0" layoutY="200.0" prefHeight="200.0" prefWidth="134.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="135.0" text="A" />
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="135.0" text="B" />
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="135.0" text="Y" />
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="135.0" text="Q" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
