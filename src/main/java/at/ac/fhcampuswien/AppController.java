@@ -6,7 +6,7 @@ import java.util.Locale;
 
 public class AppController {
 
-    private List<Article> articles;
+    private List<Article> articles = new ArrayList<>();
 
     public AppController() {
     }

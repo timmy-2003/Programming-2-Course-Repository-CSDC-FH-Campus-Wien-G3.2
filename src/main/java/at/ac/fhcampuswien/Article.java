@@ -25,6 +25,6 @@ public class Article {
      */
     @Override
     public String toString() {
-        return "title: " + title + "\t" + "author: " + author;
+        return "Title: " + title + "\t" + "Author: " + author;
     }
 }
