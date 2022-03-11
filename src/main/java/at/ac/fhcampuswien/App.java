@@ -21,7 +21,7 @@ public class App extends Application {
         Parent root = loader.load();
 
        //Parent root = FXMLLoader.load(getClass().getResourceAsStream("main.fxml"));
-        Scene scene = new Scene(root, 650, 450);
+        Scene scene = new Scene(root, 1148, 725);
         stage.setScene(scene);
         stage.show();
     }
