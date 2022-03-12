@@ -17,10 +17,12 @@ import java.util.TimerTask;
 //needed: 4 BUTTONS
 // ELEMENT for "get top headlines austria || ELEMENT for "get all news btc" || LABEL or smth for display Count Articles || QUIT Program - maybe also button and Alert -> "quitting text"
 public class NewsController {
+    private AppController ctrl = new AppController();
     Timer timer = new Timer();
 
     @FXML
     private Button exitButton;
+    @FXML private Button countButton;
 
     @FXML
     private Button btnGetToplinesAustria;
@@ -56,6 +58,22 @@ public class NewsController {
                 });
             }
         }, 1000l);
+    }
+
+    @FXML
+    void showArticleCount(){
+        if (ctrl.getArticleCount() == 1){
+            countButton.setText("  1 article");
+        } else {
+            countButton.setText("  " + String.valueOf(ctrl.getArticleCount()) + " articles");}
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    countButton.setText("  Count articles");
+                });
+            }
+        }, 2000l);
     }
 
     /***

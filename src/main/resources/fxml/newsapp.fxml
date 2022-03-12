@@ -16,7 +16,7 @@
    <children>
       <VBox layoutY="100.0" prefHeight="625.0" prefWidth="212.0" style="-fx-background-color: #393351;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
-            <Button fx:id="btnGetToplinesAustria" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesAustria" prefHeight="46.0" prefWidth="287.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Get Toplines Austria" textFill="WHITE">
+            <Button fx:id="btnGetToplinesAustria" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesAustria" prefHeight="46.0" prefWidth="287.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="  Get Toplines Austria" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -28,7 +28,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnGetToplinesBitcoin" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesBitcoin" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Get Toplines Bitcoin" textFill="WHITE">
+            <Button fx:id="btnGetToplinesBitcoin" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesBitcoin" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text=" Get Toplines Bitcoin" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -40,7 +40,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Count Articles" textFill="WHITE">
+            <Button fx:id="countButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showArticleCount" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="  Count articles" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -52,7 +52,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="exitButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Exit" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="exitButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="46.0" prefWidth="210.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Exit" textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
