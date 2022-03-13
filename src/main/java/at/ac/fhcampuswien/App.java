@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -25,6 +26,8 @@ public class App extends Application {
         stage.setMinWidth(1400);
         stage.setMinHeight(800);
         stage.setMaximized(true);
+        Image icon = new Image(String.valueOf(getClass().getResource("/images/world-news.png")));
+        stage.getIcons().add(icon);
         stage.show();
     }
 }
