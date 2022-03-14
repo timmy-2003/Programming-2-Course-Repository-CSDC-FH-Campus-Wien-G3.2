@@ -10,6 +10,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -22,7 +24,8 @@ public class NewsController {
 
     @FXML
     private Button exitButton;
-    @FXML private Button countButton;
+    @FXML
+    private Button countButton;
 
     @FXML
     private Button btnGetToplinesAustria;
@@ -33,18 +36,6 @@ public class NewsController {
     private TableColumn<Article, String> title;
     @FXML
     private TableColumn<Article, String> author;
-
-    ObservableList<Article> list = FXCollections.observableArrayList(
-            new Article("Daniel", "BTC"),
-            new Article("Anna", "ETH"),
-            new Article("xx", "Austria"),
-            new Article("yy", "Germany"));
-
-    ObservableList<Article> list2 = FXCollections.observableArrayList(
-            new Article("CNN", "BTC"),
-            new Article("BBC", "BTC"),
-            new Article("Krone", "DOGE"),
-            new Article("Zeitimbild", "Austria"));
 
 
     @FXML
@@ -61,11 +52,12 @@ public class NewsController {
     }
 
     @FXML
-    void showArticleCount(){
-        if (ctrl.getArticleCount() == 1){
+    void showArticleCount() {
+        if (ctrl.getArticleCount() == 1) {
             countButton.setText("  1 article");
         } else {
-            countButton.setText("  " + String.valueOf(ctrl.getArticleCount()) + " articles");}
+            countButton.setText("  " + String.valueOf(ctrl.getArticleCount()) + " articles");
+        }
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -82,20 +74,39 @@ public class NewsController {
      */
     @FXML
     void GetTopLinesAustria(ActionEvent event) {
-        author.setCellValueFactory(new PropertyValueFactory<Article,String>("Author"));
-        title.setCellValueFactory(new PropertyValueFactory<Article,String>("Title"));
-        tvNews.setItems(list);
+        getList("austria");
     }
 
     /***
-     * test list for testing, replacing with actual list when ready with filtering "btc"
+     * test list for testing, replacing with actual list when ready with filtering "bitcoin"
      * @param event
      */
     @FXML
     void GetTopLinesBitcoin(ActionEvent event) {
-        author.setCellValueFactory(new PropertyValueFactory<Article,String>("Author"));
-        title.setCellValueFactory(new PropertyValueFactory<Article,String>("Title"));
-        tvNews.setItems(list2);
+        getList("bitcoin");
+    }
+
+    /***
+     * convert a List into an ObservableList
+     * @param articleList
+     * @return
+     */
+    private ObservableList<Article> getObservableListFromList(List<Article> articleList) {
+        ObservableList<Article> articleListO = FXCollections.observableArrayList(articleList);
+        return articleListO;
+    }
+
+    /***
+     * get List based on headline the user want
+     * @param query
+     */
+    private void getList(String query) {
+        author.setCellValueFactory(new PropertyValueFactory<>("Author"));
+        title.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        switch (query.toLowerCase()) {
+            case "austria" ->   tvNews.setItems(getObservableListFromList(ctrl.getTopHeadlinesAustria()));
+            case "bitcoin" ->   tvNews.setItems(getObservableListFromList(ctrl.getAllNewsBitcoin()));
+        }
     }
 
 }

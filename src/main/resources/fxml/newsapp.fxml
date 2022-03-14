@@ -88,13 +88,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tvNews" prefHeight="337.0" prefWidth="487.0" style="-fx-background-color: white; -fx-border-color: red;" AnchorPane.bottomAnchor="259.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="tvNews" prefHeight="337.0" prefWidth="743.0" style="-fx-background-color: white; -fx-border-color: red;" AnchorPane.bottomAnchor="259.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn fx:id="title" prefWidth="75.0" text="Title" />
-                            <TableColumn fx:id="author" prefWidth="75.0" text="Author" />
+                            <TableColumn fx:id="author" minWidth="6.0" prefWidth="130.0" text="Author" />
+                            <TableColumn fx:id="title" prefWidth="405.0" text="Title" />
                           </columns>
                         </TableView>
-                        <Label layoutX="696.0" layoutY="149.0" prefHeight="75.0" prefWidth="147.0" text="NEWS" textFill="WHITE">
+                        <Label layoutX="778.0" layoutY="148.0" prefHeight="75.0" prefWidth="147.0" text="NEWS" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>
