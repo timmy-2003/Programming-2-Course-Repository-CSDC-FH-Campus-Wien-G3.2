@@ -52,6 +52,9 @@ public class Menu {
     }
 
     private void getAllNewsBitcoin(AppController ctrl) {
+        for (int i = 0; i < ctrl.getAllNewsBitcoin().size(); i++){
+            System.out.println(ctrl.getAllNewsBitcoin().get(i).toString());
+        }
     }
 
     private static void printExitMessage() {
