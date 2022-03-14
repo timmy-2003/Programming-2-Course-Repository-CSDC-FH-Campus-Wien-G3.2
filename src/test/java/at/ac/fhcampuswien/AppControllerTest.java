@@ -141,5 +141,4 @@ public class AppControllerTest {
         appController.setArticles(articles);
         assertEquals(appController.getAllNewsBitcoin().size(), 2);
     }
-
 }

@@ -66,8 +66,15 @@ public class Menu {
     }
 
     private static void printMenu() {
-
+        // Header
+        System.out.print("**************************" + System.lineSeparator() +
+                        "*   Welcome to NewsApp   *" + System.lineSeparator() +
+                        "**************************" + System.lineSeparator());
+        // Actions/Options
+        System.out.println("Enter what you wanna do:" + System.lineSeparator() +
+                        "a: Get top headlines austria" + System.lineSeparator() +
+                        "b: Get all news about bitcoin" + System.lineSeparator() +
+                        "y: Count articles" + System.lineSeparator() +
+                        "q: Quit program");
     }
-
-
 }
