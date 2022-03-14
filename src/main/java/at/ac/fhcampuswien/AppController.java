@@ -9,6 +9,7 @@ public class AppController {
     private List<Article> articles = new ArrayList<>();
 
     public AppController() {
+        setArticles(generateMockList());
     }
 
     public void setArticles(List<Article> articles) {
