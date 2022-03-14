@@ -12,7 +12,7 @@ public class Menu {
 
     public void start() {
         Scanner scan = new Scanner(System.in);
-        while (true){
+        while (true) {
             printMenu();
             String userInput;
             userInput = scan.next();
@@ -21,7 +21,7 @@ public class Menu {
     }
 
     private void handleInput(String input) {
-        switch (input){
+        switch (input) {
             default:
                 printInvalidInputMessage();
                 break;
@@ -46,13 +46,13 @@ public class Menu {
     }
 
     private void getTopHeadlinesAustria(AppController ctrl) {
-        for (int i = 0; i<ctrl.getTopHeadlinesAustria().size(); i++){
+        for (int i = 0; i < ctrl.getTopHeadlinesAustria().size(); i++) {
             System.out.println(ctrl.getTopHeadlinesAustria().get(i).toString());
         }
     }
 
     private void getAllNewsBitcoin(AppController ctrl) {
-        for (int i = 0; i < ctrl.getAllNewsBitcoin().size(); i++){
+        for (int i = 0; i < ctrl.getAllNewsBitcoin().size(); i++) {
             System.out.println(ctrl.getAllNewsBitcoin().get(i).toString());
         }
     }
@@ -68,13 +68,13 @@ public class Menu {
     private static void printMenu() {
         // Header
         System.out.print("**************************" + System.lineSeparator() +
-                        "*   Welcome to NewsApp   *" + System.lineSeparator() +
-                        "**************************" + System.lineSeparator());
+                "*   Welcome to NewsApp   *" + System.lineSeparator() +
+                "**************************" + System.lineSeparator());
         // Actions/Options
         System.out.println("Enter what you wanna do:" + System.lineSeparator() +
-                        "a: Get top headlines austria" + System.lineSeparator() +
-                        "b: Get all news about bitcoin" + System.lineSeparator() +
-                        "y: Count articles" + System.lineSeparator() +
-                        "q: Quit program");
+                "a: Get top headlines austria" + System.lineSeparator() +
+                "b: Get all news about bitcoin" + System.lineSeparator() +
+                "y: Count articles" + System.lineSeparator() +
+                "q: Quit program");
     }
 }

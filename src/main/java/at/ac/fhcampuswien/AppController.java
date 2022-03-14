@@ -2,7 +2,6 @@ package at.ac.fhcampuswien;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class AppController {
 
@@ -48,8 +47,8 @@ public class AppController {
     }
 
     /***
-     * filled the mocklist with dummy values
-     * @return
+     * filled the mockList with dummy values
+     * @return the mockList
      */
     private static List<Article> generateMockList() {
 

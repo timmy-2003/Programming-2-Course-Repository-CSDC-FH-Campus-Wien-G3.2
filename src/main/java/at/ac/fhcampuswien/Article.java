@@ -19,9 +19,8 @@ public class Article {
     }
 
 
-    /***
-     *
-     * @return
+    /**
+     * @return author and title of article formatted as a String
      */
     @Override
     public String toString() {

@@ -11,7 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -104,8 +103,8 @@ public class NewsController {
         author.setCellValueFactory(new PropertyValueFactory<>("Author"));
         title.setCellValueFactory(new PropertyValueFactory<>("Title"));
         switch (query.toLowerCase()) {
-            case "austria" ->   tvNews.setItems(getObservableListFromList(ctrl.getTopHeadlinesAustria()));
-            case "bitcoin" ->   tvNews.setItems(getObservableListFromList(ctrl.getAllNewsBitcoin()));
+            case "austria" -> tvNews.setItems(getObservableListFromList(ctrl.getTopHeadlinesAustria()));
+            case "bitcoin" -> tvNews.setItems(getObservableListFromList(ctrl.getAllNewsBitcoin()));
         }
     }
 
