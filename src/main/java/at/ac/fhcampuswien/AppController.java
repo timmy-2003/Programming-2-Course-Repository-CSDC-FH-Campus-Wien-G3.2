@@ -46,7 +46,23 @@ public class AppController {
         return tmp;
     }
 
+    /***
+     * filled the mocklist with dummy values
+     * @return
+     */
     private static List<Article> generateMockList() {
-        return null;
+
+        List<Article> mockList = new ArrayList<>();
+
+        mockList.add(new Article("The Wall Street Journal", "Bitcoin Price Surges on Biden’s Crypto Executive Order"));
+        mockList.add(new Article("The New York Times", "Can We Trust What’s Happening to Money?"));
+        mockList.add(new Article("USA Today", "In Switzerland, all the political power belongs to the people"));
+        mockList.add(new Article("New York Post", "Inflation is bad now — but the Fed could return us to the bad old days of the ’70s"));
+        mockList.add(new Article("CoinDesk", "What Is a Satoshi? Understanding the Smallest Unit of Bitcoin"));
+        mockList.add(new Article("Deseret News", "Austria and the Sublime Porte"));
+        mockList.add(new Article("CoinDesk", "Austria to Tax Crypto Like Stocks and Bonds"));
+        mockList.add(new Article("CoinDesk", "Bitcoin-Banning Measure Seen Too Close to Call in Monday's EU Parliament Vote"));
+
+        return mockList;
     }
 }
