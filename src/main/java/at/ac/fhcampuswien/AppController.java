@@ -40,7 +40,6 @@ public class AppController {
         for (Article a : articles) {
             if (a.getTitle().toLowerCase().contains(query)) {
                 tmp.add(a);
-                //System.out.println(a);
             }
         }
         return tmp;
