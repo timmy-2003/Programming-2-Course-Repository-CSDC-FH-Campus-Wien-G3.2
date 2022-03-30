@@ -6,6 +6,7 @@ module newsApp {
     requires javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
+    requires okhttp3;
 
     opens at.ac.fhcampuswien;
 }
