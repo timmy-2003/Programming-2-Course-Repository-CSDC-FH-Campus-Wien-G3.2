@@ -12,7 +12,9 @@
 
 .backanchor {
     -fx-background-color: #000000;
+    -fx-background-radius: 20;
 }
+
 
 .topanchor {
     -fx-background-color: #2F2B43;
