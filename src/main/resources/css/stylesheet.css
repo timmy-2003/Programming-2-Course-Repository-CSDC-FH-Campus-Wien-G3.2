@@ -11,7 +11,8 @@
 }
 
 .backanchormain {
-    -fx-background-color: #000000;
+    -fx-background-image: url('../images/background2.jpg');
+    -fx-background-size: stretch;
 }
 
 .backanchor {
@@ -24,7 +25,6 @@
     -fx-background-color: #2F2B43;
 }
 
-.vboxleftside
-{
+.vboxleftside {
     -fx-background-color: #393351;
 }
