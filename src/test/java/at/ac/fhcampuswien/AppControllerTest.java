@@ -31,6 +31,7 @@ public class AppControllerTest {
     }
 
     @Test
+    @DisplayName("Testing scenario of setting an empty list")
     public void setArticlesTest() {
         List<Article> articles = new ArrayList<Article>();
         appController.setArticles(articles);
@@ -38,7 +39,7 @@ public class AppControllerTest {
     }
 
     @Test
-    @DisplayName("Testing scenario of setting an empty list")
+    @DisplayName("Testing scenario of getting an empty list")
     public void getArticleCountTest() {
         appController.setArticles(new ArrayList<Article>());
         assertEquals(0, appController.getArticleCount());
@@ -51,6 +52,7 @@ public class AppControllerTest {
     }
 
     @Test
+    @DisplayName("Testing the getTopHeadLines method with empty list")
     public void getTopHeadlinesAustriaTest2() {
         List<Article> headlines = new ArrayList<Article>();
         appController.setArticles(headlines);
