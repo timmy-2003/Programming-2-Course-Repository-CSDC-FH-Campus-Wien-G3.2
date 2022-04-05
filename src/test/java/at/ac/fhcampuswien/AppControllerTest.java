@@ -85,7 +85,7 @@ public class AppControllerTest {
         articles.add(new Article("author5", "sports"));
 
         appController.setArticles(articles);
-        assertEquals(appController.filterList(appController.getArticles(),"bitcoin").size(), 1);
+        assertEquals(1,appController.filterList(appController.getArticles(),"bitcoin").size());
     }
 
     /***
@@ -102,7 +102,7 @@ public class AppControllerTest {
         articles.add(new Article("author5", "sports"));
 
         appController.setArticles(articles);
-        assertEquals(AppController.filterList(appController.getArticles(),"").size(), 5);
+        assertEquals(5,AppController.filterList(appController.getArticles(),"").size());
     }
 
     /***
@@ -114,7 +114,7 @@ public class AppControllerTest {
         List<Article> articles = new ArrayList<>();
 
         appController.setArticles(articles);
-        assertEquals(appController.filterList(appController.getArticles(),"btc").size(), 0);
+        assertEquals(0,appController.filterList(appController.getArticles(),"btc").size());
     }
 
 
@@ -153,6 +153,6 @@ public class AppControllerTest {
         articles.add(new Article("author6", "another article about bitcoin"));
 
         appController.setArticles(articles);
-        assertEquals(appController.getAllNewsBitcoin().size(), 2);
+        assertEquals(2,appController.getAllNewsBitcoin().size());
     }
 }
