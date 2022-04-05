@@ -12,6 +12,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class App extends Application {
+    /***
+     * main function launches application
+     * @param args
+     */
     public static void main(String[] args) {
         launch(args);
         Menu menu = new Menu();
@@ -19,21 +23,26 @@ public class App extends Application {
 
     }
 
+    /***
+     * starting the splash screen
+     * @param stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/newsappsplashscreen.fxml"));
         Parent root = loader.load();
 
+        //create the scene
         Scene scene = new Scene(root, 600, 354);
         scene.setFill(Color.TRANSPARENT);
         stage.centerOnScreen();
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
-        //stage.setMinWidth(1400);
-        //stage.setMinHeight(800);
-        //stage.setMaximized(true);
+
+        // setting the icon image
         Image icon = new Image(String.valueOf(getClass().getResource("/images/world-news.png")));
         stage.getIcons().add(icon);
         stage.show();

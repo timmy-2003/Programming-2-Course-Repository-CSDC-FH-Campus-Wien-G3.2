@@ -17,6 +17,10 @@ public class NewsControllerSplashScreen {
     private AnchorPane anchorpane;
 
 
+    /***
+     * threading starts so that the other GUI can load during splash screen is showing
+     * call load method
+     */
     @FXML
     void initialize() {
         try {
@@ -28,9 +32,12 @@ public class NewsControllerSplashScreen {
         }
     }
 
+    /***
+     * load the main GUI with a delay of 5 ms
+     */
     private void load() {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -45,15 +52,20 @@ public class NewsControllerSplashScreen {
                 e.printStackTrace();
             }
 
+            //create the scene
             Stage stage = new Stage();
             Scene scene = new Scene(root, 1400, 800);
             stage.setScene(scene);
             stage.setMinWidth(1400);
             stage.setMinHeight(800);
             stage.setMaximized(true);
+
+            // setting the icon image
             Image icon = new Image(String.valueOf(getClass().getResource("/images/world-news.png")));
             stage.getIcons().add(icon);
             stage.show();
+
+            //hide the splash screen
             anchorpane.getScene().getWindow().hide();
         });
     }

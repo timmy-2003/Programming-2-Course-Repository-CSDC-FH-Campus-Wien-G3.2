@@ -46,6 +46,9 @@ public class NewsController {
     }
 
 
+    /***
+     * when you press exit then the application get's closed with delay
+     */
     @FXML
     public void exitApplication() {
         exitButton.setText("See you soon!");
@@ -59,6 +62,9 @@ public class NewsController {
         }, 1000l);
     }
 
+    /***
+     * when you press count articles you get the articles displayed
+     */
     @FXML
     void showArticleCount() {
         if (ctrl.getArticleCount() == 1) {

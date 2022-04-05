@@ -7,22 +7,41 @@ public class AppController {
 
     private List<Article> articles = new ArrayList<>();
 
+    /***
+     * when instanced set the list with our mocklist
+     */
     public AppController() {
         setArticles(generateMockList());
     }
 
+    /***
+     * set articles from input list
+     * @param articles
+     */
     public void setArticles(List<Article> articles) {
         this.articles = articles;
     }
 
+    /***
+     * return our article list size as an int
+     * @return
+     */
     public int getArticleCount() {
         return articles.size();
     }
 
+    /***
+     * return our article list
+     * @return
+     */
     public List<Article> getArticles() {
         return articles;
     }
 
+    /***
+     * get top headlines from austria (at the moment just the full list back)
+     * @return
+     */
     public List<Article> getTopHeadlinesAustria() {
         if (articles == null) {
             return new ArrayList<Article>();
@@ -31,10 +50,20 @@ public class AppController {
         }
     }
 
+    /***
+     * get all news with the query bitcoin
+     * @return
+     */
     public List<Article> getAllNewsBitcoin() {
         return filterList(articles, "bitcoin");
     }
 
+    /***
+     * filter the input list based on the query
+     * @param articles
+     * @param query
+     * @return
+     */
     protected static List<Article> filterList(List<Article> articles, String query) {
         List<Article> tmp = new ArrayList<>();
         for (Article a : articles) {

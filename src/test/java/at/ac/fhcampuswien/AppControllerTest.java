@@ -15,7 +15,7 @@ public class AppControllerTest {
     private static AppController appController;
 
     /***
-     * Exectution before all tests have finished
+     * execution before all tests have finished
      */
     @BeforeAll
     static void setup() {
@@ -23,13 +23,16 @@ public class AppControllerTest {
     }
 
     /***
-     * Exectution after all tests have finished
+     * execution after all tests have finished
      */
     @AfterAll
     public static void finish() {
         System.out.println("Finished all tests");
     }
 
+    /***
+     * setting an empty list and test the size
+     */
     @Test
     @DisplayName("Testing scenario of setting an empty list")
     public void setArticlesTest() {
@@ -38,6 +41,9 @@ public class AppControllerTest {
         assertEquals(articles.size(), appController.getArticleCount());
     }
 
+    /***
+     * set an empty list and test the getmethod
+     */
     @Test
     @DisplayName("Testing scenario of getting an empty list")
     public void getArticleCountTest() {
@@ -45,16 +51,22 @@ public class AppControllerTest {
         assertEquals(0, appController.getArticleCount());
     }
 
+    /***
+     * get the top headlines with an empty list
+     */
     @Test
     @DisplayName("Testing scenario of getting top headlines with empty list")
     public void getTopHeadlinesAustriaTest1() {
         assertEquals(new ArrayList<Article>(), appController.getTopHeadlinesAustria());
     }
 
+    /***
+     * get the top headlines with an empty list and set this empty list before
+     */
     @Test
     @DisplayName("Testing the getTopHeadLines method with empty list")
     public void getTopHeadlinesAustriaTest2() {
-        List<Article> headlines = new ArrayList<Article>();
+        List<Article> headlines = new ArrayList<>();
         appController.setArticles(headlines);
         assertEquals(headlines, appController.getTopHeadlinesAustria());
     }
