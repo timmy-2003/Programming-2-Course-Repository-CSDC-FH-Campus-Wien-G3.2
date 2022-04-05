@@ -13,7 +13,7 @@
             <Image url="@../images/background.png" />
          </image>
       </ImageView>
-      <Label layoutX="225.0" layoutY="293.0" prefHeight="19.0" prefWidth="150.0" text="Version 2.0.1 • 28.04.2022" textFill="WHITE">
+      <Label layoutX="225.0" layoutY="293.0" prefHeight="19.0" prefWidth="150.0" text="Version 2.0.1 • 01.05.2022" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
@@ -23,5 +23,10 @@
             <Image url="@../images/world-news.png" />
          </image>
       </ImageView>
+      <Label layoutX="160.0" layoutY="212.0" prefHeight="81.0" prefWidth="280.0" text="PROJECT NAME" textFill="WHITE">
+         <font>
+            <Font name="Century Schoolbook" size="33.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

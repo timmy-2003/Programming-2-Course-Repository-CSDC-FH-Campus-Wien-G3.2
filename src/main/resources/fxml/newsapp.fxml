@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="725.0" minWidth="1148.0" prefHeight="725.0" prefWidth="1148.0" styleClass="backanchor" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.NewsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="725.0" minWidth="1148.0" prefHeight="725.0" prefWidth="1148.0" styleClass="backanchormain" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.NewsController">
    <children>
       <VBox layoutY="100.0" prefHeight="625.0" prefWidth="212.0" styleClass="vboxleftside" stylesheets="@../css/stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
@@ -80,7 +80,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tvNews" layoutX="212.0" layoutY="100.0" prefHeight="545.0" prefWidth="897.0">
+      <TableView fx:id="tvNews" layoutX="212.0" layoutY="100.0" prefHeight="454.0" prefWidth="694.0" AnchorPane.bottomAnchor="171.0" AnchorPane.leftAnchor="212.0" AnchorPane.rightAnchor="242.0" AnchorPane.topAnchor="100.0">
         <columns>
           <TableColumn fx:id="title" prefWidth="467.0" text="Title" />
           <TableColumn fx:id="author" minWidth="0.0" prefWidth="187.0" text="Author" />
