@@ -10,6 +10,12 @@
     -fx-background-color: #2F2B43;
 }
 
+.buttonlogo {
+    -fx-background-image: url('../images/world-news.png');
+    -fx-background-size: stretch;
+    -fx-background-color: #2F2B43;
+}
+
 .backanchormain {
     -fx-background-image: url('../images/background2.jpg');
     -fx-background-size: stretch;
