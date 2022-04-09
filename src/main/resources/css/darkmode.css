@@ -1,5 +1,5 @@
 .button1 {
-    -fx-background-color: #393351;
+    -fx-background-color: black;
 }
 
 .button1:hover {
@@ -33,4 +33,21 @@
 
 .vboxleftside {
     -fx-background-color: black;
+}
+
+.tvNews {
+    -fx-background-color: black;
+    -fx-light-text-color: white ;
+    -fx-mid-text-color:   #c00 ;
+    -fx-dark-text-color:  red ;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #bfffff;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+
+.table-row-cell:even {
+    -fx-background-color: #ffb3b3;
+    -fx-background-insets: 0, 0 0 1 0;
 }

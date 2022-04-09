@@ -43,7 +43,7 @@
             </Button>
             <Button fx:id="countButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showArticleCount" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="  Count articles" textFill="WHITE">
                <graphic>
-                  <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="imgCountArticles" fx:id="imgCountArticles" fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imgCountArticles">
                      <image>
                         <Image url="@../images/articleCounter.png" />
                      </image>
@@ -91,7 +91,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="tvNews" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="800.0" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+            <TableView fx:id="tvNews" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="800.0" styleClass="tvNews" stylesheets="@../css/lightmode.css" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="title" prefWidth="467.0" text="Title" />
                 <TableColumn fx:id="author" minWidth="0.0" prefWidth="187.0" text="Author" />

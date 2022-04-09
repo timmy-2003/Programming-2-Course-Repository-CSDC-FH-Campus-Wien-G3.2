@@ -10,10 +10,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -22,6 +25,7 @@ import java.util.TimerTask;
 // ELEMENT for "get top headlines austria || ELEMENT for "get all news btc" || LABEL or smth for display Count Articles || QUIT Program - maybe also button and Alert -> "quitting text"
 public class NewsController {
     private AppController ctrl = new AppController();
+    private boolean isLightMode = true;
     Timer timer = new Timer();
 
     @FXML
@@ -54,7 +58,8 @@ public class NewsController {
     @FXML
     private TableColumn<Article, String> author;
 
-    private boolean isLightMode = true;
+    @FXML
+    private ImageView imgCountArticles;
 
     /***
      * when the fxml starts the standard text gets replaced by this placeholder
@@ -137,17 +142,26 @@ public class NewsController {
         }
     }
 
+    /***
+     * apply the light mode to the main GUI
+     */
     private void setLightMode() {
         parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/darkmode.css")));
         parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/lightmode.css")));
         //parent.getStylesheets().set(String.valueOf(getClass().getResource("/css/lightmode.css")));
-        System.out.println("LIGHT");
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/articleCounter.png")));
+        imgCountArticles.setImage(image);
 
     }
+
+    /***
+     * apply the dark mode to the main GUI
+     */
     private void setDarkMode() {
         parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/lightmode.css")));
         parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/darkmode.css")));
-        System.out.println("DARK");
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/newsapp.png")));
+        imgCountArticles.setImage(image);
     }
 
 

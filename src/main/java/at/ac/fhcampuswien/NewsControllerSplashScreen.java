@@ -37,7 +37,7 @@ public class NewsControllerSplashScreen {
      */
     private void load() {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -65,8 +65,9 @@ public class NewsControllerSplashScreen {
             stage.getIcons().add(icon);
             stage.show();
 
-            //hide the splash screen
-            anchorpane.getScene().getWindow().hide();
+            //close the splash screen
+            Stage stagesplashscreen = (Stage) anchorpane.getScene().getWindow();
+            stagesplashscreen.close();
         });
     }
 }
