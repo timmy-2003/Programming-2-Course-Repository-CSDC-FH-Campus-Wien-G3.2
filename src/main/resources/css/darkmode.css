@@ -18,7 +18,7 @@
 }
 
 .backanchormain {
-    -fx-background-image: url('../images/darkBackground.jpg');
+    -fx-background-image: url('../images/darkBackground_2.jpg');
     -fx-background-size: contain;                               /* alignment of background */
 }
 
@@ -39,7 +39,8 @@
 .tvNews {
     -fx-background-color: transparent;         /* background color of tableview */
     -fx-light-text-color: #5d00ff;           /* color when clicking on cell */
-    -fx-mid-text-color:   white ;             /* color when just showing the cell */
+    -fx-mid-text-color: white ;             /* color when just showing the cell */
+    -fx-border-color: white;
 
 }
 
@@ -57,6 +58,12 @@
 
 .table-view .column-header, .table-view .filler {
     -fx-background-color: transparent;          /* background of the top of the tableview (title, author) */
-    -fx-mid-text-color: white ;                 /* color of the top of the tableview (title, author) */
+    -fx-mid-text-color: #5d00ff ;                 /* color of the top of the tableview (title, author) */
 
+}
+
+.lblHeadLines{
+    -fx-text-fill: #5d00ff;
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
 }

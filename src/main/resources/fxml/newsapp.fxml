@@ -15,9 +15,9 @@
 
 <AnchorPane id="backanchormain" fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="725.0" minWidth="1148.0" prefHeight="725.0" prefWidth="1148.0" styleClass="backanchormain" stylesheets="@../css/lightmode.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.NewsController">
    <children>
-      <VBox fx:id="vboxleftside" layoutY="100.0" prefHeight="625.0" prefWidth="212.0" styleClass="vboxleftside" stylesheets="@../css/lightmode.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <VBox fx:id="vboxleftside" layoutY="156.0" prefHeight="569.0" prefWidth="212.0" styleClass="vboxleftside" stylesheets="@../css/lightmode.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="156.0">
          <children>
-            <Button fx:id="btnGetToplinesAustria" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesAustria" prefHeight="46.0" prefWidth="287.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="  Get Toplines Austria" textFill="WHITE">
+            <Button fx:id="btnGetToplinesAustria" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesAustria" prefHeight="46.0" prefWidth="212.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="  Get Toplines Austria" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -67,36 +67,41 @@
             </Button>
          </children>
       </VBox>
-      <AnchorPane fx:id="topanchor" layoutX="-1.0" prefHeight="100.0" prefWidth="1148.0" styleClass="topanchor" stylesheets="@../css/lightmode.css" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="topanchor" layoutX="-1.0" prefHeight="157.0" prefWidth="213.0" styleClass="topanchor" stylesheets="@../css/lightmode.css" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="23.0" layoutY="31.0" prefHeight="38.0" prefWidth="177.0" text="NEWS APP" textFill="WHITE">
+            <Label layoutX="41.0" layoutY="96.0" prefHeight="38.0" prefWidth="130.0" text="NEWS APP" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
-               <graphic>
-                  <Button fx:id="logoButton" mnemonicParsing="false" onAction="#changeColorPattern" prefHeight="38.0" prefWidth="38.0" styleClass="buttonlogo" stylesheets="@../css/lightmode.css" />
-               </graphic>
             </Label>
+            <Button fx:id="logoButton" layoutX="79.0" layoutY="28.0" mnemonicParsing="false" onAction="#changeColorPattern" prefHeight="55.0" prefWidth="55.0" styleClass="buttonlogo" stylesheets="@../css/lightmode.css" />
          </children>
       </AnchorPane>
       <GridPane layoutX="212.0" layoutY="100.0" prefHeight="625.0" prefWidth="937.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="212.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="100.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" percentWidth="60.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="129.0" />
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="424.0" percentWidth="10.0" prefWidth="691.0" />
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="424.0" percentWidth="60.0" prefWidth="691.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="1.7976931348623157E308" percentHeight="60.0" vgrow="ALWAYS" />
-          <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" percentHeight="9.0" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="424.0" percentHeight="60.0" prefHeight="691.0" vgrow="ALWAYS" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="tvNews" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="744.0" styleClass="tvNews" stylesheets="@../css/lightmode.css" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+            <TableView fx:id="tvNews" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="424.0" prefWidth="435.0" styleClass="tvNews" stylesheets="@../css/lightmode.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="title" prefWidth="467.0" text="Title" />
                 <TableColumn fx:id="author" minWidth="0.0" prefWidth="187.0" text="Author" />
               </columns>
             </TableView>
+            <Label prefHeight="30.0" prefWidth="116.0" styleClass="lblHeadLines" stylesheets="@../css/lightmode.css" text="HEADLINES" textFill="WHITE" translateY="15.0" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </children>
