@@ -1,13 +1,14 @@
 .button1 {
-    -fx-background-color: black;
+    -fx-background-color: transparent;
 }
 
 .button1:hover {
-    -fx-background-color: #524A7B;
+    -fx-shape: "M 300 200 L 550 200 L 550 230 Q 550 246 530 246 L 250 246 L 250 216 Q 250 200 270 200 L 300 200 ";
+    -fx-background-color: #310c77;
 }
 
 .button1:pressed {
-    -fx-background-color: black;
+    -fx-background-color: #210754;
 }
 
 .buttonlogo {
@@ -17,8 +18,8 @@
 }
 
 .backanchormain {
-    -fx-background-image: url('../images/background2.jpg');
-    -fx-background-size: stretch;
+    -fx-background-image: url('../images/darkBackground.jpg');
+    -fx-background-size: contain;                               /* alignment of background */
 }
 
 .backanchor {
@@ -28,26 +29,34 @@
 
 
 .topanchor {
-    -fx-background-color: black;
+    -fx-background-color: transparent;
 }
 
 .vboxleftside {
-    -fx-background-color: black;
+    -fx-background-color: transparent;
 }
 
 .tvNews {
-    -fx-background-color: black;
-    -fx-light-text-color: white ;
-    -fx-mid-text-color:   #c00 ;
-    -fx-dark-text-color:  red ;
+    -fx-background-color: transparent;         /* background color of tableview */
+    -fx-light-text-color: #5d00ff;           /* color when clicking on cell */
+    -fx-mid-text-color:   white ;             /* color when just showing the cell */
+
 }
 
-.table-row-cell:odd {
-    -fx-background-color: #bfffff;
+.table-row-cell{
+    -fx-background-color: transparent;
     -fx-background-insets: 0, 0 0 1 0;
+    -fx-table-cell-border-color: transparent;        /* color for the lines between each entry -> title|author */
 }
 
-.table-row-cell:even {
-    -fx-background-color: #ffb3b3;
-    -fx-background-insets: 0, 0 0 1 0;
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;          /* background of the top of the tableview (title, author) */
+    -fx-mid-text-color: white ;                 /* color of the top of the tableview (title, author) */
+
 }

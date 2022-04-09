@@ -3,7 +3,9 @@
 }
 
 .button1:hover {
+    -fx-shape: "M 300 200 L 550 200 L 550 230 Q 550 246 530 246 L 250 246 L 250 216 Q 250 200 270 200 L 300 200 ";
     -fx-background-color: #524A7B;
+
 }
 
 .button1:pressed {

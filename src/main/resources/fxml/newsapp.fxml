@@ -29,7 +29,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnGetToplinesBitcoin" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesBitcoin" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/lightmode.css" text=" Get Toplines Bitcoin" textFill="WHITE">
+            <Button fx:id="btnGetToplinesBitcoin" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesBitcoin" prefHeight="46.0" prefWidth="287.0" styleClass="button1" stylesheets="@../css/lightmode.css" text=" Get Toplines Bitcoin" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,7 +41,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="countButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showArticleCount" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="  Count articles" textFill="WHITE">
+            <Button fx:id="countButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showArticleCount" prefHeight="46.0" prefWidth="287.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="  Count articles" textFill="WHITE">
                <graphic>
                   <ImageView id="imgCountArticles" fx:id="imgCountArticles" fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imgCountArticles">
                      <image>
@@ -53,7 +53,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="exitButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="46.0" prefWidth="210.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="Exit" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="exitButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="46.0" prefWidth="287.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="Exit" textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -81,17 +81,17 @@
       </AnchorPane>
       <GridPane layoutX="212.0" layoutY="100.0" prefHeight="625.0" prefWidth="937.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="212.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="100.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" percentWidth="80.0" />
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" percentWidth="60.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="129.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="1.7976931348623157E308" percentHeight="80.0" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="1.7976931348623157E308" percentHeight="60.0" vgrow="ALWAYS" />
           <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="tvNews" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="800.0" styleClass="tvNews" stylesheets="@../css/lightmode.css" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+            <TableView fx:id="tvNews" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="744.0" styleClass="tvNews" stylesheets="@../css/lightmode.css" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="title" prefWidth="467.0" text="Title" />
                 <TableColumn fx:id="author" minWidth="0.0" prefWidth="187.0" text="Author" />

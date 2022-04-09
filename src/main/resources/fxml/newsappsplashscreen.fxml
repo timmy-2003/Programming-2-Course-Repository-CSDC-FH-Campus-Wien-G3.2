@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="600.0" styleClass="backanchor" stylesheets="@../css/lightmode.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.NewsControllerSplashScreen">
+<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="600.0" styleClass="backanchor" stylesheets="@../css/lightmode.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.NewsControllerSplashScreen">
    <children>
       <ImageView fitHeight="354.0" fitWidth="615.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/background.png" />
+            <Image url="@../images/background_2.png" />
          </image>
       </ImageView>
       <Label layoutX="225.0" layoutY="293.0" prefHeight="19.0" prefWidth="150.0" text="Version 2.0.1 • 01.05.2022" textFill="WHITE">
@@ -18,11 +18,6 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <ImageView fitHeight="127.0" fitWidth="128.0" layoutX="237.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/world-news.png" />
-         </image>
-      </ImageView>
       <Label layoutX="160.0" layoutY="212.0" prefHeight="81.0" prefWidth="280.0" text="PROJECT NAME" textFill="WHITE">
          <font>
             <Font name="Century Schoolbook" size="33.0" />

@@ -37,7 +37,7 @@ public class NewsControllerSplashScreen {
      */
     private void load() {
         try {
-            Thread.sleep(4000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
