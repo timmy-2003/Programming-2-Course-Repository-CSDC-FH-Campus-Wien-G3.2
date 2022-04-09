@@ -1,0 +1,36 @@
+.button1 {
+    -fx-background-color: #393351;
+}
+
+.button1:hover {
+    -fx-background-color: #524A7B;
+}
+
+.button1:pressed {
+    -fx-background-color: black;
+}
+
+.buttonlogo {
+    -fx-background-image: url('../images/world-news.png');
+    -fx-background-size: stretch;
+    -fx-background-color: black;
+}
+
+.backanchormain {
+    -fx-background-image: url('../images/background2.jpg');
+    -fx-background-size: stretch;
+}
+
+.backanchor {
+    -fx-background-color: black;
+    -fx-background-radius: 20;
+}
+
+
+.topanchor {
+    -fx-background-color: black;
+}
+
+.vboxleftside {
+    -fx-background-color: black;
+}

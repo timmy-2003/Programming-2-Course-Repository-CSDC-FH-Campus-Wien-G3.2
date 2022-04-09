@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="backanchormain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="725.0" minWidth="1148.0" prefHeight="725.0" prefWidth="1148.0" styleClass="backanchormain" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.NewsController">
+<AnchorPane id="backanchormain" fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="725.0" minWidth="1148.0" prefHeight="725.0" prefWidth="1148.0" styleClass="backanchormain" stylesheets="@../css/lightmode.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.NewsController">
    <children>
-      <VBox layoutY="100.0" prefHeight="625.0" prefWidth="212.0" styleClass="vboxleftside" stylesheets="@../css/stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <VBox fx:id="vboxleftside" layoutY="100.0" prefHeight="625.0" prefWidth="212.0" styleClass="vboxleftside" stylesheets="@../css/lightmode.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
-            <Button fx:id="btnGetToplinesAustria" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesAustria" prefHeight="46.0" prefWidth="287.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="  Get Toplines Austria" textFill="WHITE">
+            <Button fx:id="btnGetToplinesAustria" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesAustria" prefHeight="46.0" prefWidth="287.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="  Get Toplines Austria" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -29,7 +29,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnGetToplinesBitcoin" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesBitcoin" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text=" Get Toplines Bitcoin" textFill="WHITE">
+            <Button fx:id="btnGetToplinesBitcoin" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#GetTopLinesBitcoin" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/lightmode.css" text=" Get Toplines Bitcoin" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,7 +41,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="countButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showArticleCount" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="  Count articles" textFill="WHITE">
+            <Button fx:id="countButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showArticleCount" prefHeight="46.0" prefWidth="317.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="  Count articles" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -53,7 +53,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="exitButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="46.0" prefWidth="210.0" styleClass="button1" stylesheets="@../css/stylesheet.css" text="Exit" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="exitButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="46.0" prefWidth="210.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="Exit" textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -67,14 +67,14 @@
             </Button>
          </children>
       </VBox>
-      <AnchorPane fx:id="topanchor" layoutX="-1.0" prefHeight="100.0" prefWidth="1148.0" styleClass="topanchor" stylesheets="@../css/stylesheet.css" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="topanchor" layoutX="-1.0" prefHeight="100.0" prefWidth="1148.0" styleClass="topanchor" stylesheets="@../css/lightmode.css" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="22.0" layoutY="31.0" prefHeight="38.0" prefWidth="177.0" text="NEWS APP" textFill="WHITE">
+            <Label layoutX="23.0" layoutY="31.0" prefHeight="38.0" prefWidth="177.0" text="NEWS APP" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
                <graphic>
-                  <Button fx:id="logoButton" mnemonicParsing="false" onAction="#changeColorPattern" prefHeight="39.0" prefWidth="39.0" styleClass="buttonlogo" stylesheets="@../css/stylesheet.css" />
+                  <Button fx:id="logoButton" mnemonicParsing="false" onAction="#changeColorPattern" prefHeight="38.0" prefWidth="38.0" styleClass="buttonlogo" stylesheets="@../css/lightmode.css" />
                </graphic>
             </Label>
          </children>

@@ -4,16 +4,14 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 import java.util.List;
 import java.util.Timer;
@@ -27,6 +25,9 @@ public class NewsController {
     Timer timer = new Timer();
 
     @FXML
+    private AnchorPane parent;
+
+    @FXML
     private Button exitButton;
     @FXML
     private Button countButton;
@@ -38,7 +39,13 @@ public class NewsController {
     private AnchorPane topanchor;
 
     @FXML
+    private VBox vboxleftside;
+
+    @FXML
     private Button btnGetToplinesAustria;
+
+    @FXML
+    private Button btnGetToplinesBitcoin;
 
     @FXML
     private TableView<Article> tvNews;
@@ -46,6 +53,8 @@ public class NewsController {
     private TableColumn<Article, String> title;
     @FXML
     private TableColumn<Article, String> author;
+
+    private boolean isLightMode = true;
 
     /***
      * when the fxml starts the standard text gets replaced by this placeholder
@@ -113,15 +122,32 @@ public class NewsController {
     }
 
     /***
-     * switch to a different color pattern inside the GUI e.g. dark/white mode (not finished)G
+     * switch to a different color pattern inside the GUI e.g. dark/white mode (not finished)
      * @param event
      */
     @FXML
     void changeColorPattern(ActionEvent event) {
-        //System.out.println("XXX");
-        //btnGetToplinesAustria.setOnMouseEntered(mouseEvent -> btnGetToplinesAustria.setStyle("-fx-background-color:blue;"));
-        //btnGetToplinesAustria.setOnMouseExited(mouseEvent -> btnGetToplinesAustria.setStyle("-fx-background-color:green;"));
-        //topanchor.setStyle("-fx-background-color:black;");
+
+        isLightMode = !isLightMode;
+        parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/lightmode.css")));
+        if (isLightMode) {
+            setLightMode();
+        } else {
+            setDarkMode();
+        }
+    }
+
+    private void setLightMode() {
+        parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/darkmode.css")));
+        parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/lightmode.css")));
+        //parent.getStylesheets().set(String.valueOf(getClass().getResource("/css/lightmode.css")));
+        System.out.println("LIGHT");
+
+    }
+    private void setDarkMode() {
+        parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/lightmode.css")));
+        parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/darkmode.css")));
+        System.out.println("DARK");
     }
 
 
