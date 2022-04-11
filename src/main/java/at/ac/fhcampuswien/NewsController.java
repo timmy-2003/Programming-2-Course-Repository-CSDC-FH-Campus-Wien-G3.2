@@ -191,6 +191,7 @@ public class NewsController {
         switch (query.toLowerCase()) {
             case "austria" -> tvNews.setItems(getObservableListFromList(ctrl.getTopHeadlinesAustria()));
             case "bitcoin" -> tvNews.setItems(getObservableListFromList(ctrl.getAllNewsBitcoin()));
+            case "" -> tvNews.setItems(getObservableListFromList(ctrl.getArticles()));
         }
     }
 
@@ -216,6 +217,7 @@ public class NewsController {
         } else {
             lblCount.setText("  " + String.valueOf(ctrl.getArticleCount()) + " articles");
         }
+        getList("");
         /*timer.schedule(new TimerTask() {
             @Override
             public void run() {
