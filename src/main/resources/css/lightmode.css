@@ -18,6 +18,10 @@
     -fx-background-color: #393351;
 }
 
+.btnGetTopHeadlinesAustria {
+    -fx-background-color: transparent;
+}
+
 .backanchormain {
     -fx-background-image: url('../images/background2.jpg');
     -fx-background-size: stretch;
@@ -35,4 +39,36 @@
 
 .vboxleftside {
     -fx-background-color: #393351;
+}
+.tab-pane {
+    -fx-tab-max-height: 0 ;
+}
+.tab-pane .tab-header-area {
+    visibility: hidden ;
+}
+
+.tvNews {
+    -fx-background-color: transparent;         /* background color of tableview */
+    -fx-light-text-color: #5d00ff;           /* color when clicking on cell */
+    -fx-mid-text-color: white ;             /* color when just showing the cell */
+    -fx-border-color: white;
+
+}
+
+.table-row-cell{
+    -fx-background-color: transparent;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-table-cell-border-color: transparent;        /* color for the lines between each entry -> title|author */
+}
+
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;          /* background of the top of the tableview (title, author) */
+    -fx-mid-text-color: #5d00ff ;                 /* color of the top of the tableview (title, author) */
+
 }

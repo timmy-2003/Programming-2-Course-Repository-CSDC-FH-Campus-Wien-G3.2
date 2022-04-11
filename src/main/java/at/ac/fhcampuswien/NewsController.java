@@ -5,10 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,11 +18,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-//needed: 4 BUTTONS
-// ELEMENT for "get top headlines austria || ELEMENT for "get all news btc" || LABEL or smth for display Count Articles || QUIT Program - maybe also button and Alert -> "quitting text"
 public class NewsController {
     private AppController ctrl = new AppController();
-    private boolean isLightMode = true;
+    private boolean isLightMode = false;
     Timer timer = new Timer();
 
     @FXML
@@ -34,7 +29,7 @@ public class NewsController {
     @FXML
     private Button exitButton;
     @FXML
-    private Button countButton;
+    private Button btnCount;
 
     @FXML
     private Button logoButton;
@@ -59,7 +54,23 @@ public class NewsController {
     private TableColumn<Article, String> author;
 
     @FXML
+    private Label lblCount;
+
+    @FXML
+    private Label lblDashboard;
+
+
+    @FXML
     private ImageView imgCountArticles;
+
+    @FXML
+    private Tab tabDashboard;
+
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Tab tabSettings;
 
     /***
      * when the fxml starts the standard text gets replaced by this placeholder
@@ -67,6 +78,8 @@ public class NewsController {
     @FXML
     void initialize() {
         tvNews.setPlaceholder(new Label(""));
+        // start with this css
+        parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/darkmode.css")));
     }
 
 
@@ -93,19 +106,7 @@ public class NewsController {
     @FXML
     void showArticleCount() {
 
-        if (ctrl.getArticleCount() == 1) {
-            countButton.setText("  1 article");
-        } else {
-            countButton.setText("  " + String.valueOf(ctrl.getArticleCount()) + " articles");
-        }
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(() -> {
-                    countButton.setText("  Count articles");
-                });
-            }
-        }, 2000l);
+        countArticles(0); //count articles in full list
     }
 
     /***
@@ -115,6 +116,7 @@ public class NewsController {
     @FXML
     void GetTopLinesAustria(ActionEvent event) {
         getList("austria");
+        countArticles(1); //count articles displayed
     }
 
     /***
@@ -124,6 +126,7 @@ public class NewsController {
     @FXML
     void GetTopLinesBitcoin(ActionEvent event) {
         getList("bitcoin");
+        countArticles(1); //count articles displayed
     }
 
     /***
@@ -134,12 +137,16 @@ public class NewsController {
     void changeColorPattern(ActionEvent event) {
 
         isLightMode = !isLightMode;
-        parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/lightmode.css")));
         if (isLightMode) {
             setLightMode();
         } else {
             setDarkMode();
         }
+    }
+
+    @FXML
+    void dashboardSwitch(ActionEvent event) {
+        tabPane.getSelectionModel().select(0);
     }
 
     /***
@@ -148,9 +155,8 @@ public class NewsController {
     private void setLightMode() {
         parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/darkmode.css")));
         parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/lightmode.css")));
-        //parent.getStylesheets().set(String.valueOf(getClass().getResource("/css/lightmode.css")));
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/articleCounter.png")));
-        imgCountArticles.setImage(image);
+        //Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/articleCounter.png")));
+       // imgCountArticles.setImage(image);
 
     }
 
@@ -160,8 +166,8 @@ public class NewsController {
     private void setDarkMode() {
         parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/lightmode.css")));
         parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/darkmode.css")));
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/newsapp.png")));
-        imgCountArticles.setImage(image);
+        //Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/newsapp.png")));
+        //imgCountArticles.setImage(image);
     }
 
 
@@ -188,4 +194,46 @@ public class NewsController {
         }
     }
 
+    /***
+     * count articles based on which articles you want to count
+     * @param tableview
+     */
+    private void countArticles(int tableview) {
+
+        switch (tableview) {
+            case 0 -> countArticlesInFullList();
+            case 1 -> countArticlesDisplayed();
+            default -> countArticlesInFullList();
+        }
+    }
+
+    /***
+     * count all articles in mocklist
+     */
+    private void countArticlesInFullList() {
+        if (ctrl.getArticleCount() == 1) {
+            lblCount.setText("  1 article");
+        } else {
+            lblCount.setText("  " + String.valueOf(ctrl.getArticleCount()) + " articles");
+        }
+        /*timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    lblCount.setText("  Count articles");
+                });
+            }
+        }, 2000l);*/
+    }
+
+    /***
+     * count all articles displayed in tableview
+     */
+    private void countArticlesDisplayed() {
+        if (tvNews.getItems().size() == 1) {
+            lblCount.setText("  1 article");
+        } else {
+            lblCount.setText("  " + String.valueOf(tvNews.getItems().size()) + " articles");
+        }
+    }
 }
