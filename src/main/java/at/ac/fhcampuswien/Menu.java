@@ -1,6 +1,7 @@
 package at.ac.fhcampuswien;
 
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
@@ -13,7 +14,7 @@ public class Menu {
     /***
      * launches the program cycle
      */
-    public void start() {
+    public void start() throws IOException {
         Scanner scan = new Scanner(System.in);
         while (true) {
             printMenu();
@@ -27,7 +28,7 @@ public class Menu {
      * handle the input of the user
      * @param input
      */
-    private void handleInput(String input) {
+    private void handleInput(String input) throws IOException {
         switch (input) {
             default:
                 printInvalidInputMessage();
@@ -60,7 +61,7 @@ public class Menu {
      * gets headlines from austria
      * @param ctrl
      */
-    private void getTopHeadlinesAustria(AppController ctrl) {
+    private void getTopHeadlinesAustria(AppController ctrl) throws IOException {
         for (int i = 0; i < ctrl.getTopHeadlinesAustria().size(); i++) {
             System.out.println(ctrl.getTopHeadlinesAustria().get(i).toString());
         }

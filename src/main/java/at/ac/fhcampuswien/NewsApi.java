@@ -10,6 +10,7 @@ public class NewsApi {
     private final String APIKEY = "193df6fbc5ad43e3b3450635be311c7e";
     private final String URL = "https://newsapi.org/v2/";
 
+    /* Possible endpoints are "everything" and "top-headlines" */
     public String handleRequest (String query, String endpoint)throws IOException{
         String url = URL + endpoint + "?q=" + query + "&apiKey=" + APIKEY;
         return request(url);
@@ -21,6 +22,7 @@ public class NewsApi {
                 .url(url)
                 .build();
         try (Response response = client.newCall(request).execute()) {
+            //System.out.println(response.body().string());
             return response.body().string();
         }
     }

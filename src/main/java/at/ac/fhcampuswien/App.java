@@ -11,16 +11,17 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+
 public class App extends Application {
     /***
      * main function launches application
      * @param args
      */
-    public static void main(String[] args) {
-        launch(args);
+    public static void main(String[] args) throws IOException {
+        //launch(args);
         Menu menu = new Menu();
         menu.start();
-
     }
 
     /***

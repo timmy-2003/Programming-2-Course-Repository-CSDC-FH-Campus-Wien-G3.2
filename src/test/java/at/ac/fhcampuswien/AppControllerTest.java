@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -56,7 +57,7 @@ public class AppControllerTest {
      */
     @Test
     @DisplayName("Testing scenario of getting top headlines with empty list")
-    public void getTopHeadlinesAustriaTest1() {
+    public void getTopHeadlinesAustriaTest1() throws IOException {
         assertEquals(new ArrayList<Article>(), appController.getTopHeadlinesAustria());
     }
 
@@ -65,7 +66,7 @@ public class AppControllerTest {
      */
     @Test
     @DisplayName("Testing the getTopHeadLines method with empty list")
-    public void getTopHeadlinesAustriaTest2() {
+    public void getTopHeadlinesAustriaTest2() throws IOException {
         List<Article> headlines = new ArrayList<>();
         appController.setArticles(headlines);
         assertEquals(headlines, appController.getTopHeadlinesAustria());

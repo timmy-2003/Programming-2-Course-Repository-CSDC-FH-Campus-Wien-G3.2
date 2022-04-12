@@ -12,13 +12,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class NewsController {
+public class NewsController{
     private AppController ctrl = new AppController();
     private boolean isLightMode = false;
     Timer timer = new Timer();
@@ -104,7 +105,7 @@ public class NewsController {
      * when you press count articles you get the articles displayed
      */
     @FXML
-    void showArticleCount() {
+    void showArticleCount() throws IOException {
 
         countArticles(0); //count articles in full list
     }
@@ -114,7 +115,7 @@ public class NewsController {
      * @param event
      */
     @FXML
-    void GetTopLinesAustria(ActionEvent event) {
+    void GetTopLinesAustria(ActionEvent event) throws IOException {
         getList("austria");
         countArticles(1); //count articles displayed
     }
@@ -124,7 +125,7 @@ public class NewsController {
      * @param event
      */
     @FXML
-    void GetTopLinesBitcoin(ActionEvent event) {
+    void GetTopLinesBitcoin(ActionEvent event) throws IOException {
         getList("bitcoin");
         countArticles(1); //count articles displayed
     }
@@ -185,7 +186,7 @@ public class NewsController {
      * get List based on headline the user want
      * @param query
      */
-    private void getList(String query) {
+    private void getList(String query) throws IOException {
         author.setCellValueFactory(new PropertyValueFactory<>("Author"));
         title.setCellValueFactory(new PropertyValueFactory<>("Title"));
         switch (query.toLowerCase()) {
@@ -199,7 +200,7 @@ public class NewsController {
      * count articles based on which articles you want to count
      * @param tableview
      */
-    private void countArticles(int tableview) {
+    private void countArticles(int tableview) throws IOException {
 
         switch (tableview) {
             case 0 -> countArticlesInFullList();
@@ -211,7 +212,7 @@ public class NewsController {
     /***
      * count all articles in mocklist
      */
-    private void countArticlesInFullList() {
+    private void countArticlesInFullList() throws IOException {
         if (ctrl.getArticleCount() == 1) {
             lblCount.setText("  1 article");
         } else {

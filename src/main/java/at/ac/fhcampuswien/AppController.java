@@ -1,7 +1,13 @@
 package at.ac.fhcampuswien;
 
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 public class AppController {
 
@@ -42,7 +48,19 @@ public class AppController {
      * get top headlines from austria (at the moment just the full list back)
      * @return
      */
-    public List<Article> getTopHeadlinesAustria() {
+    public List<Article> getTopHeadlinesAustria() throws IOException {
+        String jsonString = new NewsApi().handleRequest("corona","top-headlines");
+        System.out.println(jsonString);
+        GsonBuilder gsonbuilder = new GsonBuilder();
+        gsonbuilder.setPrettyPrinting();
+        Gson gson = gsonbuilder.create();
+
+        Type listType = new TypeToken<ArrayList<Article>>(){}.getType();
+        ArrayList<Article> articleList = gson.fromJson(jsonString, listType);
+
+        System.out.println(articleList.toString());
+
+        //---
         if (articles == null) {
             return new ArrayList<Article>();
         } else {
