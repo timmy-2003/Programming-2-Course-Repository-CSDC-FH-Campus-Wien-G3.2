@@ -1,4 +1,4 @@
-package at.ac.fhcampuswien;
+package at.ac.fhcampuswien.gui;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;

@@ -11,4 +11,7 @@ module newsApp {
 
 
     opens at.ac.fhcampuswien;
+    opens at.ac.fhcampuswien.apiStuff;
+    opens at.ac.fhcampuswien.enums;
+    opens at.ac.fhcampuswien.gui;
 }

@@ -1,5 +1,7 @@
-package at.ac.fhcampuswien;
+package at.ac.fhcampuswien.gui;
 
+import at.ac.fhcampuswien.AppController;
+import at.ac.fhcampuswien.Article;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

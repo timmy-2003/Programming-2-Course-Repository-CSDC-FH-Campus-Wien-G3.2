@@ -1,4 +1,4 @@
-package at.ac.fhcampuswien;
+package at.ac.fhcampuswien.apiStuff;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

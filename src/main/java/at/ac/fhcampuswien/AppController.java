@@ -1,15 +1,13 @@
 package at.ac.fhcampuswien;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
+import at.ac.fhcampuswien.apiStuff.NewsApi;
+import at.ac.fhcampuswien.apiStuff.NewsResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 public class AppController {
 
