@@ -125,7 +125,7 @@ public class AppControllerTest {
 
     @Test
     @DisplayName("Check if returned list contains the bitcoin article")
-    public void bitcoinArticlesTest1(){
+    public void bitcoinArticlesTest1() throws IOException {
         List<Article> articles = new ArrayList<Article>();
         articles.add(new Article("author1", "this title contains the word bitcoin"));
         articles.add(new Article("author2", "football"));
@@ -144,7 +144,7 @@ public class AppControllerTest {
 
     @Test
     @DisplayName("Check length of returned list of articles")
-    public void bitcoinArticlesTest2(){
+    public void bitcoinArticlesTest2() throws IOException {
         List<Article> articles = new ArrayList<Article>();
         articles.add(new Article("author1", "this title contains the word bitcoin"));
         articles.add(new Article("author2", "football"));

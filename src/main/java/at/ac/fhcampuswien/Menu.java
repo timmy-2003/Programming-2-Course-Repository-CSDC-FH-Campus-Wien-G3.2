@@ -71,7 +71,7 @@ public class Menu {
      * get headlines of bitcoin
      * @param ctrl
      */
-    private void getAllNewsBitcoin(AppController ctrl) {
+    private void getAllNewsBitcoin(AppController ctrl) throws IOException {
         for (int i = 0; i < ctrl.getAllNewsBitcoin().size(); i++) {
             System.out.println(ctrl.getAllNewsBitcoin().get(i).toString());
         }
