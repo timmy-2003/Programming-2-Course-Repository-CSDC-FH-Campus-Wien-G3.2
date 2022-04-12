@@ -19,7 +19,7 @@ public class App extends Application {
      * @param args
      */
     public static void main(String[] args) throws IOException {
-        //launch(args);
+        launch(args);
         Menu menu = new Menu();
         menu.start();
     }
