@@ -140,16 +140,28 @@ public class NewsController {
         }
     }
 
+    /***
+     * switch the tabs within the tabPane currently we have just the Dashboard
+     * @param event
+     */
     @FXML
     void dashboardSwitch(ActionEvent event) {
         tabPane.getSelectionModel().select(0);
     }
 
+    /***
+     * calls function exitWindow() when clicking on exit button
+     * @param event
+     */
     @FXML
     void exitWindow(ActionEvent event) {
         exitWindow();
     }
 
+    /***
+     * window get's maximized or windowed when clicking the window button
+     * @param event
+     */
     @FXML
     void maximizeWindow(MouseEvent event) {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -159,12 +171,20 @@ public class NewsController {
             currentStage.setMaximized(true);
     }
 
+    /***
+     * window get's minimized when clicking the minimize button
+     * @param event
+     */
     @FXML
     void minimizeWindow(MouseEvent event) {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.setIconified(true);
     }
 
+    /***
+     * set new positions of window when getting dragged
+     * @param event
+     */
     @FXML
     void windowDragged(MouseEvent event) {
         Stage stage = (Stage) parent.getScene().getWindow();
@@ -172,12 +192,20 @@ public class NewsController {
         stage.setY(event.getScreenY() - y);
     }
 
+    /***
+     * get x,y coordinates of parent anchorpane when pressed
+     * @param event
+     */
     @FXML
     void windowPressed(MouseEvent event) {
         x = event.getSceneX();
         y = event.getSceneY();
     }
 
+    /***
+     * set new positions of window when getting dragged
+     * @param event
+     */
     @FXML
     void windowDragged2(MouseEvent event) {
         Stage stage = (Stage) anchormid.getScene().getWindow();
@@ -185,6 +213,10 @@ public class NewsController {
         stage.setY(event.getScreenY() - y);
     }
 
+    /***
+     * get x,y coordinates of anchormid when pressed
+     * @param event
+     */
     @FXML
     void windowPressed2(MouseEvent event) {
         x = event.getSceneX();
@@ -273,6 +305,9 @@ public class NewsController {
         }
     }
 
+    /***
+     * exit window
+     */
     private void exitWindow() {
         System.exit(1);
     }

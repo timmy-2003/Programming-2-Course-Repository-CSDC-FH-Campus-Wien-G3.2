@@ -57,6 +57,8 @@ public class NewsControllerSplashScreen {
             Stage stage = new Stage();
             Scene scene = new Scene(root, 1400, 800);
             stage.setScene(scene);
+
+            //borderless UI
             stage.initStyle(StageStyle.UNDECORATED);
             stage.initStyle(StageStyle.TRANSPARENT);
 
