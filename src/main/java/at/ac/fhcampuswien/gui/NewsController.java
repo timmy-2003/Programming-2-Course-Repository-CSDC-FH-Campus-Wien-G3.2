@@ -7,12 +7,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,13 +25,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class NewsController{
+public class NewsController {
     private AppController ctrl = new AppController();
     private boolean isLightMode = false;
     Timer timer = new Timer();
+    private double x, y = 0;
 
     @FXML
     private AnchorPane parent;
+
+    @FXML
+    private AnchorPane anchormid;
 
     @FXML
     private Button exitButton;
@@ -62,6 +70,9 @@ public class NewsController{
     @FXML
     private Label lblDashboard;
 
+    @FXML
+    private GridPane gridPane;
+
 
     @FXML
     private ImageView imgCountArticles;
@@ -84,24 +95,6 @@ public class NewsController{
         // start with this css
         parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/darkmode.css")));
     }
-
-
-    /***
-     * when you press exit then the application get's closed with delay
-     */
-    @FXML
-    public void exitApplication() {
-        exitButton.setText("See you soon!");
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(() -> {
-                    System.exit(0);
-                });
-            }
-        }, 1000l);
-    }
-
 
     /***
      * when you press count articles you get the articles displayed
@@ -147,9 +140,87 @@ public class NewsController{
         }
     }
 
+    /***
+     * switch the tabs within the tabPane currently we have just the Dashboard
+     * @param event
+     */
     @FXML
     void dashboardSwitch(ActionEvent event) {
         tabPane.getSelectionModel().select(0);
+    }
+
+    /***
+     * calls function exitWindow() when clicking on exit button
+     * @param event
+     */
+    @FXML
+    void exitWindow(ActionEvent event) {
+        exitWindow();
+    }
+
+    /***
+     * window get's maximized or windowed when clicking the window button
+     * @param event
+     */
+    @FXML
+    void maximizeWindow(MouseEvent event) {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        if (currentStage.isMaximized())
+            currentStage.setMaximized(false);
+        else
+            currentStage.setMaximized(true);
+    }
+
+    /***
+     * window get's minimized when clicking the minimize button
+     * @param event
+     */
+    @FXML
+    void minimizeWindow(MouseEvent event) {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.setIconified(true);
+    }
+
+    /***
+     * set new positions of window when getting dragged
+     * @param event
+     */
+    @FXML
+    void windowDragged(MouseEvent event) {
+        Stage stage = (Stage) parent.getScene().getWindow();
+        stage.setX(event.getScreenX() - x);
+        stage.setY(event.getScreenY() - y);
+    }
+
+    /***
+     * get x,y coordinates of parent anchorpane when pressed
+     * @param event
+     */
+    @FXML
+    void windowPressed(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
+    }
+
+    /***
+     * set new positions of window when getting dragged
+     * @param event
+     */
+    @FXML
+    void windowDragged2(MouseEvent event) {
+        Stage stage = (Stage) anchormid.getScene().getWindow();
+        stage.setX(event.getScreenX() - x);
+        stage.setY(event.getScreenY() - y);
+    }
+
+    /***
+     * get x,y coordinates of anchormid when pressed
+     * @param event
+     */
+    @FXML
+    void windowPressed2(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
     }
 
     /***
@@ -159,7 +230,7 @@ public class NewsController{
         parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/darkmode.css")));
         parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/lightmode.css")));
         //Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/articleCounter.png")));
-       // imgCountArticles.setImage(image);
+        // imgCountArticles.setImage(image);
 
     }
 
@@ -221,14 +292,6 @@ public class NewsController{
             lblCount.setText("  " + String.valueOf(ctrl.getArticleCount()) + " articles");
         }
         getList("");
-        /*timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(() -> {
-                    lblCount.setText("  Count articles");
-                });
-            }
-        }, 2000l);*/
     }
 
     /***
@@ -240,5 +303,12 @@ public class NewsController{
         } else {
             lblCount.setText("  " + String.valueOf(tvNews.getItems().size()) + " articles");
         }
+    }
+
+    /***
+     * exit window
+     */
+    private void exitWindow() {
+        System.exit(1);
     }
 }
