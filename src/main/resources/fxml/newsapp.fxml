@@ -32,18 +32,6 @@
                         <Font size="15.0" />
                     </font>
                 </Button>
-                <Button fx:id="exitButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="46.0" prefWidth="212.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="Exit" textAlignment="CENTER" textFill="WHITE">
-                    <graphic>
-                        <ImageView fitHeight="26.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/exit.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font size="15.0" />
-                    </font>
-                </Button>
             </children>
         </VBox>
         <AnchorPane fx:id="topanchor" layoutX="-1.0" prefHeight="243.0" prefWidth="227.0" styleClass="topanchor" stylesheets="@../css/lightmode.css" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="0.0">

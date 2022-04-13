@@ -96,24 +96,6 @@ public class NewsController {
         parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/darkmode.css")));
     }
 
-
-    /***
-     * when you press exit then the application get's closed with delay
-     */
-    @FXML
-    public void exitApplication() {
-        exitButton.setText("See you soon!");
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(() -> {
-                    System.exit(0);
-                });
-            }
-        }, 1000l);
-    }
-
-
     /***
      * when you press count articles you get the articles displayed
      */
@@ -293,6 +275,5 @@ public class NewsController {
 
     private void exitWindow() {
         System.exit(1);
-
     }
 }
