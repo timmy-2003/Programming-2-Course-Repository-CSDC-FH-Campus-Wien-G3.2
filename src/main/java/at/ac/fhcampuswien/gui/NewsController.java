@@ -7,12 +7,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,13 +25,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class NewsController{
+public class NewsController {
     private AppController ctrl = new AppController();
     private boolean isLightMode = false;
     Timer timer = new Timer();
+    private double x, y = 0;
 
     @FXML
     private AnchorPane parent;
+
+    @FXML
+    private AnchorPane anchormid;
 
     @FXML
     private Button exitButton;
@@ -61,6 +69,9 @@ public class NewsController{
 
     @FXML
     private Label lblDashboard;
+
+    @FXML
+    private GridPane gridPane;
 
 
     @FXML
@@ -152,6 +163,52 @@ public class NewsController{
         tabPane.getSelectionModel().select(0);
     }
 
+    @FXML
+    void exitWindow(ActionEvent event) {
+        exitWindow();
+    }
+
+    @FXML
+    void maximizeWindow(MouseEvent event) {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        if (currentStage.isMaximized())
+            currentStage.setMaximized(false);
+        else
+            currentStage.setMaximized(true);
+    }
+
+    @FXML
+    void minimizeWindow(MouseEvent event) {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.setIconified(true);
+    }
+
+    @FXML
+    void windowDragged(MouseEvent event) {
+        Stage stage = (Stage) parent.getScene().getWindow();
+        stage.setX(event.getScreenX() - x);
+        stage.setY(event.getScreenY() - y);
+    }
+
+    @FXML
+    void windowPressed(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
+    }
+
+    @FXML
+    void windowDragged2(MouseEvent event) {
+        Stage stage = (Stage) anchormid.getScene().getWindow();
+        stage.setX(event.getScreenX() - x);
+        stage.setY(event.getScreenY() - y);
+    }
+
+    @FXML
+    void windowPressed2(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
+    }
+
     /***
      * apply the light mode to the main GUI
      */
@@ -159,7 +216,7 @@ public class NewsController{
         parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/darkmode.css")));
         parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/lightmode.css")));
         //Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/articleCounter.png")));
-       // imgCountArticles.setImage(image);
+        // imgCountArticles.setImage(image);
 
     }
 
@@ -221,14 +278,6 @@ public class NewsController{
             lblCount.setText("  " + String.valueOf(ctrl.getArticleCount()) + " articles");
         }
         getList("");
-        /*timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(() -> {
-                    lblCount.setText("  Count articles");
-                });
-            }
-        }, 2000l);*/
     }
 
     /***
@@ -240,5 +289,10 @@ public class NewsController{
         } else {
             lblCount.setText("  " + String.valueOf(tvNews.getItems().size()) + " articles");
         }
+    }
+
+    private void exitWindow() {
+        System.exit(1);
+
     }
 }

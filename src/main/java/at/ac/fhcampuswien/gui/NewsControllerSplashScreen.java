@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -56,6 +57,9 @@ public class NewsControllerSplashScreen {
             Stage stage = new Stage();
             Scene scene = new Scene(root, 1400, 800);
             stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
+
             stage.setMinWidth(1400);
             stage.setMinHeight(800);
             stage.setMaximized(true);
