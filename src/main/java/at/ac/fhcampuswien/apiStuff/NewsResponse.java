@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.apiStuff;
 
 import at.ac.fhcampuswien.Article;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewsResponse {

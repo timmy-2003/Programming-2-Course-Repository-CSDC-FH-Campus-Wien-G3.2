@@ -50,22 +50,7 @@ public class AppController {
      */
     public List<Article> getTopHeadlinesAustria() throws IOException {
         // Requests top-headlines with the query corona from the news api
-        String jsonString = new NewsApi().handleRequest("corona","top-headlines");
-        // Creates a new gson builder
-        GsonBuilder builder = new GsonBuilder();
-        // Makes the gson builder format everything pretty?
-        builder.setPrettyPrinting();
-        // Creates a new gson object
-        Gson gson = builder.create();
-        // Converts the json string into a news response object
-        NewsResponse response =  gson.fromJson(jsonString, NewsResponse.class);
-        // If the arraylist of articles is not empty, return the converted news response objects list of articles
-        if (response.getArticles() != null) {
-            return response.getArticles();
-        }
-        else {
-            return new ArrayList<Article>();
-        }
+        return NewsApi.jsonToArticleList(new NewsApi().handleRequest("corona","top-headlines"));
     }
 
     /***
@@ -75,22 +60,7 @@ public class AppController {
     public List<Article> getAllNewsBitcoin() throws IOException {
         //return filterList(articles, "bitcoin");
         // Requests everything with the query bitcoin from the news api
-        String jsonString = new NewsApi().handleRequest("bitcoin","everything");
-        // Creates a new gson builder
-        GsonBuilder builder = new GsonBuilder();
-        // Makes the gson builder format everything pretty?
-        builder.setPrettyPrinting();
-        // Creates a new gson object
-        Gson gson = builder.create();
-        // Converts the json string into a news response object
-        NewsResponse response =  gson.fromJson(jsonString, NewsResponse.class);
-        // If the arraylist of articles is not empty, return the converted news response objects list of articles
-        if (response.getArticles() != null) {
-            return response.getArticles();
-        }
-        else {
-            return new ArrayList<Article>();
-        }
+        return NewsApi.jsonToArticleList(new NewsApi().handleRequest("bitcoin","everything"));
     }
 
     /***

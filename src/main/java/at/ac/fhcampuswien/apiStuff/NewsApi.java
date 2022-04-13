@@ -1,8 +1,13 @@
 package at.ac.fhcampuswien.apiStuff;
+import at.ac.fhcampuswien.Article;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 
 public class NewsApi {
@@ -27,4 +32,23 @@ public class NewsApi {
         }
     }
 
+    public static List<Article> jsonToArticleList(String jsonString)
+    {
+        // Creates a new gson builder
+        GsonBuilder builder = new GsonBuilder();
+        // Makes the gson builder format everything pretty?
+        builder.setPrettyPrinting();
+        // Creates a new gson object
+        Gson gson = builder.create();
+        // Converts the json string into a news response object
+        NewsResponse response =  gson.fromJson(jsonString, NewsResponse.class);
+        // If the arraylist of articles is not empty, return the converted news response objects list of articles
+        if (response.getArticles() != null) {
+            return response.getArticles();
+        }
+        // Else, return an empty list
+        else {
+            return Collections.emptyList();
+        }
+    }
 }
