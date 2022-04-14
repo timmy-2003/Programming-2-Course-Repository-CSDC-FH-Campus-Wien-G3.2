@@ -22,7 +22,7 @@
             <children>
                 <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#dashboardSwitch" prefHeight="46.0" prefWidth="212.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="Dashboard" textAlignment="CENTER" textFill="WHITE">
                     <graphic>
-                        <ImageView fitHeight="34.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
+                        <ImageView fx:id="imgViewDashboard" fitHeight="34.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
                             <image>
                                 <Image url="@../images/umbrella_64px.png" />
                             </image>
@@ -34,7 +34,7 @@
                 </Button>
             <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#dashboardSwitchSettings" prefHeight="46.0" prefWidth="212.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="Settings" textAlignment="CENTER" textFill="WHITE">
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
+                  <ImageView fx:id="imgViewSettings" fitHeight="34.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
                      <image>
                         <Image url="@../images/settings.png" />
                      </image>
@@ -156,7 +156,7 @@
                       <Font size="15.0" />
                   </font>
                   <graphic>
-                      <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                      <ImageView fx:id="imgViewExit" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                           <image>
                               <Image url="@../images/exitwindow.png" />
                           </image>
@@ -168,7 +168,7 @@
                       <Font size="15.0" />
                   </font>
                   <graphic>
-                      <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                      <ImageView fx:id="imgViewWindow" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                           <image>
                               <Image url="@../images/maximize.png" />
                           </image>
@@ -180,7 +180,7 @@
                       <Font size="15.0" />
                   </font>
                   <graphic>
-                      <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                      <ImageView fx:id="imgViewMinimize" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                           <image>
                               <Image url="@../images/minimize.png" />
                           </image>

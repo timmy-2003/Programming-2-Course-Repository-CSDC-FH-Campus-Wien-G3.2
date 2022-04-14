@@ -87,6 +87,21 @@ public class NewsController {
     private ImageView imgViewCounter;
 
     @FXML
+    private ImageView imgViewExit;
+
+    @FXML
+    private ImageView imgViewMinimize;
+
+    @FXML
+    private ImageView imgViewWindow;
+
+    @FXML
+    private ImageView imgViewDashboard;
+
+    @FXML
+    private ImageView imgViewSettings;
+
+    @FXML
     private Tab tabDashboard;
 
     @FXML
@@ -205,9 +220,7 @@ public class NewsController {
      */
     @FXML
     void windowDragged(MouseEvent event) {
-        Stage stage = (Stage) parent.getScene().getWindow();
-        stage.setX(event.getScreenX() - x);
-        stage.setY(event.getScreenY() - y);
+        draggingWindow(event);
     }
 
     /***
@@ -226,9 +239,7 @@ public class NewsController {
      */
     @FXML
     void windowDragged2(MouseEvent event) {
-        Stage stage = (Stage) anchormid.getScene().getWindow();
-        stage.setX(event.getScreenX() - x);
-        stage.setY(event.getScreenY() - y);
+        draggingWindow(event);
     }
 
     /***
@@ -254,6 +265,18 @@ public class NewsController {
         Image image3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/counter_light.png")));
         imgViewCounter.setImage(image3);
 
+        Image image4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/exitwindow_light.png")));
+        imgViewExit.setImage(image4);
+        Image image5 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/maximize_light.png")));
+        imgViewWindow.setImage(image5);
+        Image image6 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/minimize_light.png")));
+        imgViewMinimize.setImage(image6);
+
+        Image image7 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/umbrella_light.png")));
+        imgViewDashboard.setImage(image7);
+        Image image8 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/settings_light.png")));
+        imgViewSettings.setImage(image8);
+
     }
 
     /***
@@ -268,6 +291,18 @@ public class NewsController {
         imgViewBitcoin.setImage(image2);
         Image image3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/counter2.png")));
         imgViewCounter.setImage(image3);
+
+        Image image4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/exitwindow.png")));
+        imgViewExit.setImage(image4);
+        Image image5 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/maximize.png")));
+        imgViewWindow.setImage(image5);
+        Image image6 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/minimize.png")));
+        imgViewMinimize.setImage(image6);
+
+        Image image7 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/umbrella_64px.png")));
+        imgViewDashboard.setImage(image7);
+        Image image8 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/settings.png")));
+        imgViewSettings.setImage(image8);
     }
 
 
@@ -336,5 +371,15 @@ public class NewsController {
      */
     private void exitWindow() {
         System.exit(1);
+    }
+
+    private void draggingWindow(MouseEvent event) {
+        Stage stage = (Stage) anchormid.getScene().getWindow();
+        // prevents dragging a maximized window
+        if (stage.isMaximized()) {
+        } else {
+            stage.setX(event.getScreenX() - x);
+            stage.setY(event.getScreenY() - y);
+        }
     }
 }
