@@ -1,21 +1,22 @@
 .button1 {
-    -fx-background-color: #393351;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
 }
 
 .button1:hover {
     -fx-shape: "M 300 200 L 550 200 L 550 230 Q 550 246 530 246 L 250 246 L 250 216 Q 250 200 270 200 L 300 200 ";
-    -fx-background-color: #524A7B;
+    -fx-background-color: rgba(0, 255, 207, 0.1);
 
 }
 
 .button1:pressed {
-    -fx-background-color: #2F2B43;
+    -fx-background-color: rgba(0, 255, 207, 0.3);
 }
 
 .buttonlogo {
     -fx-background-image: url('../images/world-news.png');
     -fx-background-size: stretch;
-    -fx-background-color: #393351;
+    -fx-background-color: transparent;
 }
 
 .btnGetTopHeadlinesAustria {
@@ -23,7 +24,7 @@
 }
 
 .backanchormain {
-    -fx-background-image: url('../images/background2.jpg');
+    -fx-background-image: url('../images/light.jpg');
     -fx-background-size: stretch;
 }
 
@@ -34,27 +35,19 @@
 
 
 .topanchor {
-    -fx-background-color: #393351;
+    -fx-background-color: transparent;
 }
 
 .vboxleftside {
-    -fx-background-color: #393351;
+    -fx-background-color: transparent;
 }
-.tab-pane {
-    -fx-tab-max-height: 0 ;
-}
-.tab-pane .tab-header-area {
-    visibility: hidden ;
-}
-
 .tvNews {
     -fx-background-color: transparent;         /* background color of tableview */
-    -fx-light-text-color: #5d00ff;           /* color when clicking on cell */
-    -fx-mid-text-color: white ;             /* color when just showing the cell */
-    -fx-border-color: white;
+    -fx-light-text-color: #00ffff;           /* color when clicking on cell */
+    -fx-mid-text-color: white;             /* color when just showing the cell */
+    -fx-border-color: cyan;
 
 }
-
 .table-row-cell{
     -fx-background-color: transparent;
     -fx-background-insets: 0, 0 0 1 0;
@@ -69,6 +62,35 @@
 
 .table-view .column-header, .table-view .filler {
     -fx-background-color: transparent;          /* background of the top of the tableview (title, author) */
-    -fx-mid-text-color: #5d00ff ;                 /* color of the top of the tableview (title, author) */
+    -fx-mid-text-color: cyan ;                 /* color of the top of the tableview (title, author) */
 
+}
+
+.lblHeadLines{
+    -fx-text-fill: cyan;
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+}
+
+.lblDashboard {
+    -fx-text-fill: cyan;
+    -fx-font-size: 13;
+}
+.lblProjectName {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+}
+
+.lblArticleCount {
+    -fx-text-fill:cyan;
+    -fx-font-weight: bold;
+    -fx-font-size: 13;
+}
+
+.tab-pane {
+    -fx-tab-max-height: 0 ;
+}
+.tab-pane .tab-header-area {
+    visibility: hidden ;
 }

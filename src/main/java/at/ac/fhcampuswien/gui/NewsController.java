@@ -141,12 +141,21 @@ public class NewsController {
     }
 
     /***
-     * switch the tabs within the tabPane currently we have just the Dashboard
+     * switch the tabs within the tabPane to Dashboard
      * @param event
      */
     @FXML
     void dashboardSwitch(ActionEvent event) {
         tabPane.getSelectionModel().select(0);
+    }
+
+    /***
+     * switch the tabs within the tabPane to Settings
+     * @param event
+     */
+    @FXML
+    void dashboardSwitchSettings(ActionEvent event) {
+        tabPane.getSelectionModel().select(1);
     }
 
     /***
