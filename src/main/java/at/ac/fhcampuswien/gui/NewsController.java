@@ -78,6 +78,15 @@ public class NewsController {
     private ImageView imgCountArticles;
 
     @FXML
+    private ImageView imgViewAustria;
+
+    @FXML
+    private ImageView imgViewBitcoin;
+
+    @FXML
+    private ImageView imgViewCounter;
+
+    @FXML
     private Tab tabDashboard;
 
     @FXML
@@ -238,8 +247,12 @@ public class NewsController {
     private void setLightMode() {
         parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/darkmode.css")));
         parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/lightmode.css")));
-        //Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/articleCounter.png")));
-        // imgCountArticles.setImage(image);
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/at_light.png")));
+        imgViewAustria.setImage(image);
+        Image image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bitcoin_light.png")));
+        imgViewBitcoin.setImage(image2);
+        Image image3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/counter_light.png")));
+        imgViewCounter.setImage(image3);
 
     }
 
@@ -249,8 +262,12 @@ public class NewsController {
     private void setDarkMode() {
         parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/lightmode.css")));
         parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/darkmode.css")));
-        //Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/newsapp.png")));
-        //imgCountArticles.setImage(image);
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/at2.png")));
+        imgViewAustria.setImage(image);
+        Image image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bitcoin.png")));
+        imgViewBitcoin.setImage(image2);
+        Image image3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/counter2.png")));
+        imgViewCounter.setImage(image3);
     }
 
 
