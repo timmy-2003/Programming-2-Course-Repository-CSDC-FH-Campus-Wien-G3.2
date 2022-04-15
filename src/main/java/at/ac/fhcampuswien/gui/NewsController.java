@@ -115,6 +115,9 @@ public class NewsController {
     @FXML
     private Tab tabSettings;
 
+    public NewsController() throws IOException {
+    }
+
     /***
      * when the fxml starts the standard text gets replaced by this placeholder
      */

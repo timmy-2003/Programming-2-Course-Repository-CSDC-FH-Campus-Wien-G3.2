@@ -10,6 +10,9 @@ public class Menu {
     private static final String INVALID_INPUT_MESSAGE = "Invalid input. Try again!";
     private static final String EXIT_MESSAGE = "See you soon!";
 
+    public Menu() throws IOException {
+    }
+
 
     /***
      * launches the program cycle
