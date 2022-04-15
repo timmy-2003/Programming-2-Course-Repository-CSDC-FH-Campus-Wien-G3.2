@@ -351,7 +351,7 @@ public class NewsController {
     }
 
     /***
-     * count all articles in mocklist
+     * count all articles in list
      */
     private void countArticlesInFullList() throws IOException {
         if (ctrl.getArticleCount() == 1) {
