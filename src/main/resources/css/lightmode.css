@@ -25,7 +25,7 @@
 
 .backanchormain {
     -fx-background-image: url('../images/light.jpg');
-    -fx-background-size: stretch;
+    -fx-background-size: contain;
 }
 
 .backanchor {
@@ -93,4 +93,14 @@
 }
 .tab-pane .tab-header-area {
     visibility: hidden ;
+}
+.toggleButton{
+    /* settings for the jfx toggle button*/
+
+    /*
+    -jfx-untoggle-color: #ffffff;
+    -jfx-untoggle-line-color: #888888;*/
+
+    -jfx-toggle-color: cyan;
+    jfx-toggle-line-color: #77c2bb;
 }

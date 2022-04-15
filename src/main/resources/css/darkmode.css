@@ -96,3 +96,7 @@
 .tab-pane .tab-header-area {
     visibility: hidden ;
 }
+.toggleButton{
+    -jfx-toggle-color: #5d00ff;
+    jfx-toggle-line-color: #320084;
+}
