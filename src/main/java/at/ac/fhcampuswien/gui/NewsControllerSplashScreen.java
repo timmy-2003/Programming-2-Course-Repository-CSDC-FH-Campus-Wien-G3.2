@@ -67,7 +67,7 @@ public class NewsControllerSplashScreen {
             stage.setMaximized(true);
 
             // setting the icon image
-            Image icon = new Image(String.valueOf(getClass().getResource("/images/world-news.png")));
+            Image icon = new Image(String.valueOf(getClass().getResource("/images/logo.png")));
             stage.getIcons().add(icon);
             stage.show();
 

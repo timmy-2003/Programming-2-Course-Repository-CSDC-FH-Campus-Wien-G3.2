@@ -171,6 +171,7 @@ public class NewsController {
     @FXML
     void dashboardSwitch(ActionEvent event) {
         tabPane.getSelectionModel().select(0);
+        lblDashboard.setText("Dashboard");
     }
 
     /***
@@ -180,6 +181,7 @@ public class NewsController {
     @FXML
     void dashboardSwitchSettings(ActionEvent event) {
         tabPane.getSelectionModel().select(1);
+        lblDashboard.setText("Settings");
     }
 
     /***
