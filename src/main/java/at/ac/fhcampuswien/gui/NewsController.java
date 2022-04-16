@@ -78,10 +78,6 @@ public class NewsController {
     @FXML
     private GridPane gridPane;
 
-
-    @FXML
-    private ImageView imgCountArticles;
-
     @FXML
     private ImageView imgViewAustria;
 
@@ -126,15 +122,6 @@ public class NewsController {
         tvNews.setPlaceholder(new Label(""));
         // start with this css
         parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/darkmode.css")));
-    }
-
-    /***
-     * when you press count articles you get the articles displayed
-     */
-    @FXML
-    void showArticleCount() throws IOException {
-
-        countArticles(0); //count articles in full list
     }
 
     /***
