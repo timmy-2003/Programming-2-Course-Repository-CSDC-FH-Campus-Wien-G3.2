@@ -6,7 +6,7 @@ public enum SortBy {
     RELEVANCY("sortBy=relevancy"),
     POPULARITY("sortBy=popularity"),;
 
-    private String urlParameter;
+    private final String urlParameter;
 
     SortBy(String urlParameter) {
         this.urlParameter = urlParameter;
