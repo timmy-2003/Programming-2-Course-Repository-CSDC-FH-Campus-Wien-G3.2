@@ -78,18 +78,11 @@ public class NewsController {
     @FXML
     private GridPane gridPane;
 
-
-    @FXML
-    private ImageView imgCountArticles;
-
     @FXML
     private ImageView imgViewAustria;
 
     @FXML
     private ImageView imgViewBitcoin;
-
-    @FXML
-    private ImageView imgViewCounter;
 
     @FXML
     private ImageView imgViewExit;
@@ -115,6 +108,9 @@ public class NewsController {
     @FXML
     private Tab tabSettings;
 
+    public NewsController() throws IOException {
+    }
+
     /***
      * when the fxml starts the standard text gets replaced by this placeholder
      */
@@ -123,15 +119,6 @@ public class NewsController {
         tvNews.setPlaceholder(new Label(""));
         // start with this css
         parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/darkmode.css")));
-    }
-
-    /***
-     * when you press count articles you get the articles displayed
-     */
-    @FXML
-    void showArticleCount() throws IOException {
-
-        countArticles(0); //count articles in full list
     }
 
     /***
@@ -269,8 +256,6 @@ public class NewsController {
         imgViewAustria.setImage(image);
         Image image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bitcoin_light.png")));
         imgViewBitcoin.setImage(image2);
-        Image image3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/counter_light.png")));
-        imgViewCounter.setImage(image3);
 
         Image image4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/exitwindow_light.png")));
         imgViewExit.setImage(image4);
@@ -296,8 +281,6 @@ public class NewsController {
         imgViewAustria.setImage(image);
         Image image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bitcoin.png")));
         imgViewBitcoin.setImage(image2);
-        Image image3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/counter2.png")));
-        imgViewCounter.setImage(image3);
 
         Image image4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/exitwindow.png")));
         imgViewExit.setImage(image4);
@@ -351,7 +334,7 @@ public class NewsController {
     }
 
     /***
-     * count all articles in mocklist
+     * count all articles in list
      */
     private void countArticlesInFullList() throws IOException {
         if (ctrl.getArticleCount() == 1) {

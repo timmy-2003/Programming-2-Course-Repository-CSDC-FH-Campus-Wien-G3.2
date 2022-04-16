@@ -19,7 +19,7 @@ public class AppControllerTest {
      * execution before all tests have finished
      */
     @BeforeAll
-    static void setup() {
+    static void setup() throws IOException {
         appController = new AppController();
     }
 
