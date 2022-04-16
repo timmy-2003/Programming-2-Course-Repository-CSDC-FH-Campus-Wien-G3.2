@@ -85,9 +85,6 @@ public class NewsController {
     private ImageView imgViewBitcoin;
 
     @FXML
-    private ImageView imgViewCounter;
-
-    @FXML
     private ImageView imgViewExit;
 
     @FXML
@@ -259,8 +256,6 @@ public class NewsController {
         imgViewAustria.setImage(image);
         Image image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bitcoin_light.png")));
         imgViewBitcoin.setImage(image2);
-        Image image3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/counter_light.png")));
-        imgViewCounter.setImage(image3);
 
         Image image4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/exitwindow_light.png")));
         imgViewExit.setImage(image4);
@@ -286,8 +281,6 @@ public class NewsController {
         imgViewAustria.setImage(image);
         Image image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bitcoin.png")));
         imgViewBitcoin.setImage(image2);
-        Image image3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/counter2.png")));
-        imgViewCounter.setImage(image3);
 
         Image image4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/exitwindow.png")));
         imgViewExit.setImage(image4);
