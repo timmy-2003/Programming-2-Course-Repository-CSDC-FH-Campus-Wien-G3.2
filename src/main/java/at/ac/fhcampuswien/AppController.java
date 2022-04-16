@@ -14,14 +14,12 @@ public class AppController {
     private List<Article> articles = new ArrayList<>();
 
     /***
-     * when instanced set the list with top-headlines
+     * when instanced sets the list
      */
- //   public AppController() {
-  //      setArticles(generateMockList());
- //   }
-public AppController() throws IOException {
-    setArticles(NewsApi.jsonToArticleList(new NewsApi().handleRequest("","top-headlines")));
-}
+
+    public AppController() throws IOException {
+        setArticles(NewsApi.jsonToArticleList(new NewsApi().handleRequest("","everything")));
+    }
 
     /***
      * set articles from input list
