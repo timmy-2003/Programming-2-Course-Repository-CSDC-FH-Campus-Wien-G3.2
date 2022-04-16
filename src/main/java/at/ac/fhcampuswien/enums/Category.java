@@ -1,6 +1,6 @@
 package at.ac.fhcampuswien.enums;
 
-public enum category {
+public enum Category {
     BUSINESS,
     ENTERTAINMENT,
     GENERAL,
