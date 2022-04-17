@@ -1,13 +1,13 @@
 package at.ac.fhcampuswien.enums;
 
 public enum Category {
-    BUSINESS ("business"),
-    ENTERTAINMENT ("entertainment"),
-    GENERAL ("general"),
-    HEALTH ("health"),
-    SCIENCE ("science"),
-    SPORTS ("sports"),
-    TECHNOLOGY ("technology");
+    BUSINESS ("category=business"),
+    ENTERTAINMENT ("category=entertainment"),
+    GENERAL ("category=general"),
+    HEALTH ("category=health"),
+    SCIENCE ("category=science"),
+    SPORTS ("category=sports"),
+    TECHNOLOGY ("category=technology");
 
     private final String urlParameter;
 
