@@ -1,6 +1,5 @@
 package at.ac.fhcampuswien.apiStuff;
 import at.ac.fhcampuswien.Article;
-import at.ac.fhcampuswien.enums.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
@@ -24,7 +23,7 @@ public class NewsApi {
 
 
 
-    public String runRequest(Enum endpoint, String query, Enum ... args) throws IOException {
+    public String handleRequest(Enum endpoint, String query, Enum ... args) throws IOException {
         StringBuilder url = new StringBuilder(URL);
         url.append(endpoint.toString());
         url.append("?q=").append(query);
@@ -37,14 +36,7 @@ public class NewsApi {
 
         System.out.println(url);
 
-        try{
-            return request(url.toString());
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
-        System.out.println("URL might be invalid, please check: " + url);
-        return "";
+        return request(String.valueOf(url));
 
     }
 
