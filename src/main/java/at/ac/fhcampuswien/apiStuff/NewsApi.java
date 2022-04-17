@@ -21,7 +21,13 @@ public class NewsApi {
         return request(urlfirs);
     }*/
 
-
+    /**
+     * build URL and handle request
+     * @param endpoint either everything or top-headlines
+     * @param query search for a given word or expression
+     * @param args any Enums that need to be added to the URL
+     * @return response of the API as a String
+     */
 
     public String handleRequest(Enum endpoint, String query, Enum ... args) throws IOException {
         StringBuilder url = new StringBuilder(URL);
