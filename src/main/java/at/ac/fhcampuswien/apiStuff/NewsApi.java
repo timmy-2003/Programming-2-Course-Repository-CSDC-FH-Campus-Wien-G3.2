@@ -28,8 +28,8 @@ public class NewsApi {
         url.append(endpoint.toString());
         url.append("?q=").append(query);
 
-        for (Enum parameter:args) {
-            url.append("&").append(parameter.toString());
+        for (int i = 0; i< args.length; i++){
+            url.append("&").append(args[i].toString());
         }
 
         url.append("&apiKey=").append(APIKEY);

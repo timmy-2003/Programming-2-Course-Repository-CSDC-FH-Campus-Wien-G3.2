@@ -5,10 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import at.ac.fhcampuswien.apiStuff.NewsApi;
-import at.ac.fhcampuswien.apiStuff.NewsResponse;
 import at.ac.fhcampuswien.enums.Endpoint;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 public class AppController {
 
@@ -19,7 +16,7 @@ public class AppController {
      */
 
     public AppController() throws IOException {
-        setArticles(NewsApi.jsonToArticleList(new NewsApi().runRequest(Endpoint.EVERYTHING, "")));
+        setArticles(NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "")));
     }
 
     /***
@@ -52,7 +49,7 @@ public class AppController {
      */
     public List<Article> getTopHeadlinesAustria() throws IOException {
         // Requests top-headlines with the query corona from the news api
-        return NewsApi.jsonToArticleList(new NewsApi().runRequest(Endpoint.TOP_HEADLINES, "corona"));
+        return NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.TOP_HEADLINES, "corona"));
     }
 
     /***
@@ -62,7 +59,7 @@ public class AppController {
     public List<Article> getAllNewsBitcoin() throws IOException {
         //return filterList(articles, "bitcoin");
         // Requests everything with the query bitcoin from the news api
-        return NewsApi.jsonToArticleList(new NewsApi().runRequest(Endpoint.EVERYTHING, "bitcoin"));
+        return NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "bitcoin"));
     }
 
     /***
