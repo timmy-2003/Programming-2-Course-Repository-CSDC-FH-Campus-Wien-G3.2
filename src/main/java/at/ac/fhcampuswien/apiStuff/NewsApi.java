@@ -12,7 +12,7 @@ import java.util.List;
 
 public class NewsApi {
 
-    private final String APIKEY = "193df6fbc5ad43e3b3450635be311c7e";
+    private final String APIKEY = "b44b32e1c7de47c7827d10cdf122365f";
     private final String URL = "https://newsapi.org/v2/";
 
     /* Possible endpoints are "everything" and "top-headlines" */
@@ -37,6 +37,8 @@ public class NewsApi {
         for (int i = 0; i< args.length; i++){
             url.append("&").append(args[i].toString());
         }
+
+        url.append("&pageSize=100");
 
         url.append("&apiKey=").append(APIKEY);
 
