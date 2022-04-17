@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien.apiStuff;
 import at.ac.fhcampuswien.Article;
+import at.ac.fhcampuswien.enums.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
@@ -16,9 +17,35 @@ public class NewsApi {
     private final String URL = "https://newsapi.org/v2/";
 
     /* Possible endpoints are "everything" and "top-headlines" */
-    public String handleRequest (String query, String endpoint)throws IOException{
+    /*public String handleRequest (String query, String endpoint)throws IOException{
         String url = URL + endpoint + "?q=" + query + "&apiKey=" + APIKEY;
-        return request(url);
+        return request(urlfirs);
+    }*/
+
+
+
+    public String runRequest(Enum endpoint, String query, Enum ... args) throws IOException {
+        StringBuilder url = new StringBuilder(URL);
+        url.append(endpoint.toString());
+        url.append("?q=").append(query);
+
+        for (Enum parameter:args) {
+            url.append("&").append(parameter.toString());
+        }
+
+        url.append("&apiKey=").append(APIKEY);
+
+        System.out.println(url);
+
+        try{
+            return request(url.toString());
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        System.out.println("URL might be invalid, please check: " + url);
+        return "";
+
     }
 
     public static String request(String url) throws IOException {
