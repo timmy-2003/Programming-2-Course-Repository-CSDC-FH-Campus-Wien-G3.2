@@ -56,25 +56,6 @@ public class Article {
         return title;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public String getUrlToImage() {
-        return urlToImage;
-    }
-
-    public String getPublishedAt() {
-        return publishedAt;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 
     /**
      * @return author and title of article formatted as a String
