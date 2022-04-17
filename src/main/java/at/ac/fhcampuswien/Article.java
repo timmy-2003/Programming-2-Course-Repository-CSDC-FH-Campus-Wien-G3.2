@@ -10,25 +10,6 @@ public class Article {
     private String content;
     private String description;
 
-    /***
-     * constructor
-     * @param author
-     * @param title
-     * @param url
-     * @param urlToImage
-     * @param publishedAt
-     * @param content
-     * @param description
-     */
-    public Article(String author, String title, String url, String urlToImage, String publishedAt, String content, String description) {
-        this.author = author;
-        this.title = title;
-        this.url = url;
-        this.urlToImage = urlToImage;
-        this.publishedAt = publishedAt;
-        this.content = content;
-        this.description = description;
-    }
 
     /***
      * constructor
@@ -54,26 +35,6 @@ public class Article {
      */
     public String getTitle() {
         return title;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getUrlToImage() {
-        return urlToImage;
-    }
-
-    public String getPublishedAt() {
-        return publishedAt;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     /**
