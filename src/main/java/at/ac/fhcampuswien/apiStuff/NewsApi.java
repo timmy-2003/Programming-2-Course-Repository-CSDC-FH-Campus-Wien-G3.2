@@ -12,13 +12,40 @@ import java.util.List;
 
 public class NewsApi {
 
-    private final String APIKEY = "193df6fbc5ad43e3b3450635be311c7e";
+    private final String APIKEY = "b44b32e1c7de47c7827d10cdf122365f";
     private final String URL = "https://newsapi.org/v2/";
 
     /* Possible endpoints are "everything" and "top-headlines" */
-    public String handleRequest (String query, String endpoint)throws IOException{
+    /*public String handleRequest (String query, String endpoint)throws IOException{
         String url = URL + endpoint + "?q=" + query + "&apiKey=" + APIKEY;
-        return request(url);
+        return request(urlfirs);
+    }*/
+
+    /**
+     * build URL and handle request
+     * @param endpoint either everything or top-headlines
+     * @param query search for a given word or expression
+     * @param args any Enums that need to be added to the URL
+     * @return response of the API as a String
+     */
+
+    public String handleRequest(Enum endpoint, String query, Enum ... args) throws IOException {
+        StringBuilder url = new StringBuilder(URL);
+        url.append(endpoint.toString());
+        url.append("?q=").append(query);
+
+        for (int i = 0; i< args.length; i++){
+            url.append("&").append(args[i].toString());
+        }
+
+        url.append("&pageSize=100");
+
+        url.append("&apiKey=").append(APIKEY);
+
+        System.out.println(url);
+
+        return request(String.valueOf(url));
+
     }
 
     public static String request(String url) throws IOException {
