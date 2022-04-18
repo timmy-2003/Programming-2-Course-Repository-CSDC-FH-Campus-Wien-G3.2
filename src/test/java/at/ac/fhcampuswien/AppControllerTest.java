@@ -55,22 +55,24 @@ public class AppControllerTest {
     /***
      * get the top headlines with an empty list
      */
-    @Test
+
+
+    /*@Test
     @DisplayName("Testing scenario of getting top headlines with empty list")
     public void getTopHeadlinesAustriaTest1() throws IOException {
         assertEquals(new ArrayList<Article>(), appController.getTopHeadlinesAustria());
     }
 
-    /***
-     * get the top headlines with an empty list and set this empty list before
-     */
+
+    get the top headlines with an empty list and set this empty list before
+
     @Test
     @DisplayName("Testing the getTopHeadLines method with empty list")
     public void getTopHeadlinesAustriaTest2() throws IOException {
         List<Article> headlines = new ArrayList<>();
         appController.setArticles(headlines);
         assertEquals(headlines, appController.getTopHeadlinesAustria());
-    }
+    }*/
 
     /***
      * testing the list on query=bitcoin
@@ -123,6 +125,8 @@ public class AppControllerTest {
      * testing to see if the list returned by getAllNewsBitcoin returns the correct article
      */
 
+    /*
+
     @Test
     @DisplayName("Check if returned list contains the bitcoin article")
     public void bitcoinArticlesTest1() throws IOException {
@@ -138,9 +142,9 @@ public class AppControllerTest {
 
     }
 
-    /**
-     * second test case to make sure the list only contains the articles that contain the word bitcoin
-     */
+
+     // second test case to make sure the list only contains the articles that contain the word bitcoin
+
 
     @Test
     @DisplayName("Check length of returned list of articles")
@@ -155,5 +159,5 @@ public class AppControllerTest {
 
         appController.setArticles(articles);
         assertEquals(2,appController.getAllNewsBitcoin().size());
-    }
+    }*/
 }
