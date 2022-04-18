@@ -3,6 +3,7 @@ package at.ac.fhcampuswien.gui;
 import at.ac.fhcampuswien.AppController;
 import at.ac.fhcampuswien.Article;
 import at.ac.fhcampuswien.globalSettings.WriteJSON;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,7 +29,8 @@ public class NewsController {
     private boolean isLightMode = false;
     private double x, y = 0;
     private String cssURL;
-    private WriteJSON writeJSON = new WriteJSON();;
+    private WriteJSON writeJSON = new WriteJSON();
+    ;
 
     @FXML
     private AnchorPane parent;
@@ -102,6 +104,9 @@ public class NewsController {
     @FXML
     private Tab tabSettings;
 
+    @FXML
+    private JFXToggleButton colorPatternToggleButton;
+
     public NewsController() throws IOException {
     }
 
@@ -111,7 +116,6 @@ public class NewsController {
     @FXML
     void initialize() {
         tvNews.setPlaceholder(new Label(""));
-        writeJSON.SaveSettings(true);
         cssURL = "/css/darkmode.css";
         // start with this css
         parent.getStylesheets().add(String.valueOf(getClass().getResource(cssURL)));
@@ -240,6 +244,15 @@ public class NewsController {
     void windowPressed2(MouseEvent event) {
         x = event.getSceneX();
         y = event.getSceneY();
+    }
+
+    @FXML
+    void colorPatternToggleButtonChanged(ActionEvent event) {
+
+        if (colorPatternToggleButton.isSelected())
+            writeJSON.SaveSettings(false);
+        else
+            writeJSON.SaveSettings(true);
     }
 
     /***
