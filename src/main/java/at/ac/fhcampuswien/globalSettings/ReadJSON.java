@@ -12,6 +12,7 @@ public class ReadJSON {
 
     private boolean colorPatternDark;
 
+    // tells the compiler that the code to be safe and won't cause unexpected exceptions
     @SuppressWarnings("unchecked")
     public void readSettings() {
 
@@ -24,10 +25,10 @@ public class ReadJSON {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
 
-            JSONArray employeeList = (JSONArray) obj;
+            JSONArray globalSettingsList = (JSONArray) obj;
 
-            //Iterate over employee array
-            employeeList.forEach(emp -> parseEmployeeObject((JSONObject) emp));
+            //Iterate over settings array
+            globalSettingsList.forEach(set -> parseGlobalSettingsObject((JSONObject) set));
 
         } catch (ParseException |
                 IOException e) {
@@ -40,13 +41,12 @@ public class ReadJSON {
        return colorPatternDark;
     }
 
-    private void parseEmployeeObject(JSONObject employee) {
-        //Get employee object within list
-        JSONObject employeeObject = (JSONObject) employee.get("settings");
+    private void parseGlobalSettingsObject(JSONObject settings) {
+        //Get settings object within list
+        JSONObject settingsObject = (JSONObject) settings.get("settings");
 
-        //Get employee first name
-        boolean colorPattern = (boolean) employeeObject.get("colorPatternDark");
+        //Get settings colorPattern
+        boolean colorPattern = (boolean) settingsObject.get("colorPatternDark");
         colorPatternDark = colorPattern;
-
     }
 }

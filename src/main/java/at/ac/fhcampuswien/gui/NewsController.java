@@ -27,7 +27,7 @@ import java.util.Objects;
 
 public class NewsController {
     private AppController ctrl = new AppController();
-    private boolean isLightMode = false;
+    private boolean isLightMode;
     private double x, y = 0;
     private String cssURL;
     private WriteJSON writeJSON = new WriteJSON();
@@ -107,7 +107,6 @@ public class NewsController {
 
     @FXML
     private JFXToggleButton colorPatternToggleButton;
-
     public NewsController() throws IOException {
     }
 
@@ -249,13 +248,13 @@ public class NewsController {
         y = event.getSceneY();
     }
 
+    /***
+     * depending on toggleButton position write into settings.json (true=isSelected()=dark)
+     * @param event
+     */
     @FXML
     void colorPatternToggleButtonChanged(ActionEvent event) {
-
-        if (colorPatternToggleButton.isSelected())
-            writeJSON.SaveSettings(true);
-        else
-            writeJSON.SaveSettings(false);
+        writeJSON.SaveSettings(colorPatternToggleButton.isSelected());
     }
 
     /***
@@ -379,6 +378,10 @@ public class NewsController {
         System.exit(1);
     }
 
+    /***
+     * dragging window
+     * @param event
+     */
     private void draggingWindow(MouseEvent event) {
         Stage stage = (Stage) anchormid.getScene().getWindow();
         // prevents dragging a maximized window
@@ -389,14 +392,22 @@ public class NewsController {
         }
     }
 
+    /***
+     * read from settings.json and select the css (dark or light)
+     */
     private void readJSON() {
         readJSON.readSettings();
+        // set the toggleButton to right position (0 or 1)
         colorPatternToggleButton.setSelected(readJSON.getColorPattern());
         if (colorPatternToggleButton.isSelected()) {
             cssURL = "/css/darkmode.css";
+            //set the boolean isLightMode to right boolean value according to css for runtime switch between colorPattern mode
+            isLightMode = false;
+            //set the images to right mode
             setDarkMode(true);
         } else {
             cssURL = "/css/lightmode.css";
+            isLightMode = true;
             setLightMode(true);
         }
 

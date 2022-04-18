@@ -10,10 +10,10 @@ import java.io.IOException;
 public class WriteJSON {
 
 
+    // tells the compiler that the code to be safe and won't cause unexpected exceptions
     @SuppressWarnings("unchecked")
     public void SaveSettings(boolean dark)
     {
-
         //Create json object for colorPattern settings
         JSONObject colorPattern = new JSONObject();
         colorPattern.put("colorPatternDark", dark);
