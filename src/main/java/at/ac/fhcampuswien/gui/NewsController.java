@@ -2,7 +2,7 @@ package at.ac.fhcampuswien.gui;
 
 import at.ac.fhcampuswien.AppController;
 import at.ac.fhcampuswien.Article;
-import javafx.application.Platform;
+import at.ac.fhcampuswien.globalSettings.WriteJSON;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,24 +17,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import com.jfoenix.controls.JFXToggleButton;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class NewsController {
     private AppController ctrl = new AppController();
     private boolean isLightMode = false;
-    Timer timer = new Timer();
     private double x, y = 0;
+    private String cssURL;
+    private WriteJSON writeJSON = new WriteJSON();;
 
     @FXML
     private AnchorPane parent;
@@ -117,8 +111,10 @@ public class NewsController {
     @FXML
     void initialize() {
         tvNews.setPlaceholder(new Label(""));
+        writeJSON.SaveSettings(true);
+        cssURL = "/css/darkmode.css";
         // start with this css
-        parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/darkmode.css")));
+        parent.getStylesheets().add(String.valueOf(getClass().getResource(cssURL)));
     }
 
     /***

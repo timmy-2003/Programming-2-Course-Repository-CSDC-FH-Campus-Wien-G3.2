@@ -9,6 +9,7 @@ module newsApp {
     requires okhttp3;
     requires com.google.gson;
     requires com.jfoenix;
+    requires json.simple;
 
 
     opens at.ac.fhcampuswien;
