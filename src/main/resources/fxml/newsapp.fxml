@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="backanchormain" fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="725.0" minWidth="1148.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="725.0" prefWidth="1148.0" styleClass="backanchormain" stylesheets="@../css/lightmode.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.gui.NewsController">
+<AnchorPane id="backanchormain" fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="725.0" minWidth="1148.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="725.0" prefWidth="1148.0" styleClass="backanchormain" stylesheets="@../css/lightmode.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.gui.NewsController">
     <children>
         <VBox fx:id="vboxleftside" layoutX="14.0" layoutY="240.0" prefHeight="486.0" prefWidth="212.0" styleClass="vboxleftside" stylesheets="@../css/lightmode.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="240.0">
             <children>
