@@ -25,7 +25,7 @@
                     <graphic>
                         <ImageView fx:id="imgViewDashboard" fitHeight="34.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
                             <image>
-                                <Image url="@../images/umbrella_64px.png" />
+                                <Image url="@../images/umbrella_light.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -37,7 +37,7 @@
                <graphic>
                   <ImageView fx:id="imgViewSettings" fitHeight="34.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
                      <image>
-                        <Image url="@../images/settings.png" />
+                        <Image url="@../images/settings_light.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -103,7 +103,7 @@
                                                     <graphic>
                                                         <ImageView fx:id="imgViewBitcoin" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
-                                                                <Image url="@../images/bitcoin.png" />
+                                                                <Image url="@../images/bitcoin_light.png" />
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
@@ -115,7 +115,7 @@
                                                     <graphic>
                                                         <ImageView fx:id="imgViewAustria" fitHeight="21.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
-                                                                <Image url="@../images/at2.png" />
+                                                                <Image url="@../images/at_light.png" />
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
@@ -177,7 +177,7 @@
                   <graphic>
                       <ImageView fx:id="imgViewExit" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../images/exitwindow.png" />
+                              <Image url="@../images/exitwindow_light.png" />
                           </image>
                       </ImageView>
                   </graphic>
@@ -189,7 +189,7 @@
                   <graphic>
                       <ImageView fx:id="imgViewWindow" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../images/maximize.png" />
+                              <Image url="@../images/maximize_light.png" />
                           </image>
                       </ImageView>
                   </graphic>
@@ -201,7 +201,7 @@
                   <graphic>
                       <ImageView fx:id="imgViewMinimize" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../images/minimize.png" />
+                              <Image url="@../images/minimize_light.png" />
                           </image>
                       </ImageView>
                   </graphic>

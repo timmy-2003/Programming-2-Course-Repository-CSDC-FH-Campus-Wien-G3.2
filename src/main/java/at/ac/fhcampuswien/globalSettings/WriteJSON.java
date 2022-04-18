@@ -10,12 +10,13 @@ import java.io.IOException;
 public class WriteJSON {
 
 
-    public void SaveSettings(boolean light)
+    @SuppressWarnings("unchecked")
+    public void SaveSettings(boolean dark)
     {
 
         //Create json object for colorPattern settings
         JSONObject colorPattern = new JSONObject();
-        colorPattern.put("colorPatternLight", light);
+        colorPattern.put("colorPatternDark", dark);
 
         // create settingsObject
         JSONObject settingsObject = new JSONObject();

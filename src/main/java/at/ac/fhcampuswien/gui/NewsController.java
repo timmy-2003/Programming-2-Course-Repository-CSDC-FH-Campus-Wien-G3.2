@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.gui;
 
 import at.ac.fhcampuswien.AppController;
 import at.ac.fhcampuswien.Article;
+import at.ac.fhcampuswien.globalSettings.ReadJSON;
 import at.ac.fhcampuswien.globalSettings.WriteJSON;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.collections.FXCollections;
@@ -30,7 +31,7 @@ public class NewsController {
     private double x, y = 0;
     private String cssURL;
     private WriteJSON writeJSON = new WriteJSON();
-    ;
+    private ReadJSON readJSON = new ReadJSON();
 
     @FXML
     private AnchorPane parent;
@@ -111,12 +112,14 @@ public class NewsController {
     }
 
     /***
-     * when the fxml starts the standard text gets replaced by this placeholder
+     * when the fxml starts this should happen
      */
     @FXML
     void initialize() {
+        //the standard text gets replaced by this placeholder
         tvNews.setPlaceholder(new Label(""));
-        cssURL = "/css/darkmode.css";
+        // read global settings
+        readJSON();
         // start with this css
         parent.getStylesheets().add(String.valueOf(getClass().getResource(cssURL)));
     }
@@ -150,9 +153,9 @@ public class NewsController {
 
         isLightMode = !isLightMode;
         if (isLightMode) {
-            setLightMode();
+            setLightMode(false);
         } else {
-            setDarkMode();
+            setDarkMode(false);
         }
     }
 
@@ -250,17 +253,19 @@ public class NewsController {
     void colorPatternToggleButtonChanged(ActionEvent event) {
 
         if (colorPatternToggleButton.isSelected())
-            writeJSON.SaveSettings(false);
-        else
             writeJSON.SaveSettings(true);
+        else
+            writeJSON.SaveSettings(false);
     }
 
     /***
      * apply the light mode to the main GUI
      */
-    private void setLightMode() {
-        parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/darkmode.css")));
-        parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/lightmode.css")));
+    private void setLightMode(boolean init) {
+        if (!init) {
+            parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/darkmode.css")));
+            parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/lightmode.css")));
+        }
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/at_light.png")));
         imgViewAustria.setImage(image);
         Image image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bitcoin_light.png")));
@@ -283,9 +288,11 @@ public class NewsController {
     /***
      * apply the dark mode to the main GUI
      */
-    private void setDarkMode() {
-        parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/lightmode.css")));
-        parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/darkmode.css")));
+    private void setDarkMode(boolean init) {
+        if (!init) {
+            parent.getStylesheets().remove(String.valueOf(getClass().getResource("/css/lightmode.css")));
+            parent.getStylesheets().add(String.valueOf(getClass().getResource("/css/darkmode.css")));
+        }
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/at2.png")));
         imgViewAustria.setImage(image);
         Image image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/bitcoin.png")));
@@ -380,5 +387,18 @@ public class NewsController {
             stage.setX(event.getScreenX() - x);
             stage.setY(event.getScreenY() - y);
         }
+    }
+
+    private void readJSON() {
+        readJSON.readSettings();
+        colorPatternToggleButton.setSelected(readJSON.getColorPattern());
+        if (colorPatternToggleButton.isSelected()) {
+            cssURL = "/css/darkmode.css";
+            setDarkMode(true);
+        } else {
+            cssURL = "/css/lightmode.css";
+            setLightMode(true);
+        }
+
     }
 }
