@@ -67,7 +67,7 @@
 }
 
 .lblHeadLines{
-    -fx-text-fill: cyan;
+    -fx-text-fill: #00FFFFFF;
     -fx-font-weight: bold;
     -fx-font-size: 16;
 }
