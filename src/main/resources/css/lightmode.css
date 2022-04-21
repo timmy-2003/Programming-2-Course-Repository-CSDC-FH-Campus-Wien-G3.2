@@ -1,106 +1,117 @@
-.button1 {
-    -fx-background-color: transparent;
-    -fx-text-fill: white;
+.btnNav {
+    -fx-background-color: transparent; /* background color of btnNav */
+    -fx-text-fill: #FFFFFF; /* color of text in btnNav */
 }
 
-.button1:hover {
-    -fx-shape: "M 300 200 L 550 200 L 550 230 Q 550 246 530 246 L 250 246 L 250 216 Q 250 200 270 200 L 300 200 ";
-    -fx-background-color: rgba(0, 233, 255, 0.1);
+.btnNav:hover {
+    -fx-shape: "M 300 200 L 550 200 L 550 230 Q 550 246 530 246 L 250 246 L 250 216 Q 250 200 270 200 L 300 200 "; /* shape if you hover over the button */
+    -fx-background-color: rgba(0, 233, 255, 0.1); /* color when you hover over the nav button */
+    -fx-scale-x: 1.01;
+    -fx-scale-y: 1.01;
+    -fx-scale-z: 1.01; /* zoom the button if hovered */
 
 }
 
-.button1:pressed {
-    -fx-background-color: rgba(0, 233, 255, 0.3);
+.btnNav:pressed {
+    -fx-background-color: rgba(0, 233, 255, 0.3); /* color when you press the nav button */
 }
 
-.buttonlogo {
-    -fx-background-image: url('../images/logo.png');
-    -fx-background-size: stretch;
-    -fx-background-color: transparent;
+.btnLogo {
+    -fx-background-image: url('../images/logo.png'); /* image of the button */
+    -fx-background-size: stretch; /* stretch the image of the button */
+    -fx-background-color: transparent; /* background color of the button */
 }
 
 .btnGetTopHeadlinesAustria {
-    -fx-background-color: transparent;
+    -fx-background-color: transparent; /* background color of the button */
 }
 
 .backanchormain {
-    -fx-background-image: url('../images/light.jpg');
-    -fx-background-size: contain;
+    -fx-background-image: url('../images/light.jpg'); /* image of the button */
+    -fx-background-size: contain; /* scale the image, while preserving its intrinsic aspect ratio */
 }
 
 .backanchor {
-    -fx-background-color: #000000;
-    -fx-background-radius: 20;
+    -fx-background-color: #000000; /* background color of the button */
+    -fx-background-radius: 20; /* background radius of the button */
 }
 
-
 .topanchor {
-    -fx-background-color: transparent;
+    -fx-background-color: transparent; /* background color of the button */
 }
 
 .vboxleftside {
-    -fx-background-color: transparent;
+    -fx-background-color: transparent; /* background color of the button */
 }
+
 .tvNews {
-    -fx-background-color: transparent;         /* background color of tableview */
-    -fx-light-text-color: #00ffff;           /* color when clicking on cell */
-    -fx-mid-text-color: white;             /* color when just showing the cell */
-    -fx-border-color: cyan;
+    -fx-background-color: transparent; /* background color of tableview */
+    -fx-light-text-color: #00FFFFFF; /* color when clicking on cell */
+    -fx-mid-text-color: #FFFFFFFF; /* color when just showing the cell */
+    -fx-border-color: #00FFFFFF; /* color of the border of the table view */
 
 }
-.table-row-cell{
-    -fx-background-color: transparent;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-table-cell-border-color: transparent;        /* color for the lines between each entry -> title|author */
+
+.table-row-cell {
+    -fx-background-color: transparent; /* color of the cells */
+    -fx-table-cell-border-color: transparent; /* color for the lines between each entry -> title|author */
 }
 
 
 .table-view .column-header-background {
-    -fx-background-color: transparent;
+    -fx-background-color: transparent; /* color of the header (Title, Author) */
 
 }
 
 .table-view .column-header, .table-view .filler {
-    -fx-background-color: transparent;          /* background of the top of the tableview (title, author) */
-    -fx-mid-text-color: cyan ;                 /* color of the top of the tableview (title, author) */
+    -fx-background-color: transparent; /* background of the top of the tableview (title, author) */
+    -fx-mid-text-color: #00FFFFFF; /* color of the top of the tableview (title, author) */
 
 }
 
-.lblHeadLines{
-    -fx-text-fill: #00FFFFFF;
-    -fx-font-weight: bold;
-    -fx-font-size: 16;
+.tvNews .scroll-bar .thumb {
+    -fx-background-color: cyan; /* background color of the scroller */
+    -fx-font-size: 11px;
+}
+.tvNews .scroll-bar:horizontal {
+    -fx-background-color: transparent; /* background of the scroller horizontal*/
+}
+.tvNews .scroll-bar:vertical {
+    -fx-background-color: transparent; /* background of the scroller vertical */
+}
+
+.lblHeadLines {
+    -fx-text-fill: #00FFFFFF; /* color of the text in the label */
+    -fx-font-weight: bold; /* bold text */
+    -fx-font-size: 16; /* size of the text in the label */
 }
 
 .lblDashboard {
-    -fx-text-fill: cyan;
-    -fx-font-size: 13;
+    -fx-text-fill: #00FFFFFF; /* color of the text in the label */
+    -fx-font-size: 13; /* size of the text in the label */
 }
+
 .lblProjectName {
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 15;
+    -fx-text-fill: #FFFFFF; /* color of the text in the label */
+    -fx-font-weight: bold; /* bold text */
+    -fx-font-size: 15; /* size of the text in the label */
 }
 
 .lblArticleCount {
-    -fx-text-fill:cyan;
-    -fx-font-weight: bold;
-    -fx-font-size: 13;
+    -fx-text-fill: #00FFFFFF; /* color of the text in the label */
+    -fx-font-weight: bold; /* bold text */
+    -fx-font-size: 13; /* size of the text in the label */
 }
 
 .tab-pane {
-    -fx-tab-max-height: 0 ;
+    -fx-tab-max-height: 0; /* make the Tabs in the tabpane hidden */
 }
+
 .tab-pane .tab-header-area {
-    visibility: hidden ;
+    visibility: hidden; /* make the header in the tabpane hidden */
 }
-.toggleButton{
-    /* settings for the jfx toggle button*/
 
-    /*
-    -jfx-untoggle-color: #ffffff;
-    -jfx-untoggle-line-color: #888888;*/
-
-    -jfx-toggle-color: cyan;
-    jfx-toggle-line-color: #77c2bb;
+.toggleButton {
+    -jfx-toggle-color: #00FFFFFF; /* color toggled button the dot */
+    -jfx-toggle-line-color: #77C2BB; /* color toggled button the color beside the dot */
 }

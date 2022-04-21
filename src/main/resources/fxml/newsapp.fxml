@@ -21,7 +21,7 @@
     <children>
         <VBox fx:id="vboxleftside" layoutX="14.0" layoutY="240.0" prefHeight="486.0" prefWidth="212.0" styleClass="vboxleftside" stylesheets="@../css/lightmode.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="240.0">
             <children>
-                <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#dashboardSwitch" prefHeight="46.0" prefWidth="212.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="Dashboard" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#dashboardSwitch" prefHeight="46.0" prefWidth="212.0" styleClass="btnNav" stylesheets="@../css/lightmode.css" text="Dashboard" textAlignment="CENTER" textFill="WHITE">
                     <graphic>
                         <ImageView fx:id="imgViewDashboard" fitHeight="34.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
                             <image>
@@ -33,7 +33,7 @@
                         <Font size="15.0" />
                     </font>
                 </Button>
-            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#dashboardSwitchSettings" prefHeight="46.0" prefWidth="212.0" styleClass="button1" stylesheets="@../css/lightmode.css" text="Settings" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#dashboardSwitchSettings" prefHeight="46.0" prefWidth="212.0" styleClass="btnNav" stylesheets="@../css/lightmode.css" text="Settings" textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fx:id="imgViewSettings" fitHeight="34.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
                      <image>
@@ -59,14 +59,14 @@
                         <Font name="System Bold" size="15.0" />
                     </font>
                 </Label>
-                <Button fx:id="logoButton" layoutX="84.0" layoutY="68.0" mnemonicParsing="false" onAction="#changeColorPattern" prefHeight="55.0" prefWidth="55.0" styleClass="buttonlogo" stylesheets="@../css/lightmode.css" />
+                <Button fx:id="logoButton" layoutX="84.0" layoutY="68.0" mnemonicParsing="false" onAction="#changeColorPattern" prefHeight="55.0" prefWidth="55.0" styleClass="btnLogo" stylesheets="@../css/lightmode.css" />
             </children>
         </AnchorPane>
         <TabPane fx:id="tabPane" layoutX="212.0" prefHeight="725.0" prefWidth="937.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="212.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
             <tabs>
                 <Tab fx:id="tabDashboard" text="Dashboard">
                     <content>
-                        <AnchorPane fx:id="anchormid" minHeight="0.0" minWidth="0.0" onMouseDragged="#windowDragged2" onMousePressed="#windowPressed2" prefHeight="180.0" prefWidth="200.0">
+                        <AnchorPane fx:id="anchormidDashboard" minHeight="0.0" minWidth="0.0" onMouseDragged="#windowDragged2" onMousePressed="#windowPressed2" prefHeight="180.0" prefWidth="200.0">
                             <children>
                                 <GridPane fx:id="gridPane" layoutY="97.0" prefHeight="620.0" prefWidth="937.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="97.0">
                                     <columnConstraints>
@@ -134,7 +134,7 @@
                 </Tab>
                 <Tab fx:id="tabSettings" text="Settings">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <AnchorPane fx:id="anchormidSettings" minHeight="0.0" minWidth="0.0" onMouseDragged="#windowDragged3" onMousePressed="#windowPressed3" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <GridPane fx:id="gridPane1" layoutX="1.0" layoutY="97.0" maxHeight="620.0" maxWidth="937.0" minHeight="620.0" minWidth="937.0" prefHeight="620.0" prefWidth="937.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="97.0">
                            <columnConstraints>

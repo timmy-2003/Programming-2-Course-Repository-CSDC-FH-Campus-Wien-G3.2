@@ -37,7 +37,7 @@ public class NewsController {
     private AnchorPane parent;
 
     @FXML
-    private AnchorPane anchormid;
+    private AnchorPane anchormidDashboard;
 
     @FXML
     private Button exitButton;
@@ -239,11 +239,30 @@ public class NewsController {
     }
 
     /***
-     * get x,y coordinates of anchormid when pressed
+     * get x,y coordinates of anchormidDashboard when pressed
      * @param event
      */
     @FXML
     void windowPressed2(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
+    }
+
+    /***
+     * set new positions of window when getting dragged
+     * @param event
+     */
+    @FXML
+    void windowDragged3(MouseEvent event) {
+        draggingWindow(event);
+    }
+
+    /***
+     * get x,y coordinates of anchormidSettings when pressed
+     * @param event
+     */
+    @FXML
+    void windowPressed3(MouseEvent event) {
         x = event.getSceneX();
         y = event.getSceneY();
     }
@@ -383,7 +402,7 @@ public class NewsController {
      * @param event
      */
     private void draggingWindow(MouseEvent event) {
-        Stage stage = (Stage) anchormid.getScene().getWindow();
+        Stage stage = (Stage) anchormidDashboard.getScene().getWindow();
         // prevents dragging a maximized window
         if (stage.isMaximized()) {
         } else {
