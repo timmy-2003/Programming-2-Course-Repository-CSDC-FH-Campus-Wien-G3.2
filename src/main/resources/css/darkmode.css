@@ -114,3 +114,25 @@
     -jfx-toggle-color: #5D00FF;
     -jfx-toggle-line-color: #320084;
 }
+
+.cmbAPIKey {
+    -jfx-unfocus-color: rgba(93, 0, 255, 0.7);
+    -jfx-focus-color:#5D00FF;
+}
+
+.cmbAPIKey .list-view {
+    -fx-background-color: transparent;
+    -fx-text-fill: #5D00FF;
+}
+
+.cmbAPIKey .cell {
+    -fx-text-fill: #5D00FF;
+}
+
+.cmbAPIKey .list-view .list-cell {
+    -fx-background-color: transparent;
+}
+
+.cmbAPIKey .list-view .list-cell:hover {
+    -fx-background-color: rgba(93, 0, 255, 0.25);
+}

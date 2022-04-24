@@ -2,8 +2,10 @@ package at.ac.fhcampuswien.gui;
 
 import at.ac.fhcampuswien.AppController;
 import at.ac.fhcampuswien.Article;
+import at.ac.fhcampuswien.apiStuff.NewsApi;
 import at.ac.fhcampuswien.globalSettings.ReadJSON;
 import at.ac.fhcampuswien.globalSettings.WriteJSON;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,17 +23,20 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
 
 
 public class NewsController {
     private AppController ctrl = new AppController();
+    private WriteJSON writeJSON = new WriteJSON();
+    private ReadJSON readJSON = new ReadJSON();
+
     private boolean isLightMode;
     private double x, y = 0;
     private String cssURL;
-    private WriteJSON writeJSON = new WriteJSON();
-    private ReadJSON readJSON = new ReadJSON();
+    Hashtable<String, String> hashAPIKey = new Hashtable<>();
 
     @FXML
     private AnchorPane parent;
@@ -107,6 +112,10 @@ public class NewsController {
 
     @FXML
     private JFXToggleButton colorPatternToggleButton;
+
+    @FXML
+    private JFXComboBox<String> cmbAPIKey;
+
     public NewsController() throws IOException {
     }
 
@@ -115,12 +124,24 @@ public class NewsController {
      */
     @FXML
     void initialize() {
+        //create out dictionairy for API key translation
+        createDictionary();
         //the standard text gets replaced by this placeholder
         tvNews.setPlaceholder(new Label(""));
+        //adding our standard API key to combobox
+        cmbAPIKey.getItems().add("APIKEY 1");
+        //adding our other API keys to combobox
+        cmbAPIKey.getItems().add("APIKEY 2");
+        cmbAPIKey.getItems().add("APIKEY 3");
+        cmbAPIKey.getItems().add("APIKEY 4");
+        //select our standard API key
+        cmbAPIKey.getSelectionModel().select(0);
         // read global settings
         readJSON();
         // start with this css
         parent.getStylesheets().add(String.valueOf(getClass().getResource(cssURL)));
+        //set API Key
+        NewsApi.setAPIKEY(hashAPIKey.get(cmbAPIKey.getValue()));
     }
 
     /***
@@ -276,6 +297,16 @@ public class NewsController {
         writeJSON.SaveSettings(colorPatternToggleButton.isSelected());
     }
 
+    /**
+     * every time comboboxcontent get's changed this method hits and change the API key
+     * @param event
+     */
+    @FXML
+    void cmbAPIKeyChanged(ActionEvent event) {
+        // set the API key
+        NewsApi.setAPIKEY(hashAPIKey.get(cmbAPIKey.getValue()));
+    }
+
     /***
      * apply the light mode to the main GUI
      */
@@ -429,6 +460,16 @@ public class NewsController {
             isLightMode = true;
             setLightMode(true);
         }
+
+    }
+
+    private void createDictionary()
+    {
+        //translation from key to value
+        hashAPIKey.put("APIKEY 1" ,"b44b32e1c7de47c7827d10cdf122365f");
+        hashAPIKey.put("APIKEY 2","0ff6dda6d57f4f1d8401ba6dec619975");
+        hashAPIKey.put("APIKEY 3","c0eefde7fa834ff3b423058ddf3d94df");
+        hashAPIKey.put("APIKEY 4","b89ea3f55c0045b987c709bc16d7f849");
 
     }
 }

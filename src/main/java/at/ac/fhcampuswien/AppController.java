@@ -16,7 +16,7 @@ public class AppController {
      */
 
     public AppController() throws IOException {
-        setArticles(NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "")));
+       // setArticles(NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "")));
     }
 
     /***

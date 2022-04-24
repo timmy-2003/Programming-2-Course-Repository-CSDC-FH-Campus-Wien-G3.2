@@ -70,12 +70,14 @@
 }
 
 .tvNews .scroll-bar .thumb {
-    -fx-background-color: cyan; /* background color of the scroller */
+    -fx-background-color: #00FFFFFF;; /* background color of the scroller */
     -fx-font-size: 11px;
 }
+
 .tvNews .scroll-bar:horizontal {
     -fx-background-color: transparent; /* background of the scroller horizontal*/
 }
+
 .tvNews .scroll-bar:vertical {
     -fx-background-color: transparent; /* background of the scroller vertical */
 }
@@ -114,4 +116,26 @@
 .toggleButton {
     -jfx-toggle-color: #00FFFFFF; /* color toggled button the dot */
     -jfx-toggle-line-color: #77C2BB; /* color toggled button the color beside the dot */
+}
+
+.cmbAPIKey {
+    -jfx-unfocus-color: rgba(0, 255, 255, 0.5); /* color at bottom of combobox when unfocused*/
+    -jfx-focus-color: #00FFFFFF;  /* color at bottom of combobox when focused*/
+}
+
+.cmbAPIKey .list-view {
+    -fx-background-color: transparent;  /* combobox listview background color*/
+    -fx-text-fill: #00FFFFFF; /* textcolor*/
+}
+
+.cmbAPIKey .cell {
+    -fx-text-fill: #00FFFFFF; /* textcolor of the cells */
+}
+
+.cmbAPIKey .list-view .list-cell {
+    -fx-background-color: transparent;  /* background color of the listview and the cells*/
+}
+
+.cmbAPIKey .list-view .list-cell:hover {
+    -fx-background-color: rgba(0, 233, 255, 0.1); /*background color of the listview and the cells if hovered */
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
@@ -140,15 +141,15 @@
                            <columnConstraints>
                               <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="424.0" percentWidth="10.0" prefWidth="691.0" />
                               <ColumnConstraints hgrow="NEVER" maxWidth="1.7976931348623157E308" minWidth="382.0" percentWidth="40.0" prefWidth="382.0" />
-                              <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="1.7976931348623157E308" minWidth="136.0" prefWidth="136.0" />
+                              <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="1.7976931348623157E308" minWidth="136.0" percentWidth="25.0" prefWidth="136.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints maxHeight="1.7976931348623157E308" percentHeight="9.0" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="424.0" percentHeight="60.0" prefHeight="691.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="424.0" percentHeight="6.0" prefHeight="691.0" valignment="TOP" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" percentHeight="5.0" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="424.0" percentHeight="6.0" prefHeight="691.0" valignment="TOP" vgrow="ALWAYS" />
                            </rowConstraints>
                            <children>
                               <JFXToggleButton fx:id="colorPatternToggleButton" onAction="#colorPatternToggleButtonChanged" styleClass="toggleButton" stylesheets="@../css/lightmode.css" toggleColor="#00ffe5" translateY="-15.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
@@ -162,6 +163,17 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
+                              <Label prefHeight="30.0" prefWidth="116.0" styleClass="lblHeadLines" stylesheets="@../css/lightmode.css" text="API KEY" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="30.0" prefWidth="405.0" styleClass="lblInfoText" stylesheets="@../css/lightmode.css" text="Select your API key to request the news" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="cmbAPIKey" focusColor="#00fffb" onAction="#cmbAPIKeyChanged" prefHeight="25.0" prefWidth="109.0" styleClass="cmbAPIKey" stylesheets="@../css/lightmode.css" unFocusColor="AQUA" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
                      </children></AnchorPane>
