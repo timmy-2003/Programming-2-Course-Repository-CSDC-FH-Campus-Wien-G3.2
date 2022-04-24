@@ -36,7 +36,8 @@ public class NewsController {
     private boolean isLightMode;
     private double x, y = 0;
     private String cssURL;
-    Hashtable<String, String> hashAPIKey = new Hashtable<>();
+    private Hashtable<String, String> hashAPIKey = new Hashtable<>();
+    private List<String> apiKeysList;
 
     @FXML
     private AnchorPane parent;
@@ -124,24 +125,7 @@ public class NewsController {
      */
     @FXML
     void initialize() {
-        //create out dictionairy for API key translation
-        createDictionary();
-        //the standard text gets replaced by this placeholder
-        tvNews.setPlaceholder(new Label(""));
-        //adding our standard API key to combobox
-        cmbAPIKey.getItems().add("APIKEY 1");
-        //adding our other API keys to combobox
-        cmbAPIKey.getItems().add("APIKEY 2");
-        cmbAPIKey.getItems().add("APIKEY 3");
-        cmbAPIKey.getItems().add("APIKEY 4");
-        //select our standard API key
-        cmbAPIKey.getSelectionModel().select(0);
-        // read global settings
-        readJSON();
-        // start with this css
-        parent.getStylesheets().add(String.valueOf(getClass().getResource(cssURL)));
-        //set API Key
-        NewsApi.setAPIKEY(hashAPIKey.get(cmbAPIKey.getValue()));
+        initalize();
     }
 
     /***
@@ -151,7 +135,7 @@ public class NewsController {
     @FXML
     void GetTopLinesAustria(ActionEvent event) throws IOException {
         getList("austria");
-        countArticles(1); //count articles displayed
+        countArticles();
     }
 
     /***
@@ -161,7 +145,7 @@ public class NewsController {
     @FXML
     void GetTopLinesBitcoin(ActionEvent event) throws IOException {
         getList("bitcoin");
-        countArticles(1); //count articles displayed
+        countArticles();
     }
 
     /***
@@ -294,11 +278,12 @@ public class NewsController {
      */
     @FXML
     void colorPatternToggleButtonChanged(ActionEvent event) {
-        writeJSON.SaveSettings(colorPatternToggleButton.isSelected());
+        writeJSON.SaveSettings(apiKeysList, colorPatternToggleButton.isSelected());
     }
 
     /**
      * every time comboboxcontent get's changed this method hits and change the API key
+     *
      * @param event
      */
     @FXML
@@ -386,34 +371,9 @@ public class NewsController {
     }
 
     /***
-     * count articles based on which articles you want to count
-     * @param tableview
+     * count articles which are displayed
      */
-    private void countArticles(int tableview) throws IOException {
-
-        switch (tableview) {
-            case 0 -> countArticlesInFullList();
-            case 1 -> countArticlesDisplayed();
-            default -> countArticlesInFullList();
-        }
-    }
-
-    /***
-     * count all articles in list
-     */
-    private void countArticlesInFullList() throws IOException {
-        if (ctrl.getArticleCount() == 1) {
-            lblCount.setText("  1 article");
-        } else {
-            lblCount.setText("  " + String.valueOf(ctrl.getArticleCount()) + " articles");
-        }
-        getList("");
-    }
-
-    /***
-     * count all articles displayed in tableview
-     */
-    private void countArticlesDisplayed() {
+    private void countArticles() throws IOException {
         if (tvNews.getItems().size() == 1) {
             lblCount.setText("  1 article");
         } else {
@@ -463,13 +423,42 @@ public class NewsController {
 
     }
 
-    private void createDictionary()
-    {
-        //translation from key to value
-        hashAPIKey.put("APIKEY 1" ,"b44b32e1c7de47c7827d10cdf122365f");
-        hashAPIKey.put("APIKEY 2","0ff6dda6d57f4f1d8401ba6dec619975");
-        hashAPIKey.put("APIKEY 3","c0eefde7fa834ff3b423058ddf3d94df");
-        hashAPIKey.put("APIKEY 4","b89ea3f55c0045b987c709bc16d7f849");
+    /***
+     * translation from GUI field to actual API key (GUI TEXT <->  APIKEY)
+     */
+    private void createDictionary() {
+        //get API keys from read input of json
+        apiKeysList = readJSON.getApiKeys();
 
+        //translation from key to value
+        hashAPIKey.put("APIKEY 1", apiKeysList.get(0));
+        hashAPIKey.put("APIKEY 2", apiKeysList.get(1));
+        hashAPIKey.put("APIKEY 3", apiKeysList.get(2));
+        hashAPIKey.put("APIKEY 4", apiKeysList.get(3));
+
+    }
+
+    /***
+     * initialize methods
+     */
+    private void initalize() {
+        // read global settings
+        readJSON();
+        //create out dictionary for API key translation
+        createDictionary();
+        //the standard text gets replaced by this placeholder
+        tvNews.setPlaceholder(new Label(""));
+        //adding our standard API key to combobox
+        cmbAPIKey.getItems().add("APIKEY 1");
+        //adding our other API keys to combobox
+        cmbAPIKey.getItems().add("APIKEY 2");
+        cmbAPIKey.getItems().add("APIKEY 3");
+        cmbAPIKey.getItems().add("APIKEY 4");
+        //select our standard API key
+        cmbAPIKey.getSelectionModel().select(0);
+        // start with this css
+        parent.getStylesheets().add(String.valueOf(getClass().getResource(cssURL)));
+        //set API Key
+        NewsApi.setAPIKEY(hashAPIKey.get(cmbAPIKey.getValue()));
     }
 }

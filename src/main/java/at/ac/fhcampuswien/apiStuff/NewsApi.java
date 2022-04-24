@@ -14,7 +14,7 @@ import java.util.List;
 
 public class NewsApi {
 
-    public static String APIKEY = "b44b32e1c7de47c7827d10cdf122365f";
+    public static String APIKEY;
     private final String URL = "https://newsapi.org/v2/";
 
     /**

@@ -7,10 +7,13 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReadJSON {
 
     private boolean colorPatternDark;
+    private List<String> apiKeysList = new ArrayList<>();
 
     // tells the compiler that the code to be safe and won't cause unexpected exceptions
     @SuppressWarnings("unchecked")
@@ -19,16 +22,26 @@ public class ReadJSON {
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
 
+        //our file destination
         var fileName = "src/main/resources/globalSettings/settings.json";
         try (
                 FileReader reader = new FileReader(fileName)) {
+
             //Read JSON file
             Object obj = jsonParser.parse(reader);
 
-            JSONArray globalSettingsList = (JSONArray) obj;
+            //create jsonobject
+            JSONObject settingsObject = (JSONObject) obj;
 
-            //Iterate over settings array
-            globalSettingsList.forEach(set -> parseGlobalSettingsObject((JSONObject) set));
+            //get settings colorPattern
+            boolean colorPattern = (boolean) settingsObject.get("color_pattern_dark");
+            colorPatternDark = colorPattern;
+
+            //get APIKeys from json
+            JSONArray apiKeysArray = (JSONArray) settingsObject.get("api_keys");
+
+            //add all elements from array to list
+            apiKeysList.addAll(apiKeysArray);
 
         } catch (ParseException |
                 IOException e) {
@@ -37,16 +50,20 @@ public class ReadJSON {
 
     }
 
+    /***
+     * get the boolean of the color GUI
+     * @return
+     */
     public boolean getColorPattern() {
        return colorPatternDark;
     }
 
-    private void parseGlobalSettingsObject(JSONObject settings) {
-        //Get settings object within list
-        JSONObject settingsObject = (JSONObject) settings.get("settings");
-
-        //Get settings colorPattern
-        boolean colorPattern = (boolean) settingsObject.get("colorPatternDark");
-        colorPatternDark = colorPattern;
+    /***
+     * get the list of api keys from json
+     * @return
+     */
+    public List<String> getApiKeys() {
+        return apiKeysList;
     }
+
 }
