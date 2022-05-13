@@ -1,32 +1,37 @@
-.button1 {
+.btnNav {
     -fx-background-color: transparent;
+    -fx-text-fill: #FFFFFF;
 }
 
-.button1:hover {
+.btnNav:hover {
     -fx-shape: "M 300 200 L 550 200 L 550 230 Q 550 246 530 246 L 250 246 L 250 216 Q 250 200 270 200 L 300 200 ";
-    -fx-background-color: #310c77;
+    -fx-background-color: #310C77;
     -fx-scale-x: 1.01;
     -fx-scale-y: 1.01;
     -fx-scale-z: 1.01;
 }
 
-.button1:pressed {
+.btnNav:pressed {
     -fx-background-color: #210754;
 }
 
-.buttonlogo {
-    -fx-background-image: url('../images/world-news.png');
+.btnLogo {
+    -fx-background-image: url('../images/logo.png');
     -fx-background-size: stretch;
-    -fx-background-color: black;
+    -fx-background-color: transparent;
+}
+
+.btnGetTopHeadlinesAustria {
+    -fx-background-color: transparent;
 }
 
 .backanchormain {
     -fx-background-image: url('../images/darkBackground_2.jpg');
-    -fx-background-size: contain;                               /* alignment of background */
+    -fx-background-size: contain;
 }
 
 .backanchor {
-    -fx-background-color: black;
+    -fx-background-color: #000000;
     -fx-background-radius: 20;
 }
 
@@ -40,17 +45,16 @@
 }
 
 .tvNews {
-    -fx-background-color: transparent;         /* background color of tableview */
-    -fx-light-text-color: #5d00ff;           /* color when clicking on cell */
-    -fx-mid-text-color: white ;             /* color when just showing the cell */
-    -fx-border-color: white;
+    -fx-background-color: transparent;
+    -fx-light-text-color: #5D00FF;
+    -fx-mid-text-color: #FFFFFF;
+    -fx-border-color: #FFFFFF;
 
 }
 
-.table-row-cell{
+.table-row-cell {
     -fx-background-color: transparent;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-table-cell-border-color: transparent;        /* color for the lines between each entry -> title|author */
+    -fx-table-cell-border-color: transparent;
 }
 
 
@@ -60,25 +64,75 @@
 }
 
 .table-view .column-header, .table-view .filler {
-    -fx-background-color: transparent;          /* background of the top of the tableview (title, author) */
-    -fx-mid-text-color: #5d00ff ;                 /* color of the top of the tableview (title, author) */
+    -fx-background-color: transparent;
+    -fx-mid-text-color: #5D00FF;
 
 }
 
-.lblHeadLines{
-    -fx-text-fill: #5d00ff;
+.tvNews .scroll-bar .thumb {
+    -fx-background-color: #5D00FF;
+}
+.tvNews .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+.tvNews .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.lblHeadLines {
+    -fx-text-fill: #5D00FF;
     -fx-font-weight: bold;
     -fx-font-size: 16;
 }
 
 .lblDashboard {
-    -fx-text-fill: #5d00ff;
+    -fx-text-fill: #5D00FF;
+    -fx-font-size: 13;
+}
+
+.lblProjectName {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+}
+
+.lblArticleCount {
+    -fx-text-fill: #5D00FF;
+    -fx-font-weight: bold;
     -fx-font-size: 13;
 }
 
 .tab-pane {
-    -fx-tab-max-height: 0 ;
+    -fx-tab-max-height: 0;
 }
+
 .tab-pane .tab-header-area {
-    visibility: hidden ;
+    visibility: hidden;
+}
+
+.toggleButton {
+    -jfx-toggle-color: #5D00FF;
+    -jfx-toggle-line-color: #320084;
+}
+
+.cmbAPIKey {
+    -jfx-unfocus-color: rgba(93, 0, 255, 0.7);
+    -jfx-focus-color:#5D00FF;
+}
+
+.cmbAPIKey .list-view {
+    -fx-background-color: transparent;
+    -fx-text-fill: #5D00FF;
+}
+
+.cmbAPIKey .cell {
+    -fx-text-fill: #5D00FF;
+}
+
+.cmbAPIKey .list-view .list-cell {
+    -fx-background-color: transparent;
+}
+
+.cmbAPIKey .list-view .list-cell:hover {
+    -fx-background-color: rgba(93, 0, 255, 0.25);
 }

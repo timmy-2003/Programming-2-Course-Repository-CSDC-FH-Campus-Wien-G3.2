@@ -11,16 +11,17 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+
 public class App extends Application {
     /***
      * main function launches application
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         launch(args);
         Menu menu = new Menu();
         menu.start();
-
     }
 
     /***
@@ -43,7 +44,7 @@ public class App extends Application {
         stage.setScene(scene);
 
         // setting the icon image
-        Image icon = new Image(String.valueOf(getClass().getResource("/images/world-news.png")));
+        Image icon = new Image(String.valueOf(getClass().getResource("/images/logo.png")));
         stage.getIcons().add(icon);
         stage.show();
 

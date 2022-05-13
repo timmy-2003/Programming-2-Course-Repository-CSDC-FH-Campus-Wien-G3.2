@@ -1,5 +1,8 @@
-package at.ac.fhcampuswien;
+package at.ac.fhcampuswien.apiStuff;
 
+import at.ac.fhcampuswien.Article;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewsResponse {
@@ -12,14 +15,6 @@ public class NewsResponse {
         this.status = status;
         this.totalResults = totalResults;
         this.articles = articles;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public int getTotalResults() {
-        return totalResults;
     }
 
     public List<Article> getArticles() {

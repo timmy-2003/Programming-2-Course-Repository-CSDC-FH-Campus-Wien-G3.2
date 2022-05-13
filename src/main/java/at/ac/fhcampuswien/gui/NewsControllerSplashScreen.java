@@ -1,4 +1,4 @@
-package at.ac.fhcampuswien;
+package at.ac.fhcampuswien.gui;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -56,12 +57,17 @@ public class NewsControllerSplashScreen {
             Stage stage = new Stage();
             Scene scene = new Scene(root, 1400, 800);
             stage.setScene(scene);
+
+            //borderless UI
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
+
             stage.setMinWidth(1400);
             stage.setMinHeight(800);
             stage.setMaximized(true);
 
             // setting the icon image
-            Image icon = new Image(String.valueOf(getClass().getResource("/images/world-news.png")));
+            Image icon = new Image(String.valueOf(getClass().getResource("/images/logo.png")));
             stage.getIcons().add(icon);
             stage.show();
 
