@@ -7,6 +7,8 @@ import at.ac.fhcampuswien.globalSettings.ReadJSON;
 import at.ac.fhcampuswien.globalSettings.WriteJSON;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXToggleButton;
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,6 +40,8 @@ public class NewsController {
     private String cssURL;
     private Hashtable<String, String> hashAPIKey = new Hashtable<>();
     private List<String> apiKeysList;
+    private int indexOfSelectedAPIKey;
+    private int apiKeysChange = 0; //counter how often API key has changed during runtime
 
     @FXML
     private AnchorPane parent;
@@ -134,8 +138,14 @@ public class NewsController {
      */
     @FXML
     void GetTopLinesAustria(ActionEvent event) throws IOException {
-        getList("austria");
-        countArticles();
+        Platform.runLater(() -> {
+            try {
+                getList("austria");
+                countArticles();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /***
@@ -144,8 +154,14 @@ public class NewsController {
      */
     @FXML
     void GetTopLinesBitcoin(ActionEvent event) throws IOException {
-        getList("bitcoin");
-        countArticles();
+        Platform.runLater(() -> {
+            try {
+                getList("bitcoin");
+                countArticles();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /***
@@ -368,12 +384,38 @@ public class NewsController {
             case "bitcoin" -> tvNews.setItems(getObservableListFromList(ctrl.getAllNewsBitcoin()));
             case "" -> tvNews.setItems(getObservableListFromList(ctrl.getArticles()));
         }
+
+        //when returned no list change API Key automatically && we want to change maximum all possibilities once (4API keys -> change max 3 times)
+        if (tvNews.getItems().size() == 0 && apiKeysChange < apiKeysList.size() - 1) {
+            apiKeysChange++;
+            //get index of selected API key in list
+            indexOfSelectedAPIKey = apiKeysList.indexOf(hashAPIKey.get(cmbAPIKey.getValue()));
+            //go to next API Key -> if exceeded go to first one again
+            indexOfSelectedAPIKey = (indexOfSelectedAPIKey + 1) % 4;
+            //set new API key
+            NewsApi.setAPIKEY(apiKeysList.get((indexOfSelectedAPIKey)));
+            //set new API key in GUI
+            cmbAPIKey.getSelectionModel().select(indexOfSelectedAPIKey);
+            //recursive request again with a different API key
+            getList(query);
+        }
+        //when all API keys has been tested and we still got no information tell the user
+        else if (tvNews.getItems().size() == 0 && apiKeysChange >= apiKeysList.size() - 1) {
+
+            //improve
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "ALL API KEYS ARE ON LIMIT", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            alert.showAndWait();
+
+            if (alert.getResult() == ButtonType.YES) {
+                //do stuff
+            }
+        }
     }
 
     /***
      * count articles which are displayed
      */
-    private void countArticles() throws IOException {
+    private void countArticles () throws IOException {
         if (tvNews.getItems().size() == 1) {
             lblCount.setText("  1 article");
         } else {
@@ -384,7 +426,7 @@ public class NewsController {
     /***
      * exit window
      */
-    private void exitWindow() {
+    private void exitWindow () {
         System.exit(1);
     }
 
@@ -392,7 +434,7 @@ public class NewsController {
      * dragging window
      * @param event
      */
-    private void draggingWindow(MouseEvent event) {
+    private void draggingWindow (MouseEvent event){
         Stage stage = (Stage) anchormidDashboard.getScene().getWindow();
         // prevents dragging a maximized window
         if (stage.isMaximized()) {
@@ -405,7 +447,7 @@ public class NewsController {
     /***
      * read from settings.json and select the css (dark or light)
      */
-    private void readJSON() {
+    private void readJSON () {
         readJSON.readSettings();
         // set the toggleButton to right position (0 or 1)
         colorPatternToggleButton.setSelected(readJSON.getColorPattern());
@@ -426,7 +468,7 @@ public class NewsController {
     /***
      * translation from GUI field to actual API key (GUI TEXT <->  APIKEY)
      */
-    private void createDictionary() {
+    private void createDictionary () {
         //get API keys from read input of json
         apiKeysList = readJSON.getApiKeys();
 
@@ -435,13 +477,12 @@ public class NewsController {
         hashAPIKey.put("APIKEY 2", apiKeysList.get(1));
         hashAPIKey.put("APIKEY 3", apiKeysList.get(2));
         hashAPIKey.put("APIKEY 4", apiKeysList.get(3));
-
     }
 
     /***
      * initialize methods
      */
-    private void initalize() {
+    private void initalize () {
         // read global settings
         readJSON();
         //create out dictionary for API key translation
