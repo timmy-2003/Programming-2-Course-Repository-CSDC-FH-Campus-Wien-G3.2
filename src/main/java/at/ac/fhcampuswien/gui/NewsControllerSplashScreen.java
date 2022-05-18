@@ -25,9 +25,7 @@ public class NewsControllerSplashScreen {
     @FXML
     void initialize() {
         try {
-            new Thread(() -> {
-                load();
-            }).start();
+            new Thread(this::load).start();
         } catch (Exception e) {
             e.printStackTrace();
         }

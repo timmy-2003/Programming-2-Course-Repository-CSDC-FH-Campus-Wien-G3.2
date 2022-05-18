@@ -13,7 +13,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -22,7 +26,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Hashtable;
@@ -294,7 +301,7 @@ public class NewsController {
      */
     @FXML
     void colorPatternToggleButtonChanged(ActionEvent event) {
-        writeJSON.SaveSettings(indexOfSelectedAPIKey,apiKeysList, colorPatternToggleButton.isSelected());
+        writeJSON.SaveSettings(indexOfSelectedAPIKey, apiKeysList, colorPatternToggleButton.isSelected());
     }
 
     /**
@@ -309,7 +316,7 @@ public class NewsController {
         // set the API key
         NewsApi.setAPIKEY(hashAPIKey.get(cmbAPIKey.getValue()));
         //save changings
-        writeJSON.SaveSettings(indexOfSelectedAPIKey,apiKeysList, colorPatternToggleButton.isSelected());
+        writeJSON.SaveSettings(indexOfSelectedAPIKey, apiKeysList, colorPatternToggleButton.isSelected());
     }
 
     /***
@@ -401,23 +408,16 @@ public class NewsController {
             //recursive request again with a different API key
             getList(query);
         }
-        //when all API keys has been tested and we still got no information tell the user
+        //when all API keys has been tested and we still got no information tell the user with alert
         else if (tvNews.getItems().size() == 0 && apiKeysChange >= apiKeysList.size() - 1) {
-
-            //improve
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "ALL API KEYS ARE ON LIMIT", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
-            alert.showAndWait();
-
-            if (alert.getResult() == ButtonType.YES) {
-                //do stuff
-            }
+            alert("All API Keys have no requests anymore for today!");
         }
     }
 
     /***
      * count articles which are displayed
      */
-    private void countArticles () throws IOException {
+    private void countArticles() throws IOException {
         if (tvNews.getItems().size() == 1) {
             lblCount.setText("  1 article");
         } else {
@@ -428,7 +428,7 @@ public class NewsController {
     /***
      * exit window
      */
-    private void exitWindow () {
+    private void exitWindow() {
         System.exit(1);
     }
 
@@ -436,7 +436,7 @@ public class NewsController {
      * dragging window
      * @param event
      */
-    private void draggingWindow (MouseEvent event){
+    private void draggingWindow(MouseEvent event) {
         Stage stage = (Stage) anchormidDashboard.getScene().getWindow();
         // prevents dragging a maximized window
         if (stage.isMaximized()) {
@@ -449,7 +449,7 @@ public class NewsController {
     /***
      * read from settings.json and select the css (dark or light)
      */
-    private void readJSON () {
+    private void readJSON() {
         readJSON.readSettings();
         // set the toggleButton to right position (0 or 1)
         colorPatternToggleButton.setSelected(readJSON.getColorPattern());
@@ -471,7 +471,7 @@ public class NewsController {
     /***
      * translation from GUI field to actual API key (GUI TEXT <->  APIKEY)
      */
-    private void createDictionary () {
+    private void createDictionary() {
         //get API keys from read input of json
         apiKeysList = readJSON.getApiKeys();
 
@@ -485,7 +485,7 @@ public class NewsController {
     /***
      * initialize methods
      */
-    private void initalize () {
+    private void initalize() {
         // read global settings
         readJSON();
         //create out dictionary for API key translation
@@ -504,5 +504,60 @@ public class NewsController {
         parent.getStylesheets().add(String.valueOf(getClass().getResource(cssURL)));
         //set API Key
         NewsApi.setAPIKEY(hashAPIKey.get(cmbAPIKey.getValue()));
+    }
+
+    /***
+     * load alert in thread
+     * @param alertMessage
+     */
+    private void alert(String alertMessage) {
+        try {
+            new Thread(() -> {
+                loadAlert(alertMessage);
+            }).start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /***
+     * load alert window
+     * @param alertMessage
+     */
+    private void loadAlert(String alertMessage) {
+        Platform.runLater(() -> {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxml/newsappalertscreen.fxml"));
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            NewsControllerAlertScreen alertcontroller = loader.getController();
+            alertcontroller.setAlertMessage(alertMessage);
+
+            //create the scene
+            Stage stage = new Stage();
+            Scene scene = new Scene(root, 600, 354);
+            scene.setFill(Color.TRANSPARENT);
+            stage.centerOnScreen();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+
+            // setting the icon image
+            Image icon = new Image(String.valueOf(getClass().getResource("/images/logo.png")));
+            stage.getIcons().add(icon);
+            stage.show();
+
+            //center the splash screen into the mid
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+            stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
+
+        });
     }
 }

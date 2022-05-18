@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="600.0" styleClass="backanchor" stylesheets="@../css/lightmode.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.gui.NewsControllerAlertScreen">
+    <children>
+        <ImageView fx:id="imgviewAlert" fitHeight="354.0" fitWidth="615.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" styleClass="imgViewAlert">
+            <image>
+                <Image url="@../images/alert.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="lblAlertMessage" alignment="CENTER" layoutX="14.0" layoutY="256.0" prefHeight="21.0" prefWidth="572.0" text="Alert Message" textFill="WHITE">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="lblAlert" alignment="CENTER" contentDisplay="CENTER" layoutX="208.0" layoutY="194.0" prefHeight="39.0" prefWidth="187.0" text="ALERT" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="Sitka Text" size="36.0" />
+            </font>
+        </Label>
+      <ImageView fx:id="imgViewExit" fitHeight="35.0" fitWidth="35.0" layoutX="551.0" layoutY="14.0" onMouseClicked="#exitWindow" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/exitwindow_alert.png" />
+         </image>
+      </ImageView>
+    </children>
+</AnchorPane>
