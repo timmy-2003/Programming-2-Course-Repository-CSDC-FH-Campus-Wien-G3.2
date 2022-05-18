@@ -294,7 +294,7 @@ public class NewsController {
      */
     @FXML
     void colorPatternToggleButtonChanged(ActionEvent event) {
-        writeJSON.SaveSettings(apiKeysList, colorPatternToggleButton.isSelected());
+        writeJSON.SaveSettings(indexOfSelectedAPIKey,apiKeysList, colorPatternToggleButton.isSelected());
     }
 
     /**
@@ -304,8 +304,12 @@ public class NewsController {
      */
     @FXML
     void cmbAPIKeyChanged(ActionEvent event) {
+        //change index if selected manually (needed for WriteJson() standardvalue of API)
+        indexOfSelectedAPIKey = apiKeysList.indexOf(hashAPIKey.get(cmbAPIKey.getValue()));
         // set the API key
         NewsApi.setAPIKEY(hashAPIKey.get(cmbAPIKey.getValue()));
+        //save changings
+        writeJSON.SaveSettings(indexOfSelectedAPIKey,apiKeysList, colorPatternToggleButton.isSelected());
     }
 
     /***
@@ -392,8 +396,6 @@ public class NewsController {
             indexOfSelectedAPIKey = apiKeysList.indexOf(hashAPIKey.get(cmbAPIKey.getValue()));
             //go to next API Key -> if exceeded go to first one again
             indexOfSelectedAPIKey = (indexOfSelectedAPIKey + 1) % 4;
-            //set new API key
-            NewsApi.setAPIKEY(apiKeysList.get((indexOfSelectedAPIKey)));
             //set new API key in GUI
             cmbAPIKey.getSelectionModel().select(indexOfSelectedAPIKey);
             //recursive request again with a different API key
@@ -462,7 +464,8 @@ public class NewsController {
             isLightMode = true;
             setLightMode(true);
         }
-
+        //set index from .json into runtime indexOfSelectedAPIKey
+        indexOfSelectedAPIKey = readJSON.getIndexOfSelectedAPIKey();
     }
 
     /***
@@ -496,7 +499,7 @@ public class NewsController {
         cmbAPIKey.getItems().add("APIKEY 3");
         cmbAPIKey.getItems().add("APIKEY 4");
         //select our standard API key
-        cmbAPIKey.getSelectionModel().select(0);
+        cmbAPIKey.getSelectionModel().select(indexOfSelectedAPIKey);
         // start with this css
         parent.getStylesheets().add(String.valueOf(getClass().getResource(cssURL)));
         //set API Key

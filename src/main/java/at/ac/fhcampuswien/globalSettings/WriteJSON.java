@@ -13,7 +13,7 @@ public class WriteJSON {
 
     // tells the compiler that the code to be safe and won't cause unexpected exceptions
     @SuppressWarnings("unchecked")
-    public void SaveSettings(List<String> apiKeysList, boolean dark) {
+    public void SaveSettings(int indexOfSelectedAPIKey,List<String> apiKeysList, boolean dark) {
         //Create json object for colorPattern settings
         JSONObject obj = new JSONObject();
         obj.put("color_pattern_dark", dark);
@@ -26,6 +26,10 @@ public class WriteJSON {
 
         //adding the list to our JSON Object
         obj.put("api_keys", apiKeys);
+
+        //Create json object for colorPattern settings
+        obj.put("selected_api_key", indexOfSelectedAPIKey);
+
 
         //our file destination
         var fileName = "src/main/resources/globalSettings/settings.json";
