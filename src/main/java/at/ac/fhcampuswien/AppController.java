@@ -3,6 +3,7 @@ package at.ac.fhcampuswien;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import at.ac.fhcampuswien.apiStuff.NewsApi;
 import at.ac.fhcampuswien.enums.Country;
@@ -50,7 +51,7 @@ public class AppController {
      */
     public List<Article> getTopHeadlinesAustria() throws IOException {
         // Requests top-headlines with the query corona from the news api
-        return NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.TOP_HEADLINES, "", Country.AT));
+        return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.TOP_HEADLINES, "", Country.AT));
     }
 
     /***
@@ -60,7 +61,13 @@ public class AppController {
     public List<Article> getAllNewsBitcoin() throws IOException {
         //return filterList(articles, "bitcoin");
         // Requests everything with the query bitcoin from the news api
-        return NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "bitcoin"));
+        return  articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "bitcoin"));
+    }
+
+    //return all  articles which have a title that consists of less than 15 characters
+    //actually 25 because there are no under 40
+    public List<Article> headLinesUnderFifteenSymbols() {
+        return articles.stream().filter(title -> title.getTitle().length() < 40).collect(Collectors.toList());
     }
 
     /***

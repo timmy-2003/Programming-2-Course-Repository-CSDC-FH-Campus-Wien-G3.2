@@ -412,6 +412,10 @@ public class NewsController {
         else if (tvNews.getItems().size() == 0 && apiKeysChange >= apiKeysList.size() - 1) {
             alert("All API Keys have no requests anymore for today!");
         }
+        //get all news under 40
+        for (Article model : ctrl.headLinesUnderFifteenSymbols()) {
+            System.out.println(model.getTitle());
+        }
     }
 
     /***
