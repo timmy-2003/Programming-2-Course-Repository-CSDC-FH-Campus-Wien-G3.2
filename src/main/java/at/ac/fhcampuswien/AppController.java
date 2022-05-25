@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import at.ac.fhcampuswien.apiStuff.NewsApi;
+import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
 
 public class AppController {
@@ -49,7 +50,7 @@ public class AppController {
      */
     public List<Article> getTopHeadlinesAustria() throws IOException {
         // Requests top-headlines with the query corona from the news api
-        return NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.TOP_HEADLINES, "corona"));
+        return NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.TOP_HEADLINES, "", Country.AT));
     }
 
     /***
