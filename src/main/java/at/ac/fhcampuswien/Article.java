@@ -8,6 +8,7 @@ public class Article {
     private String urlToImage;
     private String publishedAt;
     private String content;
+
     private String description;
 
     /***
@@ -57,11 +58,27 @@ public class Article {
     }
 
 
+    /***
+     * get desc of article
+     * @return
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /***
+     * set desc of article
+     * @param description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     /**
      * @return author and title of article formatted as a String
      */
     @Override
     public String toString() {
-        return "Title: " + title + "\t" + "Author: " + author;
+        return "Title: " + title + "\t" + "Author: " + author + "\t" +  "Description: " + description;
     }
 }

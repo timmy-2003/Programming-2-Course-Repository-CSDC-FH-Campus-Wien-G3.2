@@ -413,8 +413,12 @@ public class NewsController {
             alert("All API Keys have no requests anymore for today!");
         }
         //get all news under 40
-        for (Article model : ctrl.headLinesUnderFifteenSymbols()) {
-            System.out.println(model.getTitle());
+        for (Article a : ctrl.headLinesUnderFifteenSymbols()) {
+            System.out.println("UNDER 40: " + a.getTitle());
+        }
+        //sort asc
+        for (Article a : ctrl.sortAsc()) {
+            System.out.println("sort " + a.getDescription());
         }
     }
 
