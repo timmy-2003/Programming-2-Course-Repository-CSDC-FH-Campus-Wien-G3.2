@@ -14,6 +14,7 @@ public class ReadJSON {
 
     private boolean colorPatternDark;
     private List<String> apiKeysList = new ArrayList<>();
+    private long indexOfSelectedAPIKey;
 
     // tells the compiler that the code to be safe and won't cause unexpected exceptions
     @SuppressWarnings("unchecked")
@@ -34,14 +35,16 @@ public class ReadJSON {
             JSONObject settingsObject = (JSONObject) obj;
 
             //get settings colorPattern
-            boolean colorPattern = (boolean) settingsObject.get("color_pattern_dark");
-            colorPatternDark = colorPattern;
+            colorPatternDark = (boolean) settingsObject.get("color_pattern_dark");
 
             //get APIKeys from json
             JSONArray apiKeysArray = (JSONArray) settingsObject.get("api_keys");
 
             //add all elements from array to list
             apiKeysList.addAll(apiKeysArray);
+
+            //get settings selectedAPIKey
+            indexOfSelectedAPIKey = (long) settingsObject.get("selected_api_key");
 
         } catch (ParseException |
                 IOException e) {
@@ -64,6 +67,14 @@ public class ReadJSON {
      */
     public List<String> getApiKeys() {
         return apiKeysList;
+    }
+
+    /***
+     * get index of last selected API Key (when restarted)
+     * @return
+     */
+    public int getIndexOfSelectedAPIKey() {
+        return (int) indexOfSelectedAPIKey;
     }
 
 }

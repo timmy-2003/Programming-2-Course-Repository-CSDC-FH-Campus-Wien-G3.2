@@ -2,9 +2,12 @@ package at.ac.fhcampuswien;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import at.ac.fhcampuswien.apiStuff.NewsApi;
+import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
 
 public class AppController {
@@ -16,7 +19,7 @@ public class AppController {
      */
 
     public AppController() throws IOException {
-       // setArticles(NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "")));
+        // setArticles(NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "")));
     }
 
     /***
@@ -49,7 +52,7 @@ public class AppController {
      */
     public List<Article> getTopHeadlinesAustria() throws IOException {
         // Requests top-headlines with the query corona from the news api
-        return NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.TOP_HEADLINES, "corona"));
+        return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.TOP_HEADLINES, "", Country.AT));
     }
 
     /***
@@ -59,7 +62,38 @@ public class AppController {
     public List<Article> getAllNewsBitcoin() throws IOException {
         //return filterList(articles, "bitcoin");
         // Requests everything with the query bitcoin from the news api
-        return NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "bitcoin"));
+        return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "bitcoin"));
+    }
+
+    //return all  articles which have a title that consists of less than 15 characters
+    //actually 25 because there are no under 40
+    public List<Article> headLinesUnderFifteenSymbols() {
+        return articles.stream().filter(title -> title.getTitle().length() < 40).collect(Collectors.toList());
+    }
+
+    //sort the articles by the length of their description in ascending order then alphabetically
+    public List<Article> sortAsc() {
+        //test function
+        //articles.add(new Article("author1", "bitcoin","yesc"));
+        //articles.add(new Article("author1", "xxx","desc"));
+        //articles.add(new Article("author31", "4","besc"));
+        //articles.add(new Article("4author1", "bitcoin","xesc"));
+        removeNull();
+        return articles.stream()
+                .sorted(Comparator.comparingInt((Article a) -> a.getDescription().length())
+                        .thenComparing(Article::getDescription))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * remove null values otherwise he can't compare
+     */
+    private void removeNull() {
+        for (Article a : articles) {
+            if (a.getDescription() == null) {
+                a.setDescription("");
+            }
+        }
     }
 
     /***

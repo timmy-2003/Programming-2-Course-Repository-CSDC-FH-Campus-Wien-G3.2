@@ -7,11 +7,17 @@ import at.ac.fhcampuswien.globalSettings.ReadJSON;
 import at.ac.fhcampuswien.globalSettings.WriteJSON;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXToggleButton;
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -20,7 +26,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Hashtable;
@@ -38,6 +47,8 @@ public class NewsController {
     private String cssURL;
     private Hashtable<String, String> hashAPIKey = new Hashtable<>();
     private List<String> apiKeysList;
+    private int indexOfSelectedAPIKey;
+    private int apiKeysChange = 0; //counter how often API key has changed during runtime
 
     @FXML
     private AnchorPane parent;
@@ -134,8 +145,14 @@ public class NewsController {
      */
     @FXML
     void GetTopLinesAustria(ActionEvent event) throws IOException {
-        getList("austria");
-        countArticles();
+        Platform.runLater(() -> {
+            try {
+                getList("austria");
+                countArticles();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /***
@@ -144,8 +161,14 @@ public class NewsController {
      */
     @FXML
     void GetTopLinesBitcoin(ActionEvent event) throws IOException {
-        getList("bitcoin");
-        countArticles();
+        Platform.runLater(() -> {
+            try {
+                getList("bitcoin");
+                countArticles();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /***
@@ -278,7 +301,7 @@ public class NewsController {
      */
     @FXML
     void colorPatternToggleButtonChanged(ActionEvent event) {
-        writeJSON.SaveSettings(apiKeysList, colorPatternToggleButton.isSelected());
+        writeJSON.SaveSettings(indexOfSelectedAPIKey, apiKeysList, colorPatternToggleButton.isSelected());
     }
 
     /**
@@ -288,8 +311,12 @@ public class NewsController {
      */
     @FXML
     void cmbAPIKeyChanged(ActionEvent event) {
+        //change index if selected manually (needed for WriteJson() standardvalue of API)
+        indexOfSelectedAPIKey = apiKeysList.indexOf(hashAPIKey.get(cmbAPIKey.getValue()));
         // set the API key
         NewsApi.setAPIKEY(hashAPIKey.get(cmbAPIKey.getValue()));
+        //save changings
+        writeJSON.SaveSettings(indexOfSelectedAPIKey, apiKeysList, colorPatternToggleButton.isSelected());
     }
 
     /***
@@ -368,6 +395,31 @@ public class NewsController {
             case "bitcoin" -> tvNews.setItems(getObservableListFromList(ctrl.getAllNewsBitcoin()));
             case "" -> tvNews.setItems(getObservableListFromList(ctrl.getArticles()));
         }
+
+        //when returned no list change API Key automatically && we want to change maximum all possibilities once (4API keys -> change max 3 times)
+        if (tvNews.getItems().size() == 0 && apiKeysChange < apiKeysList.size() - 1) {
+            apiKeysChange++;
+            //get index of selected API key in list
+            indexOfSelectedAPIKey = apiKeysList.indexOf(hashAPIKey.get(cmbAPIKey.getValue()));
+            //go to next API Key -> if exceeded go to first one again
+            indexOfSelectedAPIKey = (indexOfSelectedAPIKey + 1) % 4;
+            //set new API key in GUI
+            cmbAPIKey.getSelectionModel().select(indexOfSelectedAPIKey);
+            //recursive request again with a different API key
+            getList(query);
+        }
+        //when all API keys has been tested and we still got no information tell the user with alert
+        else if (tvNews.getItems().size() == 0 && apiKeysChange >= apiKeysList.size() - 1) {
+            alert("All API Keys have no requests anymore for today!");
+        }
+        //get all news under 40
+        for (Article a : ctrl.headLinesUnderFifteenSymbols()) {
+            System.out.println("UNDER 40: " + a.getTitle());
+        }
+        //sort asc
+        for (Article a : ctrl.sortAsc()) {
+            System.out.println("sort " + a.getDescription());
+        }
     }
 
     /***
@@ -420,7 +472,8 @@ public class NewsController {
             isLightMode = true;
             setLightMode(true);
         }
-
+        //set index from .json into runtime indexOfSelectedAPIKey
+        indexOfSelectedAPIKey = readJSON.getIndexOfSelectedAPIKey();
     }
 
     /***
@@ -435,7 +488,6 @@ public class NewsController {
         hashAPIKey.put("APIKEY 2", apiKeysList.get(1));
         hashAPIKey.put("APIKEY 3", apiKeysList.get(2));
         hashAPIKey.put("APIKEY 4", apiKeysList.get(3));
-
     }
 
     /***
@@ -455,10 +507,65 @@ public class NewsController {
         cmbAPIKey.getItems().add("APIKEY 3");
         cmbAPIKey.getItems().add("APIKEY 4");
         //select our standard API key
-        cmbAPIKey.getSelectionModel().select(0);
+        cmbAPIKey.getSelectionModel().select(indexOfSelectedAPIKey);
         // start with this css
         parent.getStylesheets().add(String.valueOf(getClass().getResource(cssURL)));
         //set API Key
         NewsApi.setAPIKEY(hashAPIKey.get(cmbAPIKey.getValue()));
+    }
+
+    /***
+     * load alert in thread
+     * @param alertMessage
+     */
+    private void alert(String alertMessage) {
+        try {
+            new Thread(() -> {
+                loadAlert(alertMessage);
+            }).start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /***
+     * load alert window
+     * @param alertMessage
+     */
+    private void loadAlert(String alertMessage) {
+        Platform.runLater(() -> {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxml/newsappalertscreen.fxml"));
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            NewsControllerAlertScreen alertcontroller = loader.getController();
+            alertcontroller.setAlertMessage(alertMessage);
+
+            //create the scene
+            Stage stage = new Stage();
+            Scene scene = new Scene(root, 600, 354);
+            scene.setFill(Color.TRANSPARENT);
+            stage.centerOnScreen();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+
+            // setting the icon image
+            Image icon = new Image(String.valueOf(getClass().getResource("/images/logo.png")));
+            stage.getIcons().add(icon);
+            stage.show();
+
+            //center the splash screen into the mid
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+            stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
+
+        });
     }
 }

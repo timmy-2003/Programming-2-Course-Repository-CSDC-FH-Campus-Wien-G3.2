@@ -25,9 +25,7 @@ public class NewsControllerSplashScreen {
     @FXML
     void initialize() {
         try {
-            new Thread(() -> {
-                load();
-            }).start();
+            new Thread(this::load).start();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,7 +36,7 @@ public class NewsControllerSplashScreen {
      */
     private void load() {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
