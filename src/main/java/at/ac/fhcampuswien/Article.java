@@ -84,6 +84,7 @@ public class Article {
         this.description = description;
     }
 
+
     /**
      * @return author and title of article formatted as a String
      */

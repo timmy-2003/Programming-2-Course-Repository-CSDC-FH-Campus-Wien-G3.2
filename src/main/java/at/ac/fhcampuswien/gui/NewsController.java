@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.gui;
 
 import at.ac.fhcampuswien.AppController;
 import at.ac.fhcampuswien.Article;
+import at.ac.fhcampuswien.WriteTXT;
 import at.ac.fhcampuswien.apiStuff.NewsApi;
 import at.ac.fhcampuswien.globalSettings.ReadJSON;
 import at.ac.fhcampuswien.globalSettings.WriteJSON;
@@ -41,6 +42,7 @@ public class NewsController {
     private AppController ctrl = new AppController();
     private WriteJSON writeJSON = new WriteJSON();
     private ReadJSON readJSON = new ReadJSON();
+    private WriteTXT writeTXT = new WriteTXT();
 
     private boolean isLightMode;
     private double x, y = 0;
@@ -420,6 +422,7 @@ public class NewsController {
         for (Article a : ctrl.sortAsc()) {
             System.out.println("sort " + a.getDescription());
         }
+        ctrl.saveOriginalArticles();
     }
 
     /***

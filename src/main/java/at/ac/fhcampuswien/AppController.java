@@ -12,7 +12,8 @@ import at.ac.fhcampuswien.enums.Endpoint;
 
 public class AppController {
 
-    private List<Article> articles = new ArrayList<>();
+    public List<Article> articles = new ArrayList<>();
+    private WriteTXT writeTXT = new WriteTXT();
 
     /***
      * when instanced sets the list
@@ -51,6 +52,7 @@ public class AppController {
      * @return
      */
     public List<Article> getTopHeadlinesAustria() throws IOException {
+        saveOriginalArticles();
         // Requests top-headlines with the query corona from the news api
         return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.TOP_HEADLINES, "", Country.AT));
     }
@@ -74,14 +76,14 @@ public class AppController {
     //sort the articles by the length of their description in ascending order then alphabetically
     public List<Article> sortAsc() {
         //test function
-        //articles.add(new Article("author1", "bitcoin","yesc"));
-        //articles.add(new Article("author1", "xxx","desc"));
-        //articles.add(new Article("author31", "4","besc"));
-        //articles.add(new Article("4author1", "bitcoin","xesc"));
+        // articles.add(new Article("author1", "bitcoin", "yesc"));
+        //articles.add(new Article("author1", "xxx", "Desc"));
+        //articles.add(new Article("author31", "4", "besc"));
+        //articles.add(new Article("4author1", "bitcoin", "xesc"));
         removeNull();
         return articles.stream()
                 .sorted(Comparator.comparingInt((Article a) -> a.getDescription().length())
-                        .thenComparing(Article::getDescription))
+                        .thenComparing(Article::getDescription, String.CASE_INSENSITIVE_ORDER))
                 .collect(Collectors.toList());
     }
 
@@ -94,6 +96,11 @@ public class AppController {
                 a.setDescription("");
             }
         }
+    }
+
+    public void saveOriginalArticles()
+    {
+        writeTXT.write(articles);
     }
 
     /***
