@@ -18,7 +18,7 @@ public class WriteTXT {
     public void write(List<Article> lines) {
         FileWriter writer = null;
         try {
-            writer = new FileWriter("output.txt");
+            writer = new FileWriter("src/main/resources/files/originalarticles.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
