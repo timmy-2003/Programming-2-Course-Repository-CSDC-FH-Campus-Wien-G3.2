@@ -8,6 +8,7 @@ public class Article {
     private String urlToImage;
     private String publishedAt;
     private String content;
+
     private String description;
 
     /***
@@ -39,6 +40,16 @@ public class Article {
         this.author = author;
         this.title = title;
     }
+    /***
+     * constructor
+     * @param author
+     * @param title
+     */
+    public Article(String author, String title, String desc) {
+        this.author = author;
+        this.title = title;
+        this.description= desc;
+    }
 
     /***
      * get author of article
@@ -57,11 +68,27 @@ public class Article {
     }
 
 
+    /***
+     * get desc of article
+     * @return
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /***
+     * set desc of article
+     * @param description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     /**
      * @return author and title of article formatted as a String
      */
     @Override
     public String toString() {
-        return "Title: " + title + "\t" + "Author: " + author;
+        return "Title: " + title + "\t" + "Author: " + author + "\t" +  "Description: " + description;
     }
 }
