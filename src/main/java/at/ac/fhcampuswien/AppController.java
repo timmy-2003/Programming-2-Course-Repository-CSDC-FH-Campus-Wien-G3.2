@@ -71,11 +71,17 @@ public class AppController {
         return articles.stream().filter(title -> title.getTitle().length() < 40).collect(Collectors.toList());
     }
 
-    //sort the articles by the length of their description in ascending order
+    //sort the articles by the length of their description in ascending order then alphabetically
     public List<Article> sortAsc() {
+        //test function
+        //articles.add(new Article("author1", "bitcoin","yesc"));
+        //articles.add(new Article("author1", "xxx","desc"));
+        //articles.add(new Article("author31", "4","besc"));
+        //articles.add(new Article("4author1", "bitcoin","xesc"));
         removeNull();
         return articles.stream()
-                .sorted((a, b) -> Integer.compare(a.getDescription().length(), b.getDescription().length()))
+                .sorted(Comparator.comparingInt((Article a) -> a.getDescription().length())
+                        .thenComparing(Article::getDescription))
                 .collect(Collectors.toList());
     }
 

@@ -40,6 +40,16 @@ public class Article {
         this.author = author;
         this.title = title;
     }
+    /***
+     * constructor
+     * @param author
+     * @param title
+     */
+    public Article(String author, String title, String desc) {
+        this.author = author;
+        this.title = title;
+        this.description= desc;
+    }
 
     /***
      * get author of article
