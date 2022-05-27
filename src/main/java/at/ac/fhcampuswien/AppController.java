@@ -65,6 +65,13 @@ public class AppController {
         return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "bitcoin"));
     }
 
+    //Streams: provider mit meisten artikeln, longest author name
+
+    // Returns all articles where the source is the new york times
+    public List<Article> articlesBySourceNewYorkTimes() {
+        return articles.stream().filter(a -> a.getSource().getName() == "New York Times").collect(Collectors.toList());
+    }
+
     //return all  articles which have a title that consists of less than 15 characters
     //actually 25 because there are no under 40
     public List<Article> headLinesUnderFifteenSymbols() {
