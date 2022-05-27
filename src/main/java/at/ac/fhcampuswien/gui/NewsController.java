@@ -36,7 +36,11 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
 
-
+// search for country -> search field
+//sort by option -> like API keys
+//category by option -> like API keys
+//language by option -> like API keys
+//implement buttons for the "new" methods (4 methods)
 public class NewsController {
     private AppController ctrl = new AppController();
     private WriteJSON writeJSON = new WriteJSON();
