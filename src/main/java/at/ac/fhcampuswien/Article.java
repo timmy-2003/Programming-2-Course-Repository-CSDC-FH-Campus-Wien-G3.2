@@ -109,6 +109,14 @@ public class Article {
         this.description = description;
     }
 
+    /***
+     * set author of article
+     * @param author
+     */
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     /**
      * @return author and title of article formatted as a String
      */

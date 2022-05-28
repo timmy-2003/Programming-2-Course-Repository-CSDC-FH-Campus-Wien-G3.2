@@ -2,6 +2,7 @@ package at.ac.fhcampuswien;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -65,12 +66,25 @@ public class AppController {
         return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "bitcoin"));
     }
 
-    //Streams: provider mit meisten artikeln, longest author name
+    // Returns the source with the most articles
+    public Source sourceWithMostArticles() {
+        return new Source("", "");
+    }
+
+    // Returns all articles sorted by the length of the authors name
+    public String longestAuthorName() {
+        removeNull();
+        return articles.stream()
+                .sorted(Comparator.comparingInt((Article a) -> a.getAuthor().length()))
+                /*.sorted(Collections.reverseOrder())*/
+                .collect(Collectors.toList()).get(articles.size() - 1).getAuthor();
+    }
 
     // Returns all articles where the source is the new york times
-    public List<Article> articlesBySourceNewYorkTimes() {
+    public List<Article> sourceNewYorkTimes() {
         return articles.stream().filter(a -> a.getSource().getName() == "New York Times").collect(Collectors.toList());
     }
+
 
     //return all  articles which have a title that consists of less than 15 characters
     //actually 25 because there are no under 40
@@ -99,6 +113,9 @@ public class AppController {
         for (Article a : articles) {
             if (a.getDescription() == null) {
                 a.setDescription("");
+            }
+            if (a.getAuthor() == null) {
+                a.setAuthor("");
             }
         }
     }

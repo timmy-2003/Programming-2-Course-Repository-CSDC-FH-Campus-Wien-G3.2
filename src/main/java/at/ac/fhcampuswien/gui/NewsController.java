@@ -412,6 +412,27 @@ public class NewsController {
         else if (tvNews.getItems().size() == 0 && apiKeysChange >= apiKeysList.size() - 1) {
             alert("All API Keys have no requests anymore for today!");
         }
+
+        //get longest author name
+        System.out.println("Longest Author Name: " + ctrl.longestAuthorName());
+
+        //get all news with the source "New York Times"
+        if(ctrl.sourceNewYorkTimes().size() > 0) {
+            for (Article a : ctrl.sourceNewYorkTimes()) {
+                System.out.println("NYT: " + a.getTitle());
+            }
+        }
+        else {
+            System.out.println("NO ARTICLES FROM NYT");
+        }
+
+        /*
+        //for checking if sources are even getting set
+        for (Article a : ctrl.getArticles()) {
+            System.out.println(a.getSource().getId() + " " + a.getSource().getName());
+        }
+         */
+
         //get all news under 40
         for (Article a : ctrl.headLinesUnderFifteenSymbols()) {
             System.out.println("UNDER 40: " + a.getTitle());
