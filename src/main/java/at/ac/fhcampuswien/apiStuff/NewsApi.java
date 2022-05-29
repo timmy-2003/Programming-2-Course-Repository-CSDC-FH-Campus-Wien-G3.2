@@ -94,7 +94,7 @@ public class NewsApi {
         }
         // Else, return an empty list
         else {
-         errorMessage = response.toString();
+         errorMessage = jsonString;
             return Collections.emptyList();
         }
     }
