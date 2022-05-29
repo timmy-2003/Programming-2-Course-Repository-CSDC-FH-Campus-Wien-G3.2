@@ -85,6 +85,11 @@
     -fx-font-size: 16;
 }
 
+.lblButtonBar {
+    -fx-text-fill: #5D00FF;
+    -fx-font-size: 15;
+}
+
 .lblDashboard {
     -fx-text-fill: #5D00FF;
     -fx-font-size: 13;

@@ -20,4 +20,5 @@ public class NewsResponse {
     public List<Article> getArticles() {
         return articles;
     }
+
 }

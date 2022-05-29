@@ -3,6 +3,8 @@ package at.ac.fhcampuswien.gui;
 import at.ac.fhcampuswien.AppController;
 import at.ac.fhcampuswien.Article;
 import at.ac.fhcampuswien.apiStuff.NewsApi;
+import at.ac.fhcampuswien.enums.Country;
+import at.ac.fhcampuswien.enums.Endpoint;
 import at.ac.fhcampuswien.globalSettings.ReadJSON;
 import at.ac.fhcampuswien.globalSettings.WriteJSON;
 import com.jfoenix.controls.JFXComboBox;
@@ -64,6 +66,7 @@ public class NewsController {
     private Button exitButton;
     @FXML
     private Button btnCount;
+
 
     @FXML
     private Button logoButton;
@@ -127,10 +130,19 @@ public class NewsController {
     private Tab tabSettings;
 
     @FXML
+    private Button btnGetCustomNews;
+
+    @FXML
     private JFXToggleButton colorPatternToggleButton;
 
     @FXML
     private JFXComboBox<String> cmbAPIKey;
+    @FXML
+    private JFXComboBox<String> cmbEndPoint;
+    @FXML
+    private JFXComboBox<String> cmbCountry;
+    @FXML
+    private TextField txtfieldQuery;
 
     public NewsController() throws IOException {
     }
@@ -151,7 +163,7 @@ public class NewsController {
     void GetTopLinesAustria(ActionEvent event) throws IOException {
         Platform.runLater(() -> {
             try {
-                getList("austria");
+                getList(Endpoint.TOP_HEADLINES,"austria","austria", Country.AT); // Endpoint and Country will not get used so not important what standing there
                 countArticles();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -167,7 +179,24 @@ public class NewsController {
     void GetTopLinesBitcoin(ActionEvent event) throws IOException {
         Platform.runLater(() -> {
             try {
-                getList("bitcoin");
+                getList(Endpoint.TOP_HEADLINES,"bitcoin", "bitcoin", Country.AT); // Endpoint and Country will not get used so not important what standing there
+                countArticles();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    @FXML
+    void GetCustomNews(ActionEvent event) {
+        Platform.runLater(() -> {
+            try {
+                // cast strings to enums
+                String endpointString = cmbEndPoint.getValue();
+                Endpoint endpoint = Endpoint.valueOf(endpointString);
+                String countryString = cmbCountry.getValue();
+                Country country = Country.valueOf(countryString);
+                getList(endpoint,txtfieldQuery.getText(),  "custom", country); // Endpoint and Country will not get used so not important what standing there
                 countArticles();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -391,17 +420,26 @@ public class NewsController {
      * get List based on headline the user want
      * @param query
      */
-    private void getList(String query) throws IOException {
+    private void getList(Enum endpoint, String query, String tag,Enum... args) throws IOException {
         author.setCellValueFactory(new PropertyValueFactory<>("Author"));
         title.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        switch (query.toLowerCase()) {
+        String message="";
+        switch (tag.toLowerCase()) {
             case "austria" -> tvNews.setItems(getObservableListFromList(ctrl.getTopHeadlinesAustria()));
             case "bitcoin" -> tvNews.setItems(getObservableListFromList(ctrl.getAllNewsBitcoin()));
+            case "custom" -> tvNews.setItems(getObservableListFromList(ctrl.getCustomNews(endpoint, query, args)));
             case "" -> tvNews.setItems(getObservableListFromList(ctrl.getArticles()));
         }
 
+        // get message from NEWS API and give according alert // filter for message
+        if(NewsApi.errorMessage!="")
+        {
+            alert(NewsApi.errorMessage);
+            NewsApi.errorMessage="";
+        }
+
         //when returned no list change API Key automatically && we want to change maximum all possibilities once (4API keys -> change max 3 times)
-        if (tvNews.getItems().size() == 0 && apiKeysChange < apiKeysList.size() - 1) {
+        else if (tvNews.getItems().size() == 0 && apiKeysChange < apiKeysList.size() - 1) {
             apiKeysChange++;
             //get index of selected API key in list
             indexOfSelectedAPIKey = apiKeysList.indexOf(hashAPIKey.get(cmbAPIKey.getValue()));
@@ -410,7 +448,7 @@ public class NewsController {
             //set new API key in GUI
             cmbAPIKey.getSelectionModel().select(indexOfSelectedAPIKey);
             //recursive request again with a different API key
-            getList(query);
+            getList(endpoint,query, tag, args);
         }
         //when all API keys has been tested and we still got no information tell the user with alert
         else if (tvNews.getItems().size() == 0 && apiKeysChange >= apiKeysList.size() - 1) {
@@ -504,6 +542,12 @@ public class NewsController {
         createDictionary();
         //the standard text gets replaced by this placeholder
         tvNews.setPlaceholder(new Label(""));
+        for (Country country : Country.values()) {
+            cmbCountry.getItems().add(country.name());
+        }
+        cmbEndPoint.getItems().add("EVERYTHING");
+        cmbEndPoint.getItems().add("TOP_HEADLINES");
+
         //adding our standard API key to combobox
         cmbAPIKey.getItems().add("APIKEY 1");
         //adding our other API keys to combobox
