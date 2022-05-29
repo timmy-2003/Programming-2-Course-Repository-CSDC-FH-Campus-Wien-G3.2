@@ -1,10 +1,9 @@
 package at.ac.fhcampuswien;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.security.KeyStore;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import at.ac.fhcampuswien.apiStuff.NewsApi;
@@ -67,8 +66,20 @@ public class AppController {
     }
 
     // Returns the source with the most articles
-    public Source sourceWithMostArticles() {
-        return new Source("", "");
+    public String sourceWithMostArticles() {
+        //return new Source("", "");
+        /*
+        return articles.stream()
+                .collect(Collectors.groupingBy(a -> a.getSource().getName(), Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue());
+         */
+        return articles.stream().map(Article::getSourceName)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .max(Map.Entry.comparingByValue()).map(Map.Entry::getKey)
+                .orElse(null);
     }
 
     // Returns all articles sorted by the length of the authors name

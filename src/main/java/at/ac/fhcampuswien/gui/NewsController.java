@@ -32,9 +32,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 public class NewsController {
@@ -413,6 +415,17 @@ public class NewsController {
             alert("All API Keys have no requests anymore for today!");
         }
 
+        //get source with most articles
+        System.out.println("Source with most Articles: " + ctrl.sourceWithMostArticles());
+
+        //for checking through all sources in a sorted manner
+        /*
+        for (Article a: ctrl.getArticles().stream()
+                .sorted(Comparator.comparing(a -> a.getSource().getName()))
+                .collect(Collectors.toList())) {
+            System.out.println(a.getSourceName());
+        }*/
+
         //get longest author name
         System.out.println("Longest Author Name: " + ctrl.longestAuthorName());
 
@@ -425,13 +438,6 @@ public class NewsController {
         else {
             System.out.println("NO ARTICLES FROM NYT");
         }
-
-        /*
-        //for checking if sources are even getting set
-        for (Article a : ctrl.getArticles()) {
-            System.out.println(a.getSource().getId() + " " + a.getSource().getName());
-        }
-         */
 
         //get all news under 40
         for (Article a : ctrl.headLinesUnderFifteenSymbols()) {

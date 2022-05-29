@@ -101,6 +101,10 @@ public class Article {
         return source;
     }
 
+    public String getSourceName() {
+        return source.getName();
+    }
+
     /***
      * set desc of article
      * @param description
