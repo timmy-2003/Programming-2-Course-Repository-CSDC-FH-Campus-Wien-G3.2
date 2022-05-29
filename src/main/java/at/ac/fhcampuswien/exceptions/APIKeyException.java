@@ -1,6 +1,6 @@
 package at.ac.fhcampuswien.exceptions;
 
-public class APIKeyException {
+public class APIKeyException extends Exception {
 
 
 }
