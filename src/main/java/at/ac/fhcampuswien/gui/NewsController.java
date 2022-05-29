@@ -593,6 +593,7 @@ public class NewsController {
         for (Country country : Country.values()) {
             cmbCountry.getItems().add(country.name());
         }
+        cmbCountry.setValue("");
         cmbCountry.getItems().add("");
         cmbEndPoint.getItems().add("EVERYTHING");
         cmbEndPoint.getItems().add("TOP_HEADLINES");
