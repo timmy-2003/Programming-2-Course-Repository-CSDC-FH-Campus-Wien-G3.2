@@ -50,6 +50,14 @@ public class AppController {
      * get top headlines from austria (for query corona)
      * @return
      */
+    public List<Article> getCustomNews(Enum endpoint, String query, Enum... args) throws IOException {
+        // Requests top-headlines with the query corona from the news api
+        return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(endpoint, query,args));
+    }
+    /***
+     * get top headlines from austria (for query corona)
+     * @return
+     */
     public List<Article> getTopHeadlinesAustria() throws IOException {
         // Requests top-headlines with the query corona from the news api
         return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.TOP_HEADLINES, "", Country.AT));

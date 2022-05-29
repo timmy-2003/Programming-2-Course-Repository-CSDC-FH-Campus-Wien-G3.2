@@ -87,6 +87,10 @@
     -fx-font-weight: bold; /* bold text */
     -fx-font-size: 16; /* size of the text in the label */
 }
+.lblButtonBar {
+    -fx-text-fill: #00FFFFFF; /* color of the text in the label */
+    -fx-font-size: 15; /* size of the text in the label */
+}
 
 .lblDashboard {
     -fx-text-fill: #00FFFFFF; /* color of the text in the label */
