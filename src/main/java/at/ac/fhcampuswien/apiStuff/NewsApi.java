@@ -8,6 +8,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import at.ac.fhcampuswien.exceptions.HttpException;
 import java.util.Collections;
 import java.util.List;
 
