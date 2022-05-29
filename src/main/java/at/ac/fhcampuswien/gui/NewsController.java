@@ -451,7 +451,7 @@ public class NewsController {
                 }
             } else if (NewsApi.errorMessage.contains("parametersMissing")){
                 try {
-                    throw new urlException("Required parameters are missing");
+                    throw new urlException("Parameters missing - try searching with a query!");
                 } catch (urlException e) {
                     System.out.println("Required params are missing");
                 }
