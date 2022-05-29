@@ -9,8 +9,5 @@ public class APIKeyException extends Exception {
 
     public APIKeyException() {
         super(ErrorMessage);
-
-
-
     }
 }
