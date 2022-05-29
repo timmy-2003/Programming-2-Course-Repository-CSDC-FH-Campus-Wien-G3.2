@@ -195,8 +195,14 @@ public class NewsController {
                 String endpointString = cmbEndPoint.getValue();
                 Endpoint endpoint = Endpoint.valueOf(endpointString);
                 String countryString = cmbCountry.getValue();
-                Country country = Country.valueOf(countryString);
-                getList(endpoint,txtfieldQuery.getText(),  "custom", country); // Endpoint and Country will not get used so not important what standing there
+                if(countryString.equals("")|| countryString == null)
+                {
+                    getList(endpoint,txtfieldQuery.getText(),  "custom");
+                }
+                else {
+                    Country country = Country.valueOf(countryString);
+                    getList(endpoint, txtfieldQuery.getText(), "custom", country); // Endpoint and Country will not get used so not important what standing there
+                }
                 countArticles();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -432,7 +438,7 @@ public class NewsController {
         }
 
         // get message from NEWS API and give according alert // filter for message
-        if(NewsApi.errorMessage!="")
+        if(NewsApi.errorMessage!="" )
         {
             alert(NewsApi.errorMessage);
             NewsApi.errorMessage="";
@@ -545,6 +551,7 @@ public class NewsController {
         for (Country country : Country.values()) {
             cmbCountry.getItems().add(country.name());
         }
+        cmbCountry.getItems().add("");
         cmbEndPoint.getItems().add("EVERYTHING");
         cmbEndPoint.getItems().add("TOP_HEADLINES");
 
@@ -556,6 +563,7 @@ public class NewsController {
         cmbAPIKey.getItems().add("APIKEY 4");
         //select our standard API key
         cmbAPIKey.getSelectionModel().select(indexOfSelectedAPIKey);
+        cmbEndPoint.getSelectionModel().select(0);
         // start with this css
         parent.getStylesheets().add(String.valueOf(getClass().getResource(cssURL)));
         //set API Key

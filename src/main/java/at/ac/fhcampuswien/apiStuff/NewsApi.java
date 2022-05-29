@@ -16,7 +16,7 @@ public class NewsApi {
 
     public static String APIKEY;
     private final String URL = "https://newsapi.org/v2/";
-    public static String errorMessage;
+    public static String errorMessage ="";
 
     /**
      * get the API key
