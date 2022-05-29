@@ -96,10 +96,11 @@ public class AppController {
 
     // Returns all articles sorted by the length of the authors name
     public String longestAuthorName() {
-        removeNull();
+        //for articles with no author
+        removeNullFromAuthor();
         return articles.stream()
                 .sorted(Comparator.comparingInt((Article a) -> a.getAuthor().length()))
-                /*.sorted(Collections.reverseOrder())*/
+
                 .collect(Collectors.toList()).get(articles.size() - 1).getAuthor();
     }
 
@@ -121,7 +122,7 @@ public class AppController {
         //articles.add(new Article("author1", "xxx", "Desc"));
         //articles.add(new Article("author31", "4", "besc"));
         //articles.add(new Article("4author1", "bitcoin", "xesc"));
-        removeNull();
+        removeNullFromDescription();
         return articles.stream()
                 .sorted(Comparator.comparingInt((Article a) -> a.getDescription().length())
                         .thenComparing(Article::getDescription, String.CASE_INSENSITIVE_ORDER))
@@ -131,10 +132,21 @@ public class AppController {
     /**
      * remove null values otherwise he can't compare
      */
-    private void removeNull() {
+    private void removeNullFromDescription() {
         for (Article a : articles) {
             if (a.getDescription() == null) {
                 a.setDescription("");
+            }
+        }
+    }
+    /**
+     * remove null values from author
+     */
+    private void removeNullFromAuthor()
+    {
+        for (Article a : articles) {
+            if (a.getAuthor() ==null) {
+                a.setAuthor("");
             }
         }
     }
