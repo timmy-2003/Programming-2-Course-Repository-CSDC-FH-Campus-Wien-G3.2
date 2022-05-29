@@ -11,9 +11,8 @@ public class HttpException extends Exception {
         super(ErrorMessage);
     }
 
-    public static boolean checkStatus(String response) throws HttpException {
-        //check if status is "ok"
-        String rString = response.replaceAll("[^a-zA-Z]+", "").toLowerCase();
+    public static boolean checkStatus(String resp) throws HttpException {
+        String rString = resp.replaceAll("[^a-zA-Z]+", "").toLowerCase();
         return rString.contains("statusok");
     }
 }
