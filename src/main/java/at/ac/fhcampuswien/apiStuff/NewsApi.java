@@ -17,6 +17,7 @@ public class NewsApi {
 
     public static String APIKEY;
     private final String URL = "https://newsapi.org/v2/";
+    public static String errorMessage ="";
 
     /**
      * get the API key
@@ -101,6 +102,7 @@ public class NewsApi {
         }
         // Else, return an empty list
         else {
+         errorMessage = jsonString;
             return Collections.emptyList();
         }
     }
