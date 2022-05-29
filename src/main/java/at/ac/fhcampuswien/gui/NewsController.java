@@ -5,6 +5,7 @@ import at.ac.fhcampuswien.Article;
 import at.ac.fhcampuswien.apiStuff.NewsApi;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
+import at.ac.fhcampuswien.exceptions.APIKeyException;
 import at.ac.fhcampuswien.globalSettings.ReadJSON;
 import at.ac.fhcampuswien.globalSettings.WriteJSON;
 import com.jfoenix.controls.JFXComboBox;
@@ -34,6 +35,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import at.ac.fhcampuswien.exceptions.NewsAPIException;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
@@ -440,7 +442,13 @@ public class NewsController {
         // get message from NEWS API and give according alert // filter for message
         if(NewsApi.errorMessage!="" )
         {
-            alert(NewsApi.errorMessage);
+            if (NewsApi.errorMessage.contains("API key hasn't been entered correctly")){
+                try {
+                    throw new APIKeyException();
+                } catch (APIKeyException e) {
+                    System.out.println("Your API Key is invalid, please check API Key!");
+                }
+            }
             NewsApi.errorMessage="";
         }
 
