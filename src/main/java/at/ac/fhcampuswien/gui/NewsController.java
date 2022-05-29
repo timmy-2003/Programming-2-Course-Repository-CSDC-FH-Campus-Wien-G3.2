@@ -521,7 +521,7 @@ public class NewsController {
      * load alert in thread
      * @param alertMessage
      */
-    private void alert(String alertMessage) {
+    public void alert(String alertMessage) {
         try {
             new Thread(() -> {
                 loadAlert(alertMessage);

@@ -10,6 +10,7 @@ import okhttp3.Response;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import at.ac.fhcampuswien.exceptions.urlException;
 
 
 public class NewsApi {
@@ -53,8 +54,8 @@ public class NewsApi {
         url.append(endpoint.toString());
         url.append("?q=").append(query);
 
-        for (int i = 0; i < args.length; i++) {
-            url.append("&").append(args[i].toString());
+        for (Enum arg : args) {
+            url.append("&").append(arg.toString());
         }
 
         url.append("&pageSize=100");
@@ -69,6 +70,13 @@ public class NewsApi {
 
     public static String request(String url) throws IOException {
         OkHttpClient client = new OkHttpClient();
+        if (!checkForEndpoints(url)){
+            try {
+                throw new urlException();
+            } catch (urlException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -96,4 +104,18 @@ public class NewsApi {
             return Collections.emptyList();
         }
     }
+
+    /**
+     * @param url our http request url
+     * @return boolean whether the given url contains a valid endpoint parameter
+     */
+
+    private static boolean checkForEndpoints(String url){
+        return url.contains("everything") || url.contains("top-headlines");
+    }
+
+
+
+
+
 }
