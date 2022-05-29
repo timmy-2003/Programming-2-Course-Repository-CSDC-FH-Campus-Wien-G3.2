@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import at.ac.fhcampuswien.apiStuff.NewsApi;
@@ -65,6 +67,37 @@ public class AppController {
         //return filterList(articles, "bitcoin");
         // Requests everything with the query bitcoin from the news api
         return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "bitcoin"));
+    }
+
+    // Returns the source with the most articles
+    public String sourceWithMostArticles() {
+        //return new Source("", "");
+        /*
+        return articles.stream()
+                .collect(Collectors.groupingBy(a -> a.getSource().getName(), Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue());
+         */
+        return articles.stream().map(Article::getSourceName)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .max(Map.Entry.comparingByValue()).map(Map.Entry::getKey)
+                .orElse(null);
+    }
+
+    // Returns all articles sorted by the length of the authors name
+    public String longestAuthorName() {
+        removeNull();
+        return articles.stream()
+                .sorted(Comparator.comparingInt((Article a) -> a.getAuthor().length()))
+                /*.sorted(Collections.reverseOrder())*/
+                .collect(Collectors.toList()).get(articles.size() - 1).getAuthor();
+    }
+
+    // Returns all articles where the source is the new york times
+    public List<Article> sourceNewYorkTimes() {
+        return articles.stream().filter(a -> a.getSource().getName() == "New York Times").collect(Collectors.toList());
     }
 
     //return all  articles which have a title that consists of less than 15 characters
