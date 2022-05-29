@@ -147,7 +147,7 @@
                                     <Label alignment="CENTER" styleClass="lblButtonBar" stylesheets="@../css/lightmode.css" text="Query " />
                                     <TextField fx:id="txtfieldQuery" />
                                     <Label alignment="CENTER" prefHeight="15.0" styleClass="lblButtonBar" stylesheets="@../css/lightmode.css" text="Country" textAlignment="CENTER" />
-                                    <JFXComboBox fx:id="cmbCountry" minWidth="150.0" prefHeight="25.0" prefWidth="221.0" styleClass="cmbAPIKey" stylesheets="@../css/lightmode.css" />
+                                    <JFXComboBox fx:id="cmbCountry" minWidth="150.0" prefHeight="25.0" prefWidth="221.0" styleClass="cmbAPIKey" stylesheets="@../css/lightmode.css" visibleRowCount="6" />
                                     <Label alignment="CENTER" prefHeight="15.0" styleClass="lblButtonBar" stylesheets="@../css/lightmode.css" text="Endpoint" textAlignment="CENTER" />
                                     <JFXComboBox fx:id="cmbEndPoint" styleClass="cmbAPIKey" stylesheets="@../css/lightmode.css" />
                                  </buttons>
