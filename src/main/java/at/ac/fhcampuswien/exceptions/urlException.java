@@ -17,5 +17,10 @@ public class urlException extends Exception{
         nC.alert(exceptionMessage);
     }
 
+    public urlException(String msg) throws IOException{
+        super(msg);
+        nC.alert(msg);
+    }
+
 
 }

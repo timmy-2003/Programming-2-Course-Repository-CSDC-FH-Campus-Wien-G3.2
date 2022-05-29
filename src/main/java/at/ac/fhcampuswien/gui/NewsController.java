@@ -38,6 +38,7 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
+import at.ac.fhcampuswien.exceptions.urlException;
 
 // search for country -> search field
 //sort by option -> like API keys
@@ -442,7 +443,20 @@ public class NewsController {
         // get message from NEWS API and give according alert // filter for message
         if(NewsApi.errorMessage!="" )
         {
-            alert(NewsApi.errorMessage);
+            if (NewsApi.errorMessage.contains("parameterInvalid")){
+                try {
+                    throw new urlException("Not supported. Note: Endpoint \"Everything\" not compatible with country search");
+                } catch (urlException e) {
+                    System.out.println("invalid parameters");
+                }
+            } else if (NewsApi.errorMessage.contains("parametersMissing")){
+                try {
+                    throw new urlException("Required parameters are missing");
+                } catch (urlException e) {
+                    System.out.println("Required params are missing");
+                }
+            }
+
             NewsApi.errorMessage="";
         }
 
@@ -489,11 +503,11 @@ public class NewsController {
 
         //get all news under 40
         for (Article a : ctrl.headLinesUnderFifteenSymbols()) {
-            System.out.println("UNDER 40: " + a.getTitle());
+            // System.out.println("UNDER 40: " + a.getTitle());
         }
         //sort asc
         for (Article a : ctrl.sortAsc()) {
-            System.out.println("sort " + a.getDescription());
+            // System.out.println("sort " + a.getDescription());
         }
         ctrl.saveOriginalArticles();
     }
