@@ -74,11 +74,20 @@ public class NewsApi {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
-        try (Response response = client.newCall(request).execute()) {
-            //System.out.println(response.body().string());
-            return response.body().string();
+        Response response = client.newCall(request).execute();
+        try (response) {
+            if (!HttpException.checkStatus(response.body().string())) {
+                throw new HttpException();
+            } else {
+                return response.body().string();
+            }
+        } catch (IOException| HttpException e) {
+            System.out.println(e.getMessage());
         }
+        // backup return
+        return "We are sorry, there is no answer from NewsAPI, please contact us for further support!";
     }
+
 
     public static List<Article> jsonToArticleList(String jsonString) {
         // Creates a new gson builder
