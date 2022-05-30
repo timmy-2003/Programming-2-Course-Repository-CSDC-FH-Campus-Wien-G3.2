@@ -6,6 +6,7 @@ import at.ac.fhcampuswien.WriteTXT;
 import at.ac.fhcampuswien.apiStuff.NewsApi;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
+import at.ac.fhcampuswien.exceptions.APIKeyException;
 import at.ac.fhcampuswien.globalSettings.ReadJSON;
 import at.ac.fhcampuswien.globalSettings.WriteJSON;
 import com.jfoenix.controls.JFXComboBox;
@@ -510,6 +511,12 @@ public class NewsController {
                 } catch (urlException e) {
                     System.out.println("invalid parameters");
                 }
+            } else if (NewsApi.errorMessage.contains("apiKeyInvalid")){
+                try {
+                    throw new APIKeyException();
+                } catch (APIKeyException e) {
+                    System.out.println("Your API Key is invalid, please check API Key!");
+                }
             } else if (NewsApi.errorMessage.contains("parametersMissing")){
                 try {
                     throw new urlException("Parameters missing - try searching with a query!");
@@ -517,7 +524,6 @@ public class NewsController {
                     System.out.println("Required params are missing");
                 }
             }
-
             NewsApi.errorMessage="";
         }
 
