@@ -70,6 +70,12 @@ public class NewsController {
     @FXML
     private Button btnCount;
 
+    @FXML
+    private Button btnGetUnder15;
+
+    @FXML
+    private Button btnGetSortAsc;
+
 
     @FXML
     private Button logoButton;
@@ -201,6 +207,10 @@ public class NewsController {
         });
     }
 
+    /***
+     * get custom news from params
+     * @param event
+     */
     @FXML
     void GetCustomNews(ActionEvent event) {
         Platform.runLater(() -> {
@@ -217,6 +227,39 @@ public class NewsController {
                     Country country = Country.valueOf(countryString);
                     getList(endpoint, txtfieldQuery.getText(), "custom", country); // Endpoint and Country will not get used so not important what standing there
                 }
+                countArticles();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+
+    /***
+     * sort list with streams
+     * @param event
+     */
+    @FXML
+    void GetSortAsc(ActionEvent event) {
+        Platform.runLater(() -> {
+            try {
+                getList(Endpoint.TOP_HEADLINES,"", "sortasc", Country.AT); // Endpoint and Country will not get used so not important what standing there
+                countArticles();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    /***
+     * get all articles with desc under 15 chars
+     * @param event
+     */
+    @FXML
+    void GetUnder15(ActionEvent event) {
+        Platform.runLater(() -> {
+            try {
+                getList(Endpoint.TOP_HEADLINES,"", "under15", Country.AT); // Endpoint and Country will not get used so not important what standing there
                 countArticles();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -448,6 +491,8 @@ public class NewsController {
             case "austria" -> tvNews.setItems(getObservableListFromList(ctrl.getTopHeadlinesAustria()));
             case "bitcoin" -> tvNews.setItems(getObservableListFromList(ctrl.getAllNewsBitcoin()));
             case "custom" -> tvNews.setItems(getObservableListFromList(ctrl.getCustomNews(endpoint, query, args)));
+            case "under15" -> tvNews.setItems(getObservableListFromList(ctrl.headLinesUnderFifteenSymbols()));
+            case "sortasc" -> tvNews.setItems(getObservableListFromList(ctrl.sortAsc()));
             case "" -> tvNews.setItems(getObservableListFromList(ctrl.getArticles()));
         }
 
@@ -514,7 +559,8 @@ public class NewsController {
 
         //get all news under 40
         for (Article a : ctrl.headLinesUnderFifteenSymbols()) {
-             System.out.println("UNDER 40: " + a.getTitle());
+             //System.out.println("UNDER 15: " + a.getTitle());
+
         }
         //sort asc
         for (Article a : ctrl.sortAsc()) {
