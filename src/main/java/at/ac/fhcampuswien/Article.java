@@ -10,6 +10,7 @@ public class Article {
     private String content;
 
     private String description;
+    private Source source;
 
     /***
      * constructor
@@ -20,8 +21,9 @@ public class Article {
      * @param publishedAt
      * @param content
      * @param description
+     * @param source
      */
-    public Article(String author, String title, String url, String urlToImage, String publishedAt, String content, String description) {
+    public Article(String author, String title, String url, String urlToImage, String publishedAt, String content, String description, Source source) {
         this.author = author;
         this.title = title;
         this.url = url;
@@ -29,6 +31,7 @@ public class Article {
         this.publishedAt = publishedAt;
         this.content = content;
         this.description = description;
+        this.source = source;
     }
 
     /***
@@ -40,15 +43,29 @@ public class Article {
         this.author = author;
         this.title = title;
     }
+
     /***
      * constructor
      * @param author
      * @param title
+     * @param desc
      */
     public Article(String author, String title, String desc) {
         this.author = author;
         this.title = title;
         this.description= desc;
+    }
+
+    /***
+     * constructor
+     * @param author
+     * @param title
+     * @param source
+     */
+    public Article(String author, String title, Source source) {
+        this.author = author;
+        this.title = title;
+        this.source = source;
     }
 
     /***
@@ -77,11 +94,31 @@ public class Article {
     }
 
     /***
+     * get source of article
+     * @return
+     */
+    public Source getSource() {
+        return source;
+    }
+
+    public String getSourceName() {
+        return source.getName();
+    }
+
+    /***
      * set desc of article
      * @param description
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /***
+     * set author of article
+     * @param author
+     */
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     /**

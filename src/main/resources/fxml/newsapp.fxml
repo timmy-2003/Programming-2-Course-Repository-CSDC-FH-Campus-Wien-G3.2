@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="backanchormain" fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="725.0" minWidth="1148.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="725.0" prefWidth="1148.0" styleClass="backanchormain" stylesheets="@../css/lightmode.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.gui.NewsController">
+<AnchorPane id="backanchormain" fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="725.0" minWidth="1148.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="725.0" prefWidth="1148.0" styleClass="backanchormain" stylesheets="@../css/lightmode.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.gui.NewsController">
     <children>
         <VBox fx:id="vboxleftside" layoutX="14.0" layoutY="240.0" prefHeight="486.0" prefWidth="212.0" styleClass="vboxleftside" stylesheets="@../css/lightmode.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="240.0">
             <children>
@@ -72,25 +72,27 @@
                             <children>
                                 <GridPane fx:id="gridPane" layoutY="97.0" prefHeight="620.0" prefWidth="937.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="97.0">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="424.0" percentWidth="5.0" prefWidth="691.0" />
-                              <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="424.0" percentWidth="10.0" prefWidth="691.0" />
+                                        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="424.0" percentWidth="2.0" prefWidth="691.0" />
+                              <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="424.0" percentWidth="5.0" prefWidth="691.0" />
                                         <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="424.0" percentWidth="60.0" prefWidth="691.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="129.0" percentWidth="1.0" />
+                                        <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="129.0" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="129.0" minWidth="10.0" prefWidth="100.0" />
                                     </columnConstraints>
                                     <rowConstraints>
                                         <RowConstraints maxHeight="1.7976931348623157E308" percentHeight="9.0" vgrow="ALWAYS" />
-                                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="424.0" percentHeight="60.0" prefHeight="691.0" vgrow="ALWAYS" />
+                                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="424.0" percentHeight="60.0" prefHeight="691.0" valignment="TOP" vgrow="ALWAYS" />
                                         <RowConstraints maxHeight="1.7976931348623157E308" percentHeight="5.0" vgrow="ALWAYS" />
-                                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="1.7976931348623157E308" percentHeight="5.0" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
                                         <TableView fx:id="tvNews" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="372.0" prefWidth="566.0" styleClass="tvNews" stylesheets="@../css/lightmode.css" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                                             <columns>
                                                 <TableColumn fx:id="title" prefWidth="467.0" text="Title" />
-                                                <TableColumn fx:id="author" minWidth="0.0" prefWidth="187.0" text="Author" />
+                                                <TableColumn fx:id="author" prefWidth="467.0" text="Author" />
+                                    <TableColumn fx:id="description" prefWidth="467.0" text="Description" />
                                             </columns>
                                         </TableView>
                                         <Label prefHeight="30.0" prefWidth="116.0" styleClass="lblHeadLines" stylesheets="@../css/lightmode.css" text="HEADLINES" textFill="WHITE" translateY="15.0" GridPane.columnIndex="2">
@@ -100,6 +102,30 @@
                                         </Label>
                                         <ButtonBar prefHeight="56.0" prefWidth="609.0" translateY="10.0" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                                             <buttons>
+                                    <Button fx:id="btnGetUnder15" alignment="BASELINE_LEFT" contentDisplay="RIGHT" minWidth="29.0" mnemonicParsing="false" onAction="#GetUnder15" prefHeight="38.0" prefWidth="76.0" styleClass="btnGetTopHeadlinesAustria" stylesheets="@../css/lightmode.css" textFill="WHITE" translateX="195.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fx:id="imgViewAustria11" fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/under15.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="btnGetSortAsc" alignment="BASELINE_LEFT" contentDisplay="RIGHT" minWidth="29.0" mnemonicParsing="false" onAction="#GetSortAsc" prefHeight="38.0" prefWidth="76.0" styleClass="btnGetTopHeadlinesAustria" stylesheets="@../css/lightmode.css" textFill="WHITE" translateX="150.0" translateY="1.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fx:id="imgViewAustria111" fitHeight="32.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/sort.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
                                     <Button fx:id="btnGetCustomNews" alignment="BASELINE_LEFT" contentDisplay="RIGHT" minWidth="29.0" mnemonicParsing="false" onAction="#GetCustomNews" prefHeight="38.0" prefWidth="76.0" styleClass="btnGetTopHeadlinesAustria" stylesheets="@../css/lightmode.css" textFill="WHITE" translateX="105.0">
                                        <font>
                                           <Font size="15.0" />
@@ -138,7 +164,7 @@
                                                 </Button>
                                             </buttons>
                                         </ButtonBar>
-                                        <Label fx:id="lblCount" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="93.0" styleClass="lblArticleCount" stylesheets="@../css/lightmode.css" textFill="#5d00ff" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
+                                        <Label fx:id="lblCount" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="93.0" styleClass="lblArticleCount" stylesheets="@../css/lightmode.css" textFill="#5d00ff" translateX="-50.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
                                             <font>
                                                 <Font name="System Bold" size="13.0" />
                                             </font></Label>
@@ -147,11 +173,27 @@
                                     <Label alignment="CENTER" styleClass="lblButtonBar" stylesheets="@../css/lightmode.css" text="Query " />
                                     <TextField fx:id="txtfieldQuery" />
                                     <Label alignment="CENTER" prefHeight="15.0" styleClass="lblButtonBar" stylesheets="@../css/lightmode.css" text="Country" textAlignment="CENTER" />
-                                    <JFXComboBox fx:id="cmbCountry" minWidth="150.0" prefHeight="25.0" prefWidth="221.0" styleClass="cmbAPIKey" stylesheets="@../css/lightmode.css" />
+                                    <JFXComboBox fx:id="cmbCountry" minWidth="150.0" prefHeight="25.0" prefWidth="221.0" styleClass="cmbAPIKey" stylesheets="@../css/lightmode.css" visibleRowCount="5" />
                                     <Label alignment="CENTER" prefHeight="15.0" styleClass="lblButtonBar" stylesheets="@../css/lightmode.css" text="Endpoint" textAlignment="CENTER" />
                                     <JFXComboBox fx:id="cmbEndPoint" styleClass="cmbAPIKey" stylesheets="@../css/lightmode.css" />
                                  </buttons>
                               </ButtonBar>
+                              <Label alignment="CENTER" styleClass="lblButtonBar" stylesheets="@../css/lightmode.css" text="Most articles" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <Label fx:id="lblMostArticles" alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="400.0" textFill="WHITE" translateY="50.0" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font></Label>
+                              <Label alignment="CENTER" prefHeight="15.0" styleClass="lblButtonBar" stylesheets="@../css/lightmode.css" text="Longest Author" textAlignment="CENTER" translateY="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <Label fx:id="lblLongestAuthor" alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="400.0" textFill="WHITE" translateY="150.0" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font></Label>
+                              <Label alignment="CENTER" prefHeight="21.0" styleClass="lblButtonBar" stylesheets="@../css/lightmode.css" text="Articles NYT" textAlignment="CENTER" translateY="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <Label fx:id="lblNYT" alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="400.0" textFill="WHITE" translateY="250.0" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font></Label>
+                              <Label alignment="CENTER" prefHeight="21.0" styleClass="lblButtonBar" stylesheets="@../css/lightmode.css" textAlignment="CENTER" translateY="300.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                                     </children>
                                 </GridPane>
                             </children>
@@ -243,6 +285,5 @@
                       </ImageView>
                   </graphic>
               </Button>
-      <Label text="Label" />
     </children>
 </AnchorPane>

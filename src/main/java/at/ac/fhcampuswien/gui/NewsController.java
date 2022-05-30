@@ -2,9 +2,11 @@ package at.ac.fhcampuswien.gui;
 
 import at.ac.fhcampuswien.AppController;
 import at.ac.fhcampuswien.Article;
+import at.ac.fhcampuswien.WriteTXT;
 import at.ac.fhcampuswien.apiStuff.NewsApi;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
+import at.ac.fhcampuswien.exceptions.APIKeyException;
 import at.ac.fhcampuswien.globalSettings.ReadJSON;
 import at.ac.fhcampuswien.globalSettings.WriteJSON;
 import com.jfoenix.controls.JFXComboBox;
@@ -37,6 +39,7 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
+import at.ac.fhcampuswien.exceptions.urlException;
 
 // search for country -> search field
 //sort by option -> like API keys
@@ -47,6 +50,7 @@ public class NewsController {
     private AppController ctrl = new AppController();
     private WriteJSON writeJSON = new WriteJSON();
     private ReadJSON readJSON = new ReadJSON();
+    private WriteTXT writeTXT = new WriteTXT();
 
     private boolean isLightMode;
     private double x, y = 0;
@@ -66,6 +70,12 @@ public class NewsController {
     private Button exitButton;
     @FXML
     private Button btnCount;
+
+    @FXML
+    private Button btnGetUnder15;
+
+    @FXML
+    private Button btnGetSortAsc;
 
 
     @FXML
@@ -89,6 +99,9 @@ public class NewsController {
     private TableColumn<Article, String> title;
     @FXML
     private TableColumn<Article, String> author;
+    @FXML
+    private TableColumn<Article, String> description;
+
 
     @FXML
     private Label lblCount;
@@ -144,6 +157,17 @@ public class NewsController {
     @FXML
     private TextField txtfieldQuery;
 
+
+    @FXML
+    private Label lblLongestAuthor;
+
+    @FXML
+    private Label lblMostArticles;
+
+    @FXML
+    private Label lblNYT;
+
+
     public NewsController() throws IOException {
     }
 
@@ -187,6 +211,10 @@ public class NewsController {
         });
     }
 
+    /***
+     * get custom news from params
+     * @param event
+     */
     @FXML
     void GetCustomNews(ActionEvent event) {
         Platform.runLater(() -> {
@@ -203,6 +231,39 @@ public class NewsController {
                     Country country = Country.valueOf(countryString);
                     getList(endpoint, txtfieldQuery.getText(), "custom", country); // Endpoint and Country will not get used so not important what standing there
                 }
+                countArticles();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+
+    /***
+     * sort list with streams
+     * @param event
+     */
+    @FXML
+    void GetSortAsc(ActionEvent event) {
+        Platform.runLater(() -> {
+            try {
+                getList(Endpoint.TOP_HEADLINES,"", "sortasc", Country.AT); // Endpoint and Country will not get used so not important what standing there
+                countArticles();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    /***
+     * get all articles with desc under 15 chars
+     * @param event
+     */
+    @FXML
+    void GetUnder15(ActionEvent event) {
+        Platform.runLater(() -> {
+            try {
+                getList(Endpoint.TOP_HEADLINES,"", "under15", Country.AT); // Endpoint and Country will not get used so not important what standing there
                 countArticles();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -427,6 +488,7 @@ public class NewsController {
      * @param query
      */
     private void getList(Enum endpoint, String query, String tag,Enum... args) throws IOException {
+        description.setCellValueFactory(new PropertyValueFactory<>("Description"));
         author.setCellValueFactory(new PropertyValueFactory<>("Author"));
         title.setCellValueFactory(new PropertyValueFactory<>("Title"));
         String message="";
@@ -434,18 +496,39 @@ public class NewsController {
             case "austria" -> tvNews.setItems(getObservableListFromList(ctrl.getTopHeadlinesAustria()));
             case "bitcoin" -> tvNews.setItems(getObservableListFromList(ctrl.getAllNewsBitcoin()));
             case "custom" -> tvNews.setItems(getObservableListFromList(ctrl.getCustomNews(endpoint, query, args)));
+            case "under15" -> tvNews.setItems(getObservableListFromList(ctrl.headLinesUnderFifteenSymbols()));
+            case "sortasc" -> tvNews.setItems(getObservableListFromList(ctrl.sortAsc()));
             case "" -> tvNews.setItems(getObservableListFromList(ctrl.getArticles()));
         }
 
         // get message from NEWS API and give according alert // filter for message
+
         if(NewsApi.errorMessage!="" )
         {
-            alert(NewsApi.errorMessage);
+            if (NewsApi.errorMessage.contains("parameterInvalid")){
+                try {
+                    throw new urlException("Not supported. Note: Endpoint \"Everything\" not compatible with country search");
+                } catch (urlException e) {
+                    System.out.println("invalid parameters");
+                }
+            } else if (NewsApi.errorMessage.contains("apiKeyInvalid")){
+                try {
+                    throw new APIKeyException();
+                } catch (APIKeyException e) {
+                    System.out.println("Your API Key is invalid, please check API Key!");
+                }
+            } else if (NewsApi.errorMessage.contains("parametersMissing")){
+                try {
+                    throw new urlException("Parameters missing - try searching with a query!");
+                } catch (urlException e) {
+                    System.out.println("Required params are missing");
+                }
+            }
             NewsApi.errorMessage="";
         }
 
         //when returned no list change API Key automatically && we want to change maximum all possibilities once (4API keys -> change max 3 times)
-        else if (tvNews.getItems().size() == 0 && apiKeysChange < apiKeysList.size() - 1) {
+       /* else if (tvNews.getItems().size() == 0 && apiKeysChange < apiKeysList.size() - 1) {
             apiKeysChange++;
             //get index of selected API key in list
             indexOfSelectedAPIKey = apiKeysList.indexOf(hashAPIKey.get(cmbAPIKey.getValue()));
@@ -459,15 +542,42 @@ public class NewsController {
         //when all API keys has been tested and we still got no information tell the user with alert
         else if (tvNews.getItems().size() == 0 && apiKeysChange >= apiKeysList.size() - 1) {
             alert("All API Keys have no requests anymore for today!");
+        }*/
+
+        //get source with most articles
+        lblMostArticles.setText(ctrl.sourceWithMostArticles());
+
+        //for checking through all sources in a sorted manner
+        /*
+        for (Article a: ctrl.getArticles().stream()
+                .sorted(Comparator.comparing(a -> a.getSource().getName()))
+                .collect(Collectors.toList())) {
+            System.out.println(a.getSourceName());
+        }*/
+
+        //get longest author name
+        lblLongestAuthor.setText(ctrl.longestAuthorName());
+
+        //get all news with the source "New York Times"
+        if(ctrl.sourceNewYorkTimes().size() > 0) {
+            for (Article a : ctrl.sourceNewYorkTimes()) {
+              lblNYT.setText(a.getTitle());
+            }
         }
+        else {
+            lblNYT.setText("NO ARTICLES FROM NYT");
+        }
+
         //get all news under 40
         for (Article a : ctrl.headLinesUnderFifteenSymbols()) {
-            System.out.println("UNDER 40: " + a.getTitle());
+             //System.out.println("UNDER 15: " + a.getTitle());
+
         }
         //sort asc
         for (Article a : ctrl.sortAsc()) {
-            System.out.println("sort " + a.getDescription());
+            // System.out.println("sort " + a.getDescription());
         }
+        ctrl.saveOriginalArticles();
     }
 
     /***
@@ -551,6 +661,7 @@ public class NewsController {
         for (Country country : Country.values()) {
             cmbCountry.getItems().add(country.name());
         }
+        cmbCountry.setValue("");
         cmbCountry.getItems().add("");
         cmbEndPoint.getItems().add("EVERYTHING");
         cmbEndPoint.getItems().add("TOP_HEADLINES");
@@ -574,7 +685,7 @@ public class NewsController {
      * load alert in thread
      * @param alertMessage
      */
-    private void alert(String alertMessage) {
+    public void alert(String alertMessage) {
         try {
             new Thread(() -> {
                 loadAlert(alertMessage);
