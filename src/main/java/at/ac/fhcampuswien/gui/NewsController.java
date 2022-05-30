@@ -147,6 +147,17 @@ public class NewsController {
     @FXML
     private TextField txtfieldQuery;
 
+
+    @FXML
+    private Label lblLongestAuthor;
+
+    @FXML
+    private Label lblMostArticles;
+
+    @FXML
+    private Label lblNYT;
+
+
     public NewsController() throws IOException {
     }
 
@@ -478,7 +489,7 @@ public class NewsController {
         }
 
         //get source with most articles
-        System.out.println("Source with most Articles: " + ctrl.sourceWithMostArticles());
+        lblMostArticles.setText(ctrl.sourceWithMostArticles());
 
         //for checking through all sources in a sorted manner
         /*
@@ -489,21 +500,21 @@ public class NewsController {
         }*/
 
         //get longest author name
-        System.out.println("Longest Author Name: " + ctrl.longestAuthorName());
+        lblLongestAuthor.setText(ctrl.longestAuthorName());
 
         //get all news with the source "New York Times"
         if(ctrl.sourceNewYorkTimes().size() > 0) {
             for (Article a : ctrl.sourceNewYorkTimes()) {
-                System.out.println("NYT: " + a.getTitle());
+              lblNYT.setText(a.getTitle());
             }
         }
         else {
-            System.out.println("NO ARTICLES FROM NYT");
+            lblNYT.setText("NO ARTICLES FROM NYT");
         }
 
         //get all news under 40
         for (Article a : ctrl.headLinesUnderFifteenSymbols()) {
-            // System.out.println("UNDER 40: " + a.getTitle());
+             System.out.println("UNDER 40: " + a.getTitle());
         }
         //sort asc
         for (Article a : ctrl.sortAsc()) {

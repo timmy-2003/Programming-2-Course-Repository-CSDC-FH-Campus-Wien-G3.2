@@ -110,9 +110,8 @@ public class AppController {
     }
 
     //return all  articles which have a title that consists of less than 15 characters
-    //actually 25 because there are no under 40
     public List<Article> headLinesUnderFifteenSymbols() {
-        return articles.stream().filter(title -> title.getTitle().length() < 40).collect(Collectors.toList());
+        return articles.stream().filter(title -> title.getTitle().length() < 15).collect(Collectors.toList());
     }
 
     //sort the articles by the length of their description in ascending order then alphabetically
