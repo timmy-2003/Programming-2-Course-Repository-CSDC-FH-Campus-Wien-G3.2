@@ -98,6 +98,9 @@ public class NewsController {
     private TableColumn<Article, String> title;
     @FXML
     private TableColumn<Article, String> author;
+    @FXML
+    private TableColumn<Article, String> description;
+
 
     @FXML
     private Label lblCount;
@@ -484,6 +487,7 @@ public class NewsController {
      * @param query
      */
     private void getList(Enum endpoint, String query, String tag,Enum... args) throws IOException {
+        description.setCellValueFactory(new PropertyValueFactory<>("Description"));
         author.setCellValueFactory(new PropertyValueFactory<>("Author"));
         title.setCellValueFactory(new PropertyValueFactory<>("Title"));
         String message="";
@@ -517,7 +521,7 @@ public class NewsController {
         }
 
         //when returned no list change API Key automatically && we want to change maximum all possibilities once (4API keys -> change max 3 times)
-        else if (tvNews.getItems().size() == 0 && apiKeysChange < apiKeysList.size() - 1) {
+       /* else if (tvNews.getItems().size() == 0 && apiKeysChange < apiKeysList.size() - 1) {
             apiKeysChange++;
             //get index of selected API key in list
             indexOfSelectedAPIKey = apiKeysList.indexOf(hashAPIKey.get(cmbAPIKey.getValue()));
@@ -531,7 +535,7 @@ public class NewsController {
         //when all API keys has been tested and we still got no information tell the user with alert
         else if (tvNews.getItems().size() == 0 && apiKeysChange >= apiKeysList.size() - 1) {
             alert("All API Keys have no requests anymore for today!");
-        }
+        }*/
 
         //get source with most articles
         lblMostArticles.setText(ctrl.sourceWithMostArticles());

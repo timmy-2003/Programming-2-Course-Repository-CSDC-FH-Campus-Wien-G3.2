@@ -91,7 +91,8 @@
                                         <TableView fx:id="tvNews" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="372.0" prefWidth="566.0" styleClass="tvNews" stylesheets="@../css/lightmode.css" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                                             <columns>
                                                 <TableColumn fx:id="title" prefWidth="467.0" text="Title" />
-                                                <TableColumn fx:id="author" minWidth="0.0" prefWidth="187.0" text="Author" />
+                                                <TableColumn fx:id="author" prefWidth="467.0" text="Author" />
+                                    <TableColumn fx:id="description" prefWidth="467.0" text="Description" />
                                             </columns>
                                         </TableView>
                                         <Label prefHeight="30.0" prefWidth="116.0" styleClass="lblHeadLines" stylesheets="@../css/lightmode.css" text="HEADLINES" textFill="WHITE" translateY="15.0" GridPane.columnIndex="2">
