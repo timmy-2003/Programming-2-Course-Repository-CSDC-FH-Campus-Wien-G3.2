@@ -500,11 +500,26 @@ public class NewsController {
             case "" -> tvNews.setItems(getObservableListFromList(ctrl.getArticles()));
         }
 
-
-
-
-
         // get message from NEWS API and give according alert // filter for message
+
+        if(NewsApi.errorMessage!="" )
+        {
+            if (NewsApi.errorMessage.contains("parameterInvalid")){
+                try {
+                    throw new urlException("Not supported. Note: Endpoint \"Everything\" not compatible with country search");
+                } catch (urlException e) {
+                    System.out.println("invalid parameters");
+                }
+            } else if (NewsApi.errorMessage.contains("parametersMissing")){
+                try {
+                    throw new urlException("Parameters missing - try searching with a query!");
+                } catch (urlException e) {
+                    System.out.println("Required params are missing");
+                }
+            }
+
+            NewsApi.errorMessage="";
+        }
 
         //when returned no list change API Key automatically && we want to change maximum all possibilities once (4API keys -> change max 3 times)
        /* else if (tvNews.getItems().size() == 0 && apiKeysChange < apiKeysList.size() - 1) {
