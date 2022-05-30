@@ -96,6 +96,9 @@ public class NewsApi {
         try (Response response = client.newCall(request).execute()) {
             //System.out.println(response.body().string());
             return response.body().string();
+        } catch (Exception e){
+            System.out.println("Something went wrong");
+            return "";
         }
     }
 

@@ -7,6 +7,7 @@ import at.ac.fhcampuswien.apiStuff.NewsApi;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
 import at.ac.fhcampuswien.exceptions.APIKeyException;
+import at.ac.fhcampuswien.exceptions.NewsAPIException;
 import at.ac.fhcampuswien.exceptions.urlException;
 import at.ac.fhcampuswien.globalSettings.ReadJSON;
 import at.ac.fhcampuswien.globalSettings.WriteJSON;
@@ -519,6 +520,18 @@ public class NewsController {
                     throw new urlException("Parameters missing - try searching with a query!");
                 } catch (urlException e) {
                     System.out.println("Required params are missing");
+                }
+            } else if (NewsApi.errorMessage.contains("apiKeyDisabled")){
+                try {
+                    throw new APIKeyException("Your api key has been disabled!");
+                } catch (APIKeyException e){
+                    System.out.println("Api key has been disabled");
+                }
+            } else if (NewsApi.errorMessage.contains("unexpectedError")){
+                try {
+                    throw new NewsAPIException("An unexpected error occured");
+                } catch (NewsAPIException e){
+                    System.out.println("Unexpected error");
                 }
             }
             NewsApi.errorMessage = "";
