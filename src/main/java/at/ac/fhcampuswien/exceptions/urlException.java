@@ -4,8 +4,7 @@ import at.ac.fhcampuswien.gui.NewsController;
 
 import java.io.IOException;
 
-public class urlException extends Exception{
-
+public class urlException extends Exception {
 
 
     private static final String exceptionMessage = "Check API request URL! Parameters may not have been set properly.";
@@ -17,7 +16,7 @@ public class urlException extends Exception{
         nC.alert(exceptionMessage);
     }
 
-    public urlException(String msg) throws IOException{
+    public urlException(String msg) throws IOException {
         super(msg);
         nC.alert(msg);
     }

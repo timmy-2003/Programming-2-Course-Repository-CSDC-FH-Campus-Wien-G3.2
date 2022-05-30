@@ -7,12 +7,12 @@ import at.ac.fhcampuswien.apiStuff.NewsApi;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
 import at.ac.fhcampuswien.exceptions.APIKeyException;
+import at.ac.fhcampuswien.exceptions.urlException;
 import at.ac.fhcampuswien.globalSettings.ReadJSON;
 import at.ac.fhcampuswien.globalSettings.WriteJSON;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,7 +39,7 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
-import at.ac.fhcampuswien.exceptions.urlException;
+
 
 // search for country -> search field
 //sort by option -> like API keys
@@ -187,7 +187,7 @@ public class NewsController {
     void GetTopLinesAustria(ActionEvent event) throws IOException {
         Platform.runLater(() -> {
             try {
-                getList(Endpoint.TOP_HEADLINES,"austria","austria", Country.AT); // Endpoint and Country will not get used so not important what standing there
+                getList(Endpoint.TOP_HEADLINES, "austria", "austria", Country.AT); // Endpoint and Country will not get used so not important what standing there
                 countArticles();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -203,7 +203,7 @@ public class NewsController {
     void GetTopLinesBitcoin(ActionEvent event) throws IOException {
         Platform.runLater(() -> {
             try {
-                getList(Endpoint.TOP_HEADLINES,"bitcoin", "bitcoin", Country.AT); // Endpoint and Country will not get used so not important what standing there
+                getList(Endpoint.TOP_HEADLINES, "bitcoin", "bitcoin", Country.AT); // Endpoint and Country will not get used so not important what standing there
                 countArticles();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -223,11 +223,9 @@ public class NewsController {
                 String endpointString = cmbEndPoint.getValue();
                 Endpoint endpoint = Endpoint.valueOf(endpointString);
                 String countryString = cmbCountry.getValue();
-                if(countryString.equals("")|| countryString == null)
-                {
-                    getList(endpoint,txtfieldQuery.getText(),  "custom");
-                }
-                else {
+                if (countryString.equals("") || countryString == null) {
+                    getList(endpoint, txtfieldQuery.getText(), "custom");
+                } else {
                     Country country = Country.valueOf(countryString);
                     getList(endpoint, txtfieldQuery.getText(), "custom", country); // Endpoint and Country will not get used so not important what standing there
                 }
@@ -247,7 +245,7 @@ public class NewsController {
     void GetSortAsc(ActionEvent event) {
         Platform.runLater(() -> {
             try {
-                getList(Endpoint.TOP_HEADLINES,"", "sortasc", Country.AT); // Endpoint and Country will not get used so not important what standing there
+                getList(Endpoint.TOP_HEADLINES, "", "sortasc", Country.AT); // Endpoint and Country will not get used so not important what standing there
                 countArticles();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -263,7 +261,7 @@ public class NewsController {
     void GetUnder15(ActionEvent event) {
         Platform.runLater(() -> {
             try {
-                getList(Endpoint.TOP_HEADLINES,"", "under15", Country.AT); // Endpoint and Country will not get used so not important what standing there
+                getList(Endpoint.TOP_HEADLINES, "", "under15", Country.AT); // Endpoint and Country will not get used so not important what standing there
                 countArticles();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -487,11 +485,11 @@ public class NewsController {
      * get List based on headline the user want
      * @param query
      */
-    private void getList(Enum endpoint, String query, String tag,Enum... args) throws IOException {
+    private void getList(Enum endpoint, String query, String tag, Enum... args) throws IOException {
         description.setCellValueFactory(new PropertyValueFactory<>("Description"));
         author.setCellValueFactory(new PropertyValueFactory<>("Author"));
         title.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        String message="";
+        String message = "";
         switch (tag.toLowerCase()) {
             case "austria" -> tvNews.setItems(getObservableListFromList(ctrl.getTopHeadlinesAustria()));
             case "bitcoin" -> tvNews.setItems(getObservableListFromList(ctrl.getAllNewsBitcoin()));
@@ -503,28 +501,27 @@ public class NewsController {
 
         // get message from NEWS API and give according alert // filter for message
 
-        if(NewsApi.errorMessage!="" )
-        {
-            if (NewsApi.errorMessage.contains("parameterInvalid")){
+        if (NewsApi.errorMessage != "") {
+            if (NewsApi.errorMessage.contains("parameterInvalid")) {
                 try {
                     throw new urlException("Not supported. Note: Endpoint \"Everything\" not compatible with country search");
                 } catch (urlException e) {
                     System.out.println("invalid parameters");
                 }
-            } else if (NewsApi.errorMessage.contains("apiKeyInvalid")){
+            } else if (NewsApi.errorMessage.contains("apiKeyInvalid")) {
                 try {
                     throw new APIKeyException();
                 } catch (APIKeyException e) {
                     System.out.println("Your API Key is invalid, please check API Key!");
                 }
-            } else if (NewsApi.errorMessage.contains("parametersMissing")){
+            } else if (NewsApi.errorMessage.contains("parametersMissing")) {
                 try {
                     throw new urlException("Parameters missing - try searching with a query!");
                 } catch (urlException e) {
                     System.out.println("Required params are missing");
                 }
             }
-            NewsApi.errorMessage="";
+            NewsApi.errorMessage = "";
         }
 
         //when returned no list change API Key automatically && we want to change maximum all possibilities once (4API keys -> change max 3 times)
@@ -559,18 +556,17 @@ public class NewsController {
         lblLongestAuthor.setText(ctrl.longestAuthorName());
 
         //get all news with the source "New York Times"
-        if(ctrl.sourceNewYorkTimes().size() > 0) {
+        if (ctrl.sourceNewYorkTimes().size() > 0) {
             for (Article a : ctrl.sourceNewYorkTimes()) {
-              lblNYT.setText(a.getTitle());
+                lblNYT.setText(a.getTitle());
             }
-        }
-        else {
+        } else {
             lblNYT.setText("NO ARTICLES FROM NYT");
         }
 
         //get all news under 40
         for (Article a : ctrl.headLinesUnderFifteenSymbols()) {
-             //System.out.println("UNDER 15: " + a.getTitle());
+            //System.out.println("UNDER 15: " + a.getTitle());
 
         }
         //sort asc
