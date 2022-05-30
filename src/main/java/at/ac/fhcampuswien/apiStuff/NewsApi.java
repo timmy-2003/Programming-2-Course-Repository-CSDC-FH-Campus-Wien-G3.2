@@ -1,6 +1,7 @@
 package at.ac.fhcampuswien.apiStuff;
 
 import at.ac.fhcampuswien.Article;
+import at.ac.fhcampuswien.exceptions.NoInternetException;
 import at.ac.fhcampuswien.exceptions.urlException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -9,6 +10,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Collections;
 import java.util.List;
 
@@ -66,6 +69,14 @@ public class NewsApi {
 
         System.out.println(url);
 
+        if (!checkConnection()){
+            try {
+                throw new NoInternetException("Please check your internet connection!");
+            } catch (NoInternetException e) {
+                System.out.println("No internet connection");
+            }
+        }
+
         return request(String.valueOf(url));
 
     }
@@ -115,6 +126,18 @@ public class NewsApi {
 
     private static boolean checkForEndpoints(String url) {
         return url.contains("everything") || url.contains("top-headlines");
+    }
+
+    private static boolean checkConnection(){
+        try {
+            URL url = new URL("https://www.google.com");
+            URLConnection connection = url.openConnection();
+            connection.connect();
+            return true;
+        } catch (IOException e){
+            return false;
+        }
+
     }
 
 
