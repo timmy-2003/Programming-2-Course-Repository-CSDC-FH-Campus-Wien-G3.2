@@ -442,7 +442,7 @@ public class NewsController {
         // get message from NEWS API and give according alert // filter for message
         if(NewsApi.errorMessage!="" )
         {
-            if (NewsApi.errorMessage.contains("API key hasn't been entered correctly")){
+            if (NewsApi.errorMessage.contains("apiKeyInvalid")){
                 try {
                     throw new APIKeyException();
                 } catch (APIKeyException e) {
@@ -582,7 +582,7 @@ public class NewsController {
      * load alert in thread
      * @param alertMessage
      */
-    private void alert(String alertMessage) {
+    public void alert(String alertMessage) {
         try {
             new Thread(() -> {
                 loadAlert(alertMessage);

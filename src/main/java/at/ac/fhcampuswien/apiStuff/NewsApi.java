@@ -75,17 +75,9 @@ public class NewsApi {
                 .url(url)
                 .build();
         Response response = client.newCall(request).execute();
-        try (response) {
-            if (!HttpException.checkStatus(response.body().string())) {
-                throw new HttpException();
-            } else {
-                return response.body().string();
-            }
-        } catch (IOException| HttpException e) {
-            System.out.println(e.getMessage());
-        }
-        // backup return
-        return "We are sorry, there is no answer from NewsAPI, please contact us for further support!";
+        return response.body().string();
+
+
     }
 
 
