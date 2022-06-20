@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-
+// singleton pattern
 public class NewsControllerSplashScreen {
 
     @FXML

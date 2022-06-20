@@ -46,6 +46,7 @@ import at.ac.fhcampuswien.exceptions.urlException;
 //category by option -> like API keys
 //language by option -> like API keys
 //implement buttons for the "new" methods (4 methods)
+// singleton pattern
 public class NewsController {
     private AppController ctrl = new AppController();
     private WriteJSON writeJSON = new WriteJSON();

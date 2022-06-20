@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 public class NewsControllerAlertScreen {
 
+    // singleton pattern
+
     @FXML
     private AnchorPane anchorpane;
 

@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import at.ac.fhcampuswien.exceptions.urlException;
 
-
+// singleton pattern
 public class NewsApi {
 
     public static String APIKEY;
