@@ -12,6 +12,7 @@ import at.ac.fhcampuswien.apiStuff.NewsApi;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
 
+// singleton pattern
 public class AppController {
 
     public List<Article> articles = new ArrayList<>();

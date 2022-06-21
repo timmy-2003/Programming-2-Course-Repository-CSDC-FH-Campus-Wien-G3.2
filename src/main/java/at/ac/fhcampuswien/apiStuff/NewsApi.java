@@ -15,7 +15,7 @@ import java.net.URLConnection;
 import java.util.Collections;
 import java.util.List;
 
-
+// singleton pattern
 public class NewsApi {
 
     public static String APIKEY;

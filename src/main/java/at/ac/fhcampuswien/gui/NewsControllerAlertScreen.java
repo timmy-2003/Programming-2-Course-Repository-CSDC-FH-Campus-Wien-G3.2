@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+// singleton pattern
 public class NewsControllerAlertScreen {
 
     @FXML
