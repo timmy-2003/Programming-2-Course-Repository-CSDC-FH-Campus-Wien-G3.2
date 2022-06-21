@@ -4,22 +4,22 @@ import at.ac.fhcampuswien.gui.NewsController;
 
 import java.io.IOException;
 
-public class urlException extends Exception {
+public class NoInternetException extends Exception {
 
-
-    private static final String exceptionMessage = "Check API request URL! Parameters may not have been set properly.";
+    private static final String exceptionMessage = "There was a problem regarding your internet connection.";
 
     NewsController nC = new NewsController();
 
-    public urlException() throws IOException {
+    public NoInternetException() throws IOException {
         super(exceptionMessage);
         nC.alert(exceptionMessage);
     }
 
-    public urlException(String msg) throws IOException {
+    public NoInternetException(String msg) throws IOException {
         super(msg);
         nC.alert(msg);
     }
 
-
 }
+
+

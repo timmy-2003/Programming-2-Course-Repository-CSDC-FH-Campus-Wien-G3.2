@@ -1,6 +1,8 @@
 package at.ac.fhcampuswien.apiStuff;
 
 import at.ac.fhcampuswien.Article;
+import at.ac.fhcampuswien.exceptions.NoInternetException;
+import at.ac.fhcampuswien.exceptions.urlException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
@@ -8,19 +10,24 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Collections;
 import java.util.List;
+
 import at.ac.fhcampuswien.exceptions.urlException;
+
 
 // singleton pattern
 public class NewsApi {
 
     public static String APIKEY;
     private final String URL = "https://newsapi.org/v2/";
-    public static String errorMessage ="";
+    public static String errorMessage = "";
 
     /**
      * get the API key
+     *
      * @return
      */
     public static String getAPIKEY() {
@@ -65,13 +72,21 @@ public class NewsApi {
 
         System.out.println(url);
 
+        if (!checkConnection()){
+            try {
+                throw new NoInternetException("Please check your internet connection!");
+            } catch (NoInternetException e) {
+                System.out.println("No internet connection");
+            }
+        }
+
         return request(String.valueOf(url));
 
     }
 
     public static String request(String url) throws IOException {
         OkHttpClient client = new OkHttpClient();
-        if (!checkForEndpoints(url)){
+        if (!checkForEndpoints(url)) {
             try {
                 throw new urlException();
             } catch (urlException e) {
@@ -84,6 +99,9 @@ public class NewsApi {
         try (Response response = client.newCall(request).execute()) {
             //System.out.println(response.body().string());
             return response.body().string();
+        } catch (Exception e){
+            System.out.println("Something went wrong");
+            return "";
         }
     }
 
@@ -102,7 +120,7 @@ public class NewsApi {
         }
         // Else, return an empty list
         else {
-         errorMessage = jsonString;
+            errorMessage = jsonString;
             return Collections.emptyList();
         }
     }
@@ -112,12 +130,21 @@ public class NewsApi {
      * @return boolean whether the given url contains a valid endpoint parameter
      */
 
-    private static boolean checkForEndpoints(String url){
+    private static boolean checkForEndpoints(String url) {
         return url.contains("everything") || url.contains("top-headlines");
     }
 
+    private static boolean checkConnection(){
+        try {
+            URL url = new URL("https://www.google.com");
+            URLConnection connection = url.openConnection();
+            connection.connect();
+            return true;
+        } catch (IOException e){
+            return false;
+        }
 
-
+    }
 
 
 }

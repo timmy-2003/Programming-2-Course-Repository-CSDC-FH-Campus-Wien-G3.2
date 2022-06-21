@@ -8,7 +8,7 @@ public class NewsAPIException extends Exception {
         super(ErrorMessage);
     }
 
-    NewsAPIException(String ErMessage) {
+    public NewsAPIException(String ErMessage) {
         super(ErMessage);
     }
 }

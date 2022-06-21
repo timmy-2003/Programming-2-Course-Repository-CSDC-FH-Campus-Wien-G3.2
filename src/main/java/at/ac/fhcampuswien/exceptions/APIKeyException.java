@@ -7,16 +7,16 @@ import java.io.IOException;
 
 public class APIKeyException extends Exception {
 
-    private final static String ErrorMessage = "Your API Key is invalid, please check API Key!";
+    private final static String ErrorMessage = "Your API Key is invalid or missing!";
     NewsController nC = new NewsController();
 
-    public APIKeyException()  throws IOException {
+    public APIKeyException() throws IOException {
         super(ErrorMessage);
         nC.alert(ErrorMessage);
 
     }
 
-    public APIKeyException(String msg) throws IOException{
+    public APIKeyException(String msg) throws IOException {
         super(msg);
         nC.alert(msg);
     }

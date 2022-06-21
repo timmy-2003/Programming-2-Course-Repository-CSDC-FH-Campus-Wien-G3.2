@@ -56,8 +56,9 @@ public class AppController {
      */
     public List<Article> getCustomNews(Enum endpoint, String query, Enum... args) throws IOException {
         // Requests top-headlines with the query corona from the news api
-        return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(endpoint, query,args));
+        return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(endpoint, query, args));
     }
+
     /***
      * get top headlines from austria (for query corona)
      * @return
@@ -139,20 +140,19 @@ public class AppController {
             }
         }
     }
+
     /**
      * remove null values from author
      */
-    private void removeNullFromAuthor()
-    {
+    private void removeNullFromAuthor() {
         for (Article a : articles) {
-            if (a.getAuthor() ==null) {
+            if (a.getAuthor() == null) {
                 a.setAuthor("");
             }
         }
     }
 
-    public void saveOriginalArticles()
-    {
+    public void saveOriginalArticles() {
         writeTXT.write(articles);
     }
 
