@@ -9,6 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import at.ac.fhcampuswien.apiStuff.NewsApi;
+import at.ac.fhcampuswien.downloader.Downloader;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
 
@@ -152,9 +153,24 @@ public class AppController {
         }
     }
 
+    /***
+     * save the articles in originalarticles.txt
+     */
     public void saveOriginalArticles() {
         writeTXT.write(articles);
     }
+
+    /***
+     * download article urls
+     * @param downloader
+     * @return
+     */
+    public int downloadURLs(Downloader downloader)
+    {
+        //In der downloadURLs() Methode des AppController werden die Artikel URLs mithilfe von Streams extrahiert (5 Pkt.)
+        return 0;
+    }
+
 
     /***
      * filter the input list based on the query
