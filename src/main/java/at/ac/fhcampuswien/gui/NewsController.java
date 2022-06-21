@@ -580,7 +580,7 @@ public class NewsController {
         }
         //sort asc
         for (Article a : ctrl.sortAsc()) {
-            // System.out.println("sort " + a.getDescription());
+             //System.out.println(a.getLength() + "sort " + a.getDescription());
         }
         ctrl.saveOriginalArticles();
     }

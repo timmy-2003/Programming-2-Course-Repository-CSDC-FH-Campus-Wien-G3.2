@@ -93,6 +93,11 @@ public class Article {
         return description;
     }
 
+    public int getLength()
+    {
+        return description.length();
+    }
+
     /***
      * get source of article
      * @return
