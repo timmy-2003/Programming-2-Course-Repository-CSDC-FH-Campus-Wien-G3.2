@@ -13,7 +13,7 @@ import at.ac.fhcampuswien.downloader.Downloader;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
 
-// singleton pattern
+
 public class AppController {
 
     public List<Article> articles = new ArrayList<>();
@@ -23,8 +23,16 @@ public class AppController {
      * when instanced sets the list
      */
 
-    public AppController() throws IOException {
+    private AppController() {
         // setArticles(NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "")));
+    }
+
+    // Singleton Pattern
+    private final static AppController appController = new AppController();
+
+    public static AppController getInstance()
+    {
+        return appController;
     }
 
     /***

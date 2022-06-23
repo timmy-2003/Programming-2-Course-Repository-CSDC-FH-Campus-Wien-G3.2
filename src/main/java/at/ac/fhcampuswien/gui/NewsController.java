@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien.gui;
 
+import at.ac.fhcampuswien.App;
 import at.ac.fhcampuswien.AppController;
 import at.ac.fhcampuswien.Article;
 import at.ac.fhcampuswien.WriteTXT;
@@ -44,7 +45,7 @@ import java.util.Objects;
 
 // singleton pattern
 public class NewsController {
-    private AppController ctrl = new AppController();
+    private AppController ctrl = AppController.getInstance();
     private WriteJSON writeJSON = new WriteJSON();
     private ReadJSON readJSON = new ReadJSON();
     private WriteTXT writeTXT = new WriteTXT();
