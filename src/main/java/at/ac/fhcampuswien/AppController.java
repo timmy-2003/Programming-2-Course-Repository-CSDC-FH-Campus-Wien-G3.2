@@ -20,6 +20,7 @@ public class AppController {
     public List<Article> articles = new ArrayList<>();
     private WriteTXT writeTXT = new WriteTXT();
 
+    NewsApi newsApi = NewsApi.getInstance();
     /***
      * when instanced sets the list
      */
@@ -76,7 +77,7 @@ public class AppController {
      */
     public List<Article> getCustomNews(Enum endpoint, String query, Enum... args) throws IOException {
         // Requests top-headlines with the query corona from the news api
-        return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(endpoint, query, args));
+        return articles = NewsApi.jsonToArticleList(newsApi.handleRequest(endpoint, query, args));
     }
 
     /***
@@ -86,7 +87,7 @@ public class AppController {
     public List<Article> getTopHeadlinesAustria() throws IOException {
         saveOriginalArticles();
         // Requests top-headlines with the query corona from the news api
-        return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.TOP_HEADLINES, "", Country.AT));
+        return articles = NewsApi.jsonToArticleList(newsApi.handleRequest(Endpoint.TOP_HEADLINES, "", Country.AT));
     }
 
     /***
@@ -96,7 +97,7 @@ public class AppController {
     public List<Article> getAllNewsBitcoin() throws IOException {
         //return filterList(articles, "bitcoin");
         // Requests everything with the query bitcoin from the news api
-        return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "bitcoin"));
+        return articles = NewsApi.jsonToArticleList(newsApi.handleRequest(Endpoint.EVERYTHING, "bitcoin"));
     }
 
     // Returns the source with the most articles

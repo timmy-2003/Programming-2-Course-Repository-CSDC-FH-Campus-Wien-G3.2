@@ -43,7 +43,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-// singleton pattern
+
 public class NewsController {
     private AppController ctrl = AppController.getInstance();
     private WriteJSON writeJSON = new WriteJSON();

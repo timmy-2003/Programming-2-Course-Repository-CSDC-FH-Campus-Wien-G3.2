@@ -25,6 +25,18 @@ public class NewsApi {
     private final String URL = "https://newsapi.org/v2/";
     public static String errorMessage = "";
 
+
+    private NewsApi() {}
+
+    private static final NewsApi newsApi = new NewsApi();
+
+
+    public static NewsApi getInstance()
+    {
+        return newsApi;
+    }
+
+
     /**
      * get the API key
      *
