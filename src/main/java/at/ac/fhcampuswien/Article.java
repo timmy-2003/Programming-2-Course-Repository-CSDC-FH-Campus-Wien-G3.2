@@ -1,7 +1,7 @@
 package at.ac.fhcampuswien;
 
 public class Article {
-
+    //Builder Pattern
     private String author;
     private String title;
     private String url;
