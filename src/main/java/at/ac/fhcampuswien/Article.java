@@ -75,7 +75,7 @@ public class Article {
     }
 
     /*
-    //OLD CONSTRUCTOR
+    //old constructors
     public Article(String author, String title) {
         this.author = author;
         this.title = title;
