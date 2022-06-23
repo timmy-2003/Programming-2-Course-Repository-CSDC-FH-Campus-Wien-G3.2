@@ -1,5 +1,5 @@
 package at.ac.fhcampuswien;
-//Uses Buidler Pattern
+//Uses Builder Pattern
 public class Article {
     private String author;
     private String title;
@@ -9,7 +9,7 @@ public class Article {
     private String content;
     private String description;
     private Source source;
-
+    /*
     public static class ArticleBuilder{
         private String author;
         private String title;
@@ -32,31 +32,15 @@ public class Article {
             this.source = source;
         }
 
+        public ArticleBuilder(){}
+
         public Article build() {
-            return new Article(this);
-            /*
+
             if(author == null || title == null){
                 throw new IllegalStateException("Article is missing one or multiple attributes!");
 
             }
-            if(url == null){
-                throw new IllegalStateException("Article is missing an attribute!");
-            }
-            if(urlToImage == null){
-                throw new IllegalStateException("Article is missing an attribute!");
-            }
-            if(publishedAt == null){
-                throw new IllegalStateException("Article is missing an attribute!");
-            }
-            if(content == null){
-                throw new IllegalStateException("Article is missing an attribute!");
-            }
-            if(description == null){
-                throw new IllegalStateException("Article is missing an attribute!");
-            }
-            if(source == null){
-                throw new IllegalStateException("Article is missing an attribute!");
-            }*/
+            return new Article(this);
         }
 
         public ArticleBuilder author(String value){
@@ -99,10 +83,9 @@ public class Article {
             return this;
         }
     }
-
+    */
     //CONSTRUCTOR
-    /*
-    private Article(String author, String title, String url, String urlToImage, String publishedAt, String content, String description, Source source) {
+    public Article(String author, String title, String url, String urlToImage, String publishedAt, String content, String description, Source source) {
         this.author = author;
         this.title = title;
         this.url = url;
@@ -112,7 +95,8 @@ public class Article {
         this.description = description;
         this.source = source;
     }
-    */
+
+/*
     private Article(ArticleBuilder articleBuilder) {
         this.author = articleBuilder.author;
         this.title = articleBuilder.title;
@@ -124,47 +108,37 @@ public class Article {
         this.source = articleBuilder.source;
     }
 
+ */
+
+
     //CONSTRUCTOR
-    private Article(String author, String title) {
+    public Article(String author, String title) {
         this.author = author;
         this.title = title;
     }
 
     //CONSTRUCTOR
-    private Article(String author, String title, String desc) {
+    public Article(String author, String title, String desc) {
         this.author = author;
         this.title = title;
         this.description= desc;
     }
 
     //CONSTRUCTOR
-    private Article(String author, String title, Source source) {
+    public Article(String author, String title, Source source) {
         this.author = author;
         this.title = title;
         this.source = source;
     }
 
-    /***
-     * get author of article
-     * @return
-     */
     public String getAuthor() {
         return author;
     }
 
-    /***
-     * get title of article
-     * @return
-     */
     public String getTitle() {
         return title;
     }
 
-
-    /***
-     * get desc of article
-     * @return
-     */
     public String getDescription() {
         return description;
     }
@@ -174,10 +148,6 @@ public class Article {
         return description.length();
     }
 
-    /***
-     * get source of article
-     * @return
-     */
     public Source getSource() {
         return source;
     }
@@ -186,18 +156,10 @@ public class Article {
         return source.getName();
     }
 
-    /***
-     * set desc of article
-     * @param description
-     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /***
-     * set author of article
-     * @param author
-     */
     public void setAuthor(String author) {
         this.author = author;
     }

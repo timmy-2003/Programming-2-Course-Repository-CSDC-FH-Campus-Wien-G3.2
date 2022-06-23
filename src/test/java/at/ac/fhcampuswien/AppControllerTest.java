@@ -81,6 +81,13 @@ public class AppControllerTest {
     @DisplayName("Testing scenario of query=bitcoin")
     public void filterListTest1() {
         List<Article> articles = new ArrayList<>();
+        /*
+        articles.add(new Article.ArticleBuilder().author("author1").title("bitcoin").build());
+        articles.add(new Article.ArticleBuilder().author("author2").title("football").build());
+        articles.add(new Article.ArticleBuilder().author("author3").title("politics").build());
+        articles.add(new Article.ArticleBuilder().author("author4").title("dogecoin").build());
+        articles.add(new Article.ArticleBuilder().author("author5").title("sports").build());
+        */
         articles.add(new Article("author1", "bitcoin"));
         articles.add(new Article("author2", "football"));
         articles.add(new Article("author3", "politics"));
