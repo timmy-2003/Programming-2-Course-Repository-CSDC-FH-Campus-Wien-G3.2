@@ -81,18 +81,11 @@ public class AppControllerTest {
     @DisplayName("Testing scenario of query=bitcoin")
     public void filterListTest1() {
         List<Article> articles = new ArrayList<>();
-        /*
-        articles.add(new Article.ArticleBuilder().author("author1").title("bitcoin").build());
-        articles.add(new Article.ArticleBuilder().author("author2").title("football").build());
-        articles.add(new Article.ArticleBuilder().author("author3").title("politics").build());
-        articles.add(new Article.ArticleBuilder().author("author4").title("dogecoin").build());
-        articles.add(new Article.ArticleBuilder().author("author5").title("sports").build());
-        */
-        articles.add(new Article("author1", "bitcoin"));
-        articles.add(new Article("author2", "football"));
-        articles.add(new Article("author3", "politics"));
-        articles.add(new Article("author4", "dogecoin"));
-        articles.add(new Article("author5", "sports"));
+        articles.add(new Article.Builder("author1", "bitcoin").build());
+        articles.add(new Article.Builder("author2", "football").build());
+        articles.add(new Article.Builder("author3", "politics").build());
+        articles.add(new Article.Builder("author4", "dogecoin").build());
+        articles.add(new Article.Builder("author5", "sports").build());
 
         appController.setArticles(articles);
         assertEquals(1,appController.filterList(appController.getArticles(),"bitcoin").size());
@@ -105,11 +98,11 @@ public class AppControllerTest {
     @DisplayName("Testing scenario of empty query")
     public void filterListTest2() {
         List<Article> articles = new ArrayList<>();
-        articles.add(new Article("author1", "bitcoin"));
-        articles.add(new Article("author2", "football"));
-        articles.add(new Article("author3", "politics"));
-        articles.add(new Article("author4", "dogecoin"));
-        articles.add(new Article("author5", "sports"));
+        articles.add(new Article.Builder("author1", "bitcoin").build());
+        articles.add(new Article.Builder("author2", "football").build());
+        articles.add(new Article.Builder("author3", "politics").build());
+        articles.add(new Article.Builder("author4", "dogecoin").build());
+        articles.add(new Article.Builder("author5", "sports").build());
 
         appController.setArticles(articles);
         assertEquals(5,AppController.filterList(appController.getArticles(),"").size());

@@ -9,82 +9,9 @@ public class Article {
     private String content;
     private String description;
     private Source source;
+
+    //old constructor
     /*
-    public static class ArticleBuilder{
-        private String author;
-        private String title;
-        private String url;
-        private String urlToImage;
-        private String publishedAt;
-        private String content;
-        private String description;
-        private Source source;
-
-        public ArticleBuilder(String author, String title, String url, String urlToImage,
-                              String publishedAt, String content, String description, Source source){
-            this.author = author;
-            this.title = title;
-            this.url = url;
-            this.urlToImage = urlToImage;
-            this.publishedAt = publishedAt;
-            this.content = content;
-            this.description = description;
-            this.source = source;
-        }
-
-        public ArticleBuilder(){}
-
-        public Article build() {
-
-            if(author == null || title == null){
-                throw new IllegalStateException("Article is missing one or multiple attributes!");
-
-            }
-            return new Article(this);
-        }
-
-        public ArticleBuilder author(String value){
-            author = value;
-            return this;
-        }
-
-        public ArticleBuilder title(String value){
-            title = value;
-            return this;
-        }
-
-        public ArticleBuilder url(String value){
-            url = value;
-            return this;
-        }
-
-        public ArticleBuilder urlToImage(String value){
-            urlToImage = value;
-            return this;
-        }
-
-        public ArticleBuilder publishedAt(String value){
-            publishedAt = value;
-            return this;
-        }
-
-        public ArticleBuilder content(String value){
-            content = value;
-            return this;
-        }
-
-        public ArticleBuilder description(String value){
-            description = value;
-            return this;
-        }
-
-        public ArticleBuilder source(Source value){
-            source = value;
-            return this;
-        }
-    }
-    */
-    //CONSTRUCTOR
     public Article(String author, String title, String url, String urlToImage, String publishedAt, String content, String description, Source source) {
         this.author = author;
         this.title = title;
@@ -95,74 +22,95 @@ public class Article {
         this.description = description;
         this.source = source;
     }
+     */
 
-/*
-    private Article(ArticleBuilder articleBuilder) {
-        this.author = articleBuilder.author;
-        this.title = articleBuilder.title;
-        this.url = articleBuilder.url;
-        this.urlToImage = articleBuilder.urlToImage;
-        this.publishedAt = articleBuilder.publishedAt;
-        this.content = articleBuilder.content;
-        this.description = articleBuilder.description;
-        this.source = articleBuilder.source;
+    //new constructor, uses builder pattern
+    private Article(Builder builder) {
+        //author and title dont have to be checked as they are a requirement even in the builder class
+        this.author = builder.author;
+        this.title = builder.title;
+        if(builder.url!=null){this.url = builder.url;}
+        if(builder.urlToImage!=null){this.urlToImage = builder.urlToImage;}
+        if(builder.publishedAt!=null) {this.publishedAt = builder.publishedAt;}
+        if(builder.content!=null) {this.content = builder.content;}
+        if(builder.description!=null) {this.description = builder.description;}
+        if(builder.source!=null) {this.source = builder.source;}
     }
 
- */
+    public static class Builder{
+        private String author;
+        private String title;
+        private String url;
+        private String urlToImage;
+        private String publishedAt;
+        private String content;
+        private String description;
+        private Source source;
 
 
-    //CONSTRUCTOR
+        public Builder(String author, String title){
+            this.author = author;
+            this.title = title;
+        }
+
+        public Article build() {
+            return new Article(this);
+        }
+
+        public Builder author(String value){author = value;return this;}
+
+        public Builder title(String value){title = value;return this;}
+
+        public Builder url(String value){url = value;return this;}
+
+        public Builder urlToImage(String value){urlToImage = value;return this;}
+
+        public Builder publishedAt(String value){publishedAt = value;return this;}
+
+        public Builder content(String value){content = value;return this;}
+
+        public Builder description(String value){description = value;return this;}
+
+        public Builder source(Source value){source = value;return this;}
+    }
+
+    /*
+    //OLD CONSTRUCTOR
     public Article(String author, String title) {
         this.author = author;
         this.title = title;
     }
 
-    //CONSTRUCTOR
     public Article(String author, String title, String desc) {
         this.author = author;
         this.title = title;
         this.description= desc;
     }
 
-    //CONSTRUCTOR
     public Article(String author, String title, Source source) {
         this.author = author;
         this.title = title;
         this.source = source;
     }
+     */
 
-    public String getAuthor() {
-        return author;
-    }
+    //GETTERS
+    public String getAuthor() {return author;}
 
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() {return title;}
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() {return description;}
 
-    public int getLength()
-    {
-        return description.length();
-    }
+    public int getLength() {return description.length();}
 
-    public Source getSource() {
-        return source;
-    }
+    public Source getSource() {return source;}
 
-    public String getSourceName() {
-        return source.getName();
-    }
+    public String getSourceName() {return source.getName();}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    //SETTERS
+    public void setDescription(String description) {this.description = description;}
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+    public void setAuthor(String author) {this.author = author;}
 
     /**
      * @return author and title of article formatted as a String
