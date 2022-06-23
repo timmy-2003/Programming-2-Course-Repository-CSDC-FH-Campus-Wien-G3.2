@@ -1,5 +1,11 @@
 package at.ac.fhcampuswien;
-//Uses Builder Pattern
+//uses builder pattern
+//example of creating an article object now
+//new Article.Builder("author", "title).build(); //author and title always have to be given in the builder constructor
+                                                // meaning there always has to be an author and title
+//if you want to add other attributes beside author and title, you can do so as following:
+//new Article.Builder("author", "title").url("https://www.url.com").content("loremipsum").publishedAt("01.01.2001").build();
+//given attributes, beside author and title, dont have to be given to the builder in any specific order
 public class Article {
     private String author;
     private String title;
