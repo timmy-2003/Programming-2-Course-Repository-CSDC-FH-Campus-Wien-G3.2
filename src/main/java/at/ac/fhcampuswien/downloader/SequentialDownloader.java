@@ -1,6 +1,6 @@
 package at.ac.fhcampuswien.downloader;
 
-import at.ac.fhcampuswien.controllers.NewsAPIException;
+import at.ac.fhcampuswien.exceptions.NewsAPIException;
 
 import java.util.List;
 
