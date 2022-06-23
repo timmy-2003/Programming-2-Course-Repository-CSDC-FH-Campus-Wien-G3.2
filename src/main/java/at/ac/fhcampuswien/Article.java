@@ -1,29 +1,108 @@
 package at.ac.fhcampuswien;
-
+//Uses Buidler Pattern
 public class Article {
-    //Builder Pattern
     private String author;
     private String title;
     private String url;
     private String urlToImage;
     private String publishedAt;
     private String content;
-
     private String description;
     private Source source;
 
-    /***
-     * constructor
-     * @param author
-     * @param title
-     * @param url
-     * @param urlToImage
-     * @param publishedAt
-     * @param content
-     * @param description
-     * @param source
-     */
-    public Article(String author, String title, String url, String urlToImage, String publishedAt, String content, String description, Source source) {
+    public static class ArticleBuilder{
+        private String author;
+        private String title;
+        private String url;
+        private String urlToImage;
+        private String publishedAt;
+        private String content;
+        private String description;
+        private Source source;
+
+        public ArticleBuilder(String author, String title, String url, String urlToImage,
+                              String publishedAt, String content, String description, Source source){
+            this.author = author;
+            this.title = title;
+            this.url = url;
+            this.urlToImage = urlToImage;
+            this.publishedAt = publishedAt;
+            this.content = content;
+            this.description = description;
+            this.source = source;
+        }
+
+        public Article build() {
+            return new Article(this);
+            /*
+            if(author == null || title == null){
+                throw new IllegalStateException("Article is missing one or multiple attributes!");
+
+            }
+            if(url == null){
+                throw new IllegalStateException("Article is missing an attribute!");
+            }
+            if(urlToImage == null){
+                throw new IllegalStateException("Article is missing an attribute!");
+            }
+            if(publishedAt == null){
+                throw new IllegalStateException("Article is missing an attribute!");
+            }
+            if(content == null){
+                throw new IllegalStateException("Article is missing an attribute!");
+            }
+            if(description == null){
+                throw new IllegalStateException("Article is missing an attribute!");
+            }
+            if(source == null){
+                throw new IllegalStateException("Article is missing an attribute!");
+            }*/
+        }
+
+        public ArticleBuilder author(String value){
+            author = value;
+            return this;
+        }
+
+        public ArticleBuilder title(String value){
+            title = value;
+            return this;
+        }
+
+        public ArticleBuilder url(String value){
+            url = value;
+            return this;
+        }
+
+        public ArticleBuilder urlToImage(String value){
+            urlToImage = value;
+            return this;
+        }
+
+        public ArticleBuilder publishedAt(String value){
+            publishedAt = value;
+            return this;
+        }
+
+        public ArticleBuilder content(String value){
+            content = value;
+            return this;
+        }
+
+        public ArticleBuilder description(String value){
+            description = value;
+            return this;
+        }
+
+        public ArticleBuilder source(Source value){
+            source = value;
+            return this;
+        }
+    }
+
+    //CONSTRUCTOR
+    /*
+    private Article(String author, String title, String url, String urlToImage, String publishedAt, String content, String description, Source source) {
         this.author = author;
         this.title = title;
         this.url = url;
@@ -33,36 +112,33 @@ public class Article {
         this.description = description;
         this.source = source;
     }
+    */
+    private Article(ArticleBuilder articleBuilder) {
+        this.author = articleBuilder.author;
+        this.title = articleBuilder.title;
+        this.url = articleBuilder.url;
+        this.urlToImage = articleBuilder.urlToImage;
+        this.publishedAt = articleBuilder.publishedAt;
+        this.content = articleBuilder.content;
+        this.description = articleBuilder.description;
+        this.source = articleBuilder.source;
+    }
 
-    /***
-     * constructor
-     * @param author
-     * @param title
-     */
-    public Article(String author, String title) {
+    //CONSTRUCTOR
+    private Article(String author, String title) {
         this.author = author;
         this.title = title;
     }
 
-    /***
-     * constructor
-     * @param author
-     * @param title
-     * @param desc
-     */
-    public Article(String author, String title, String desc) {
+    //CONSTRUCTOR
+    private Article(String author, String title, String desc) {
         this.author = author;
         this.title = title;
         this.description= desc;
     }
 
-    /***
-     * constructor
-     * @param author
-     * @param title
-     * @param source
-     */
-    public Article(String author, String title, Source source) {
+    //CONSTRUCTOR
+    private Article(String author, String title, Source source) {
         this.author = author;
         this.title = title;
         this.source = source;
