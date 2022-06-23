@@ -9,6 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import at.ac.fhcampuswien.apiStuff.NewsApi;
+import at.ac.fhcampuswien.exceptions.NewsAPIException;
 import at.ac.fhcampuswien.downloader.Downloader;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
@@ -165,10 +166,17 @@ public class AppController {
      * @param downloader
      * @return
      */
-    public int downloadURLs(Downloader downloader)
-    {
+
+    public int downloadURLs(Downloader downloader) throws NewsAPIException{
+        if( articles == null)
+            throw new NewsAPIException(); //need to make NewsAPIEException public, have to handle it somehow different, but it is a first workaround
+
+        List<String> urls = new ArrayList<>();
+
+        // TODO extract urls from articles with java stream
         //In der downloadURLs() Methode des AppController werden die Artikel URLs mithilfe von Streams extrahiert (5 Pkt.)
-        return 0;
+
+        return downloader.process(urls);
     }
 
 
