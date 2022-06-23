@@ -12,6 +12,7 @@ import at.ac.fhcampuswien.apiStuff.NewsApi;
 import at.ac.fhcampuswien.downloader.Downloader;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
+import at.ac.fhcampuswien.gui.NewsController;
 
 
 public class AppController {
@@ -28,11 +29,21 @@ public class AppController {
     }
 
     // Singleton Pattern
-    private final static AppController appController = new AppController();
+    private volatile static AppController appController = new AppController();
 
     public static AppController getInstance()
     {
-        return appController;
+        // double-checked locking
+        AppController result = appController;
+        if (result != null) {
+            return result;
+        }
+        synchronized(AppController.class) {
+            if (appController == null) {
+                appController = new AppController();
+            }
+            return appController;
+        }
     }
 
     /***
