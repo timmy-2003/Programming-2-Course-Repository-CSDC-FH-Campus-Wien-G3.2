@@ -1,6 +1,7 @@
 package at.ac.fhcampuswien;
 
 
+import at.ac.fhcampuswien.gui.NewsController;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +21,7 @@ public class AppControllerTest {
      */
     @BeforeAll
     static void setup() throws IOException {
-        appController = new AppController();
+        appController = AppController.getInstance();
     }
 
     /***
