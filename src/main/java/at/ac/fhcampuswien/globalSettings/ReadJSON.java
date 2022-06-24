@@ -16,6 +16,16 @@ public class ReadJSON {
     private List<String> apiKeysList = new ArrayList<>();
     private long indexOfSelectedAPIKey;
 
+    private ReadJSON() {};
+
+    private static final ReadJSON readJSON = new ReadJSON();
+
+    public static ReadJSON getInstance()
+    {
+        return readJSON;
+    }
+
+
     // tells the compiler that the code to be safe and won't cause unexpected exceptions
     @SuppressWarnings("unchecked")
     public void readSettings() {

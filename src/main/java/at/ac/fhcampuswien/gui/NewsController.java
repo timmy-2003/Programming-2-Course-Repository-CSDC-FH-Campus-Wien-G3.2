@@ -46,8 +46,8 @@ import java.util.Objects;
 
 public class NewsController {
     private AppController ctrl = AppController.getInstance();
-    private WriteJSON writeJSON = new WriteJSON();
-    private ReadJSON readJSON = new ReadJSON();
+    private WriteJSON writeJSON = WriteJSON.getInstance();
+    private ReadJSON readJSON = ReadJSON.getInstance();
     private WriteTXT writeTXT = new WriteTXT();
 
     private boolean isLightMode;

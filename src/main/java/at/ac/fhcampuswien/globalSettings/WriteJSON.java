@@ -10,6 +10,15 @@ import java.util.List;
 
 public class WriteJSON {
 
+    private WriteJSON() {};
+
+    private static final WriteJSON writeJSON = new WriteJSON();
+
+    public static WriteJSON getInstance()
+    {
+        return writeJSON;
+    }
+
 
     // tells the compiler that the code to be safe and won't cause unexpected exceptions
     @SuppressWarnings("unchecked")
