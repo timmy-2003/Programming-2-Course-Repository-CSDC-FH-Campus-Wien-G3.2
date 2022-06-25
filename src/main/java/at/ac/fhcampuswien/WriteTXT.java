@@ -40,7 +40,7 @@ public class WriteTXT {
     public void write(List<Article> lines, String path) {
         FileWriter writer = null;
         try {
-            writer = new FileWriter("src/main/resources/files/originalarticles.txt");
+            writer = new FileWriter(path);
         } catch (IOException e) {
             e.printStackTrace();
         }
