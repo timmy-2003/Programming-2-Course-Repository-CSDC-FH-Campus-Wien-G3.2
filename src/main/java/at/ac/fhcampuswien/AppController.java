@@ -1,17 +1,17 @@
 package at.ac.fhcampuswien;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import at.ac.fhcampuswien.apiStuff.NewsApi;
 import at.ac.fhcampuswien.downloader.Downloader;
+import at.ac.fhcampuswien.downloader.ParallelDownloader;
+import at.ac.fhcampuswien.downloader.SequentialDownloader;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
+import at.ac.fhcampuswien.exceptions.NewsAPIException;
 import at.ac.fhcampuswien.gui.NewsController;
 
 
@@ -21,6 +21,7 @@ public class AppController {
     private WriteTXT writeTXT = new WriteTXT();
 
     NewsApi newsApi = NewsApi.getInstance();
+
     /***
      * when instanced sets the list
      */
@@ -32,14 +33,13 @@ public class AppController {
     // Singleton Pattern
     private volatile static AppController appController = new AppController();
 
-    public static AppController getInstance()
-    {
+    public static AppController getInstance() {
         // double-checked locking
         AppController result = appController;
         if (result != null) {
             return result;
         }
-        synchronized(AppController.class) {
+        synchronized (AppController.class) {
             if (appController == null) {
                 appController = new AppController();
             }
@@ -180,15 +180,19 @@ public class AppController {
         writeTXT.write(articles);
     }
 
+
     /***
-     * download article urls
+     * the article URLs are extracted using streams
      * @param downloader
      * @return
+     * @throws NewsAPIException
      */
-    public int downloadURLs(Downloader downloader)
-    {
-        //In der downloadURLs() Methode des AppController werden die Artikel URLs mithilfe von Streams extrahiert (5 Pkt.)
-        return 0;
+    public int downloadURLs(Downloader downloader) throws NewsAPIException {
+      if(articles == null)
+          throw new NewsAPIException();
+
+      List<String> downloadURLs =articles.stream().map(Article::getUrlToImage).filter(Objects::nonNull).collect(Collectors.toList());
+      return downloader.process(downloadURLs);
     }
 
 

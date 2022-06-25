@@ -5,6 +5,8 @@ import at.ac.fhcampuswien.AppController;
 import at.ac.fhcampuswien.Article;
 import at.ac.fhcampuswien.WriteTXT;
 import at.ac.fhcampuswien.apiStuff.NewsApi;
+import at.ac.fhcampuswien.downloader.ParallelDownloader;
+import at.ac.fhcampuswien.downloader.SequentialDownloader;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
 import at.ac.fhcampuswien.exceptions.APIKeyException;
@@ -41,7 +43,6 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
-
 
 
 public class NewsController {
@@ -164,6 +165,9 @@ public class NewsController {
 
     @FXML
     private Label lblNYT;
+
+    @FXML
+    private Button btnDownload;
 
 
     public NewsController() throws IOException {
@@ -415,6 +419,11 @@ public class NewsController {
         writeJSON.SaveSettings(indexOfSelectedAPIKey, apiKeysList, colorPatternToggleButton.isSelected());
     }
 
+    @FXML
+    void GetDownloadURls(ActionEvent event) {
+        Platform.runLater(this::downloadURLs);
+    }
+
     /***
      * apply the light mode to the main GUI
      */
@@ -518,16 +527,16 @@ public class NewsController {
                 } catch (urlException e) {
                     System.out.println("Required params are missing");
                 }
-            } else if (NewsApi.errorMessage.contains("apiKeyDisabled")){
+            } else if (NewsApi.errorMessage.contains("apiKeyDisabled")) {
                 try {
                     throw new APIKeyException("Your api key has been disabled!");
-                } catch (APIKeyException e){
+                } catch (APIKeyException e) {
                     System.out.println("Api key has been disabled");
                 }
-            } else if (NewsApi.errorMessage.contains("unexpectedError")){
+            } else if (NewsApi.errorMessage.contains("unexpectedError")) {
                 try {
                     throw new NewsAPIException("An unexpected error occured");
-                } catch (NewsAPIException e){
+                } catch (NewsAPIException e) {
                     System.out.println("Unexpected error");
                 }
             }
@@ -581,7 +590,7 @@ public class NewsController {
         }
         //sort asc
         for (Article a : ctrl.sortAsc()) {
-             //System.out.println(a.getLength() + "sort " + a.getDescription());
+            //System.out.println(a.getLength() + "sort " + a.getDescription());
         }
         ctrl.saveOriginalArticles();
     }
@@ -740,5 +749,26 @@ public class NewsController {
             stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
 
         });
+    }
+
+    /***
+     * downloadurls with stop time in UI
+     * @return
+     */
+    private void downloadURLs() {
+        try {
+            //start time in ms -> for stopping time
+            int sequentialDownloader = ctrl.downloadURLs(new SequentialDownloader());
+            //end time in ms
+            System.out.println(sequentialDownloader);
+
+            //start time in ms -> for stopping time
+            int parallelDownloader = ctrl.downloadURLs(new ParallelDownloader());
+            //end time in ms
+            System.out.println(parallelDownloader);
+
+        } catch (NewsAPIException e) {
+            System.out.println("newsapiexception");
+        }
     }
 }
