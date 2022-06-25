@@ -191,6 +191,7 @@ public class AppController {
       if(articles == null)
           throw new NewsAPIException();
 
+      //convert an object to Article, filter all object which are not null and input data onto a new list for return
       List<String> downloadURLs =articles.stream().map(Article::getUrlToImage).filter(Objects::nonNull).collect(Collectors.toList());
       return downloader.process(downloadURLs);
     }

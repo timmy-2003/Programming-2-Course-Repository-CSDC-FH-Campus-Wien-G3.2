@@ -39,6 +39,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
@@ -758,17 +759,17 @@ public class NewsController {
     private void downloadURLs() {
         try {
             //start time in ms -> for stopping time
-            int sequentialDownloader = ctrl.downloadURLs(new SequentialDownloader());
+            ctrl.downloadURLs(new ParallelDownloader());
             //end time in ms
-            System.out.println(sequentialDownloader);
 
             //start time in ms -> for stopping time
-            int parallelDownloader = ctrl.downloadURLs(new ParallelDownloader());
+            ctrl.downloadURLs(new SequentialDownloader());
             //end time in ms
-            System.out.println(parallelDownloader);
+
 
         } catch (NewsAPIException e) {
-            System.out.println("newsapiexception");
+            System.err.println(e.getMessage());
         }
+
     }
 }
