@@ -1,6 +1,10 @@
 package at.ac.fhcampuswien;
 
 
+import at.ac.fhcampuswien.downloader.ParallelDownloader;
+import at.ac.fhcampuswien.downloader.SequentialDownloader;
+import at.ac.fhcampuswien.exceptions.NewsAPIException;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -48,6 +52,9 @@ public class Menu {
                 break;
             case "y":
                 getArticleCount(controller);
+                break;
+            case "z":
+                downloadURLs();
                 break;
         }
     }
@@ -108,5 +115,26 @@ public class Menu {
                 "b: Get all news about bitcoin" + System.lineSeparator() +
                 "y: Count articles" + System.lineSeparator() +
                 "q: Quit program");
+    }
+
+    /***
+     * downloadurls with stop time in UI
+     * @return
+     */
+    private void downloadURLs() {
+        try {
+            //start time in ms -> for stopping time
+            int sequentialDownloader = controller.downloadURLs(new SequentialDownloader());
+            //end time in ms
+            System.out.println(sequentialDownloader);
+
+            //start time in ms -> for stopping time
+            int parallelDownloader = controller.downloadURLs(new ParallelDownloader());
+            //end time in ms
+            System.out.println(parallelDownloader);
+
+        } catch (NewsAPIException e) {
+            e.printStackTrace();
+        }
     }
 }

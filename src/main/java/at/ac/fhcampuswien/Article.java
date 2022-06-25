@@ -113,6 +113,8 @@ public class Article {
 
     public String getSourceName() {return source.getName();}
 
+    public String getUrlToImage() {return urlToImage;}
+
     //SETTERS
     public void setDescription(String description) {this.description = description;}
 

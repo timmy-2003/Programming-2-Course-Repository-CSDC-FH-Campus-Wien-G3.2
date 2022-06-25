@@ -9,7 +9,7 @@ public class SequentialDownloader extends Downloader {
 
     // returns number of downloaded article urls
     @Override
-    public int process(List<String> urls) throws NewsAPIException{
+    public int process(List<String> urls) throws NewsAPIException {
         int count = 0;
         for (String url : urls) {
             try {
