@@ -35,5 +35,28 @@ public class WriteTXT {
             e.printStackTrace();
         }
     }
+
+    //made new constructor for downloader
+    public void write(List<Article> lines, String path) {
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter("src/main/resources/files/originalarticles.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for(Article str: lines) {
+            try {
+                writer.write(str + System.lineSeparator());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
