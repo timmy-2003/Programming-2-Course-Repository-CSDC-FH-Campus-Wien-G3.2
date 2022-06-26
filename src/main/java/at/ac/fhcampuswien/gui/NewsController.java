@@ -422,7 +422,8 @@ public class NewsController {
 
     @FXML
     void GetDownloadURls(ActionEvent event) {
-        Platform.runLater(this::downloadURLs);
+        Thread t = new Thread(this::downloadURLs);
+        t.start();
     }
 
     /***
