@@ -781,13 +781,26 @@ public class NewsController {
             ctrl.downloadURLs(new SequentialDownloader());
             long finishSequential = System.currentTimeMillis();
             timeElapsedSeq = finishSequential - startSequential;
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
+                }
+            });
+
 
         } catch (NewsAPIException | IllegalStateException e) {
             System.err.println(e.getMessage());
         }
         finally {
-            //parallelTimer.setText("Parallel: " + timeElapsed + " ms");
-            //sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    parallelTimer.setText("Parallel: " + timeElapsed + " ms");
+                    sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
+                }
+            });
+
             System.out.println("Parallel: " + timeElapsed + " ms");
             System.out.println("Sequential: " + timeElapsedSeq + " ms");
         }
