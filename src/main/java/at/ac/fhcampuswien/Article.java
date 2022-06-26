@@ -115,6 +115,14 @@ public class Article {
 
     public String getUrlToImage() {return urlToImage;}
 
+    /***
+     * get title of article
+     * @return
+     */
+    public String getUrl() {
+        return url;
+    }
+
     //SETTERS
     public void setDescription(String description) {this.description = description;}
 

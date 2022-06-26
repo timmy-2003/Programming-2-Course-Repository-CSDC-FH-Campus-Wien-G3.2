@@ -6,6 +6,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import at.ac.fhcampuswien.apiStuff.NewsApi;
+import at.ac.fhcampuswien.exceptions.NewsAPIException;
 import at.ac.fhcampuswien.downloader.Downloader;
 import at.ac.fhcampuswien.downloader.ParallelDownloader;
 import at.ac.fhcampuswien.downloader.SequentialDownloader;
@@ -187,15 +188,29 @@ public class AppController {
      * @return
      * @throws NewsAPIException
      */
-    public int downloadURLs(Downloader downloader) throws NewsAPIException {
-      if(articles == null)
-          throw new NewsAPIException();
 
-      //convert an object to Article, filter all object which are not null and input data onto a new list for return
-      List<String> downloadURLs =articles.stream().map(Article::getUrlToImage).filter(Objects::nonNull).collect(Collectors.toList());
-      return downloader.process(downloadURLs);
+    public int downloadURLs(Downloader downloader) throws NewsAPIException{
+        // TODO extract urls from articles with java stream
+        //In  downloadURLs() method of AppController the urls of the articles are extracted using streams
+        if( articles == null)
+            throw new NewsAPIException();
+
+        List<String> urls =articles.stream().map(Article::getUrlToImage).filter(Objects::nonNull).collect(Collectors.toList());
+
+
+
+        articles.forEach(e->{
+            urls.add(e.getUrlToImage());
+            urls.add(e.getUrl());
+
+
+            String sentUrlImage = e.getUrlToImage();
+            String sentUrl = e.getUrl();
+            System.out.println(sentUrlImage + sentUrl);
+
+        });
+        return downloader.process(urls);
     }
-
 
     /***
      * filter the input list based on the query
