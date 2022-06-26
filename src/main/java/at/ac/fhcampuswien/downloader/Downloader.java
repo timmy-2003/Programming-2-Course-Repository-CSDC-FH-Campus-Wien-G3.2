@@ -38,6 +38,8 @@ public abstract class Downloader {
             while ((length = is.read(b)) != -1) {   // read byte for byte and write it to file
                 os.write(b, 0, length);
             }
+            fileName = fileName.replaceAll("[!?=&#*%]","");
+
         } catch (MalformedURLException e){
             throw new NewsAPIException("Cannot convert " + urlString + " to URL. Error message: " + e.getMessage());
         } catch (IOException e) {
@@ -52,6 +54,15 @@ public abstract class Downloader {
                 e.printStackTrace();
             }
         }
+
+        fileName = fileName.replaceAll("[!?=&#*%]","");
+        if(fileName != null) {fileName = fileName.substring(0, Math.min(fileName.length(), 40));}
+
+
+
+
+
+
         return fileName;
     }
 }
