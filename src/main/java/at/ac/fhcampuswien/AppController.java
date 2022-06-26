@@ -168,14 +168,25 @@ public class AppController {
      */
 
     public int downloadURLs(Downloader downloader) throws NewsAPIException{
+        // TODO extract urls from articles with java stream
+        //In  downloadURLs() method of AppController the urls of the articles are extracted using streams
         if( articles == null)
             throw new NewsAPIException(); //need to make NewsAPIEException public, have to handle it somehow different, but it is a first workaround
 
         List<String> urls = new ArrayList<>();
 
-        // TODO extract urls from articles with java stream
-        //In der downloadURLs() Methode des AppController werden die Artikel URLs mithilfe von Streams extrahiert (5 Pkt.)
 
+
+        articles.forEach(e->{
+            urls.add(e.getUrlToImage());
+            urls.add(e.getUrl());
+
+
+            String sentUrlImage = e.getUrlToImage();
+            String sentUrl = e.getUrl();
+            System.out.println(sentUrlImage + sentUrl);
+
+        });
         return downloader.process(urls);
     }
 
