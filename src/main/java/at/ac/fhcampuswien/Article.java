@@ -111,6 +111,24 @@ public class Article {
     }
 
     /***
+     * get title of article
+     * @return
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /***
+     * get title of article
+     * @return
+     */
+    public String getUrlToImage() {
+        return urlToImage;
+    }
+
+
+
+    /***
      * set desc of article
      * @param description
      */
