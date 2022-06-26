@@ -1,6 +1,5 @@
 package at.ac.fhcampuswien.gui;
 
-import at.ac.fhcampuswien.App;
 import at.ac.fhcampuswien.AppController;
 import at.ac.fhcampuswien.Article;
 import at.ac.fhcampuswien.WriteTXT;
@@ -39,7 +38,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
@@ -59,9 +57,18 @@ public class NewsController {
     private List<String> apiKeysList;
     private int indexOfSelectedAPIKey;
     private int apiKeysChange = 0; //counter how often API key has changed during runtime
+    private static long timeElapsed;
+    private static long timeElapsedSeq;
+
 
     @FXML
     private AnchorPane parent;
+
+    @FXML
+    private Label parallelTimer;
+
+    @FXML
+    private Label sequentialTimer;
 
     @FXML
     private AnchorPane anchormidDashboard;
@@ -759,17 +766,26 @@ public class NewsController {
      */
     private void downloadURLs() {
         try {
-            //start time in ms -> for stopping time
+            long start = System.currentTimeMillis();
             ctrl.downloadURLs(new ParallelDownloader());
-            //end time in ms
+            long finish = System.currentTimeMillis();
+            timeElapsed = finish-start;
 
+            System.out.println(timeElapsed);
             //start time in ms -> for stopping time
+            long startSequential = System.currentTimeMillis();
             ctrl.downloadURLs(new SequentialDownloader());
-            //end time in ms
+            long finishSequential = System.currentTimeMillis();
+            timeElapsedSeq = finishSequential-startSequential;
+            sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
 
+            System.out.println(timeElapsedSeq);
 
         } catch (NewsAPIException e) {
             System.err.println(e.getMessage());
+        } finally {
+            parallelTimer.setText("Parallel: " + timeElapsed + " ms");
+            sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
         }
 
     }
