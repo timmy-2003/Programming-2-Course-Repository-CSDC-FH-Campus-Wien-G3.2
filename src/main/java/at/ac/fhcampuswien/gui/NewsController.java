@@ -427,10 +427,13 @@ public class NewsController {
         writeJSON.SaveSettings(indexOfSelectedAPIKey, apiKeysList, colorPatternToggleButton.isSelected());
     }
 
+    /***
+     * multithreading downloadurls
+     * @param event
+     */
     @FXML
     void GetDownloadURls(ActionEvent event) {
-        Thread t = new Thread(this::downloadURLs);
-        t.start();
+        new Thread(this::downloadURLs).start();
     }
 
     /***
