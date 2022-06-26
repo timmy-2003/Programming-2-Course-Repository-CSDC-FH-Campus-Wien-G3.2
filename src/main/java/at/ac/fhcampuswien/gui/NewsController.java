@@ -768,28 +768,30 @@ public class NewsController {
      * @return
      */
     private void downloadURLs() {
-        try {
-            long start = System.currentTimeMillis();
-            ctrl.downloadURLs(new ParallelDownloader());
-            long finish = System.currentTimeMillis();
-            timeElapsed = finish-start;
+        Platform.runLater(() -> {
+            try {
+                long start = System.currentTimeMillis();
+                ctrl.downloadURLs(new ParallelDownloader());
+                long finish = System.currentTimeMillis();
+                timeElapsed = finish - start;
 
-            System.out.println(timeElapsed);
-            //start time in ms -> for stopping time
-            long startSequential = System.currentTimeMillis();
-            ctrl.downloadURLs(new SequentialDownloader());
-            long finishSequential = System.currentTimeMillis();
-            timeElapsedSeq = finishSequential-startSequential;
-            sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
+                System.out.println(timeElapsed);
+                //start time in ms -> for stopping time
+                long startSequential = System.currentTimeMillis();
+                ctrl.downloadURLs(new SequentialDownloader());
+                long finishSequential = System.currentTimeMillis();
+                timeElapsedSeq = finishSequential - startSequential;
+                sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
 
-            System.out.println(timeElapsedSeq);
+                System.out.println(timeElapsedSeq);
 
-        } catch (NewsAPIException e) {
-            System.err.println(e.getMessage());
-        } finally {
-            parallelTimer.setText("Parallel: " + timeElapsed + " ms");
-            sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
-        }
+            } catch (NewsAPIException e) {
+                System.err.println(e.getMessage());
+            } finally {
+                parallelTimer.setText("Parallel: " + timeElapsed + " ms");
+                sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
+            }
+        });
 
     }
 }
