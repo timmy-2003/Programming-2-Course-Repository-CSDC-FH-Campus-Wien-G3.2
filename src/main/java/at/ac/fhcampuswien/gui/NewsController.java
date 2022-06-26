@@ -781,7 +781,6 @@ public class NewsController {
             ctrl.downloadURLs(new SequentialDownloader());
             long finishSequential = System.currentTimeMillis();
             timeElapsedSeq = finishSequential - startSequential;
-            sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
 
         } catch (NewsAPIException | IllegalStateException e) {
             System.err.println(e.getMessage());
