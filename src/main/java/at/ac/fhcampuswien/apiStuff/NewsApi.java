@@ -78,7 +78,7 @@ public class NewsApi {
             url.append("&").append(arg.toString());
         }
 
-        url.append("&pageSize=100");
+        url.append("&pageSize=50");
 
         url.append("&apiKey=").append(APIKEY);
 
