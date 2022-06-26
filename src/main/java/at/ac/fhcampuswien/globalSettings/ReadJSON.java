@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien.globalSettings;
 
+import at.ac.fhcampuswien.AppController;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -18,11 +19,21 @@ public class ReadJSON {
 
     private ReadJSON() {};
 
-    private static final ReadJSON readJSON = new ReadJSON();
+    private volatile static ReadJSON readJSON;
 
     public static ReadJSON getInstance()
     {
-        return readJSON;
+        // double-checked locking
+        ReadJSON result = readJSON;
+        if (result != null) {
+            return result;
+        }
+        synchronized (AppController.class) {
+            if (readJSON == null) {
+                readJSON = new ReadJSON();
+            }
+            return readJSON;
+        }
     }
 
 

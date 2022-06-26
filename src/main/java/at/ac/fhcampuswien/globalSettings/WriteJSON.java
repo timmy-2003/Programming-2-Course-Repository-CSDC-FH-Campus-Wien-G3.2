@@ -1,6 +1,7 @@
 package at.ac.fhcampuswien.globalSettings;
 
 
+import at.ac.fhcampuswien.AppController;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -12,11 +13,21 @@ public class WriteJSON {
 
     private WriteJSON() {};
 
-    private static final WriteJSON writeJSON = new WriteJSON();
+    private volatile static WriteJSON writeJSON;
 
     public static WriteJSON getInstance()
     {
-        return writeJSON;
+        // double-checked locking
+        WriteJSON result = writeJSON;
+        if (result != null) {
+            return result;
+        }
+        synchronized (AppController.class) {
+            if (writeJSON == null) {
+                writeJSON = new WriteJSON();
+            }
+            return writeJSON;
+        }
     }
 
 

@@ -31,7 +31,7 @@ public class AppController {
     }
 
     // Singleton Pattern
-    private volatile static AppController appController = new AppController();
+    private volatile static AppController appController;
 
     public static AppController getInstance() {
         // double-checked locking
