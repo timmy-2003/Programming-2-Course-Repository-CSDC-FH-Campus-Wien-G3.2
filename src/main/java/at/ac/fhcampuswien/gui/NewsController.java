@@ -434,6 +434,7 @@ public class NewsController {
     @FXML
     void GetDownloadURls(ActionEvent event) {
         new Thread(this::downloadURLs).start();
+
     }
 
     /***
@@ -768,30 +769,29 @@ public class NewsController {
      * @return
      */
     private void downloadURLs() {
-        Platform.runLater(() -> {
-            try {
-                long start = System.currentTimeMillis();
-                ctrl.downloadURLs(new ParallelDownloader());
-                long finish = System.currentTimeMillis();
-                timeElapsed = finish - start;
+        try {
+            long start = System.currentTimeMillis();
+            ctrl.downloadURLs(new ParallelDownloader());
+            long finish = System.currentTimeMillis();
+            timeElapsed = finish - start;
 
-                System.out.println(timeElapsed);
-                //start time in ms -> for stopping time
-                long startSequential = System.currentTimeMillis();
-                ctrl.downloadURLs(new SequentialDownloader());
-                long finishSequential = System.currentTimeMillis();
-                timeElapsedSeq = finishSequential - startSequential;
-                sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
+            System.out.println(timeElapsed);
+            //start time in ms -> for stopping time
+            long startSequential = System.currentTimeMillis();
+            ctrl.downloadURLs(new SequentialDownloader());
+            long finishSequential = System.currentTimeMillis();
+            timeElapsedSeq = finishSequential - startSequential;
+            sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
 
-                System.out.println(timeElapsedSeq);
-
-            } catch (NewsAPIException e) {
-                System.err.println(e.getMessage());
-            } finally {
-                parallelTimer.setText("Parallel: " + timeElapsed + " ms");
-                sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
-            }
-        });
+        } catch (NewsAPIException | IllegalStateException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            //parallelTimer.setText("Parallel: " + timeElapsed + " ms");
+            //sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
+            System.out.println("Parallel: " + timeElapsed + " ms");
+            System.out.println("Sequential: " + timeElapsedSeq + " ms");
+        }
 
     }
 }
