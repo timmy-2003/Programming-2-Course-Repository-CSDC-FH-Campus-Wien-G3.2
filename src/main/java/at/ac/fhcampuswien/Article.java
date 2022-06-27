@@ -16,7 +16,7 @@ public class Article {
     private String description;
     private Source source;
 
-    //old constructor
+    //old constructor ( telescopic constructor )
     /*
     public Article(String author, String title, String url, String urlToImage, String publishedAt, String content, String description, Source source) {
         this.author = author;
@@ -31,7 +31,7 @@ public class Article {
      */
 
     //new constructor, uses builder pattern
-    private Article(Builder builder) {
+    private Article(Builder builder) { //private constructor
         //author and title dont have to be checked as they are a requirement even in the builder class
         this.author = builder.author;
         this.title = builder.title;
@@ -61,7 +61,7 @@ public class Article {
 
         public Article build() {
             return new Article(this);
-        }
+        } //build method for creation of object
 
         public Builder author(String value){author = value;return this;}
 

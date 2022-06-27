@@ -82,7 +82,7 @@ public class AppControllerTest {
     @DisplayName("Testing scenario of query=bitcoin")
     public void filterListTest1() {
         List<Article> articles = new ArrayList<>();
-        articles.add(new Article.Builder("author1", "bitcoin").build());
+        articles.add(new Article.Builder("author1", "bitcoin").build());   //.url("aa") -> optional parameters for Builder Pattern
         articles.add(new Article.Builder("author2", "football").build());
         articles.add(new Article.Builder("author3", "politics").build());
         articles.add(new Article.Builder("author4", "dogecoin").build());

@@ -436,7 +436,8 @@ public class NewsController {
      */
     @FXML
     void GetDownloadURls(ActionEvent event) {
-        //method reference call -> to start thread
+        //method reference call -> to start thread (smallest unit of executable code) so GUI is not freezing
+        //initiated by main thread
         new Thread(this::downloadURLs).start();
 
     }

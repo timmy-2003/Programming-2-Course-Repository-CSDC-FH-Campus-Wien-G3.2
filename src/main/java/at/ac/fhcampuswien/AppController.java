@@ -40,7 +40,7 @@ public class AppController {
         if (result != null) {
             return result;
         }
-        synchronized (AppController.class) {
+        synchronized (AppController.class) { //?
             if (appController == null) {
                 appController = new AppController();
             }
