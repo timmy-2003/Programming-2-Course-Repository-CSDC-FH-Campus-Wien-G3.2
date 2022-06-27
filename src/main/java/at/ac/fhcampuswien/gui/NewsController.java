@@ -4,6 +4,8 @@ import at.ac.fhcampuswien.AppController;
 import at.ac.fhcampuswien.Article;
 import at.ac.fhcampuswien.WriteTXT;
 import at.ac.fhcampuswien.apiStuff.NewsApi;
+import at.ac.fhcampuswien.downloader.ParallelDownloader;
+import at.ac.fhcampuswien.downloader.SequentialDownloader;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
 import at.ac.fhcampuswien.exceptions.APIKeyException;
@@ -42,11 +44,10 @@ import java.util.List;
 import java.util.Objects;
 
 
-// singleton pattern
 public class NewsController {
-    private AppController ctrl = new AppController();
-    private WriteJSON writeJSON = new WriteJSON();
-    private ReadJSON readJSON = new ReadJSON();
+    private AppController ctrl = AppController.getInstance();
+    private WriteJSON writeJSON = WriteJSON.getInstance();
+    private ReadJSON readJSON = ReadJSON.getInstance();
     private WriteTXT writeTXT = new WriteTXT();
 
     private boolean isLightMode;
@@ -56,9 +57,18 @@ public class NewsController {
     private List<String> apiKeysList;
     private int indexOfSelectedAPIKey;
     private int apiKeysChange = 0; //counter how often API key has changed during runtime
+    private static long timeElapsed;
+    private static long timeElapsedSeq;
+
 
     @FXML
     private AnchorPane parent;
+
+    @FXML
+    private Label parallelTimer;
+
+    @FXML
+    private Label sequentialTimer;
 
     @FXML
     private AnchorPane anchormidDashboard;
@@ -163,6 +173,9 @@ public class NewsController {
 
     @FXML
     private Label lblNYT;
+
+    @FXML
+    private Button btnDownload;
 
 
     public NewsController() throws IOException {
@@ -415,6 +428,16 @@ public class NewsController {
     }
 
     /***
+     * multithreading downloadurls
+     * @param event
+     */
+    @FXML
+    void GetDownloadURls(ActionEvent event) {
+        new Thread(this::downloadURLs).start();
+
+    }
+
+    /***
      * apply the light mode to the main GUI
      */
     private void setLightMode(boolean init) {
@@ -517,16 +540,16 @@ public class NewsController {
                 } catch (urlException e) {
                     System.out.println("Required params are missing");
                 }
-            } else if (NewsApi.errorMessage.contains("apiKeyDisabled")){
+            } else if (NewsApi.errorMessage.contains("apiKeyDisabled")) {
                 try {
                     throw new APIKeyException("Your api key has been disabled!");
-                } catch (APIKeyException e){
+                } catch (APIKeyException e) {
                     System.out.println("Api key has been disabled");
                 }
-            } else if (NewsApi.errorMessage.contains("unexpectedError")){
+            } else if (NewsApi.errorMessage.contains("unexpectedError")) {
                 try {
                     throw new NewsAPIException("An unexpected error occured");
-                } catch (NewsAPIException e){
+                } catch (NewsAPIException e) {
                     System.out.println("Unexpected error");
                 }
             }
@@ -580,7 +603,7 @@ public class NewsController {
         }
         //sort asc
         for (Article a : ctrl.sortAsc()) {
-            // System.out.println("sort " + a.getDescription());
+            //System.out.println(a.getLength() + "sort " + a.getDescription());
         }
         ctrl.saveOriginalArticles();
     }
@@ -739,5 +762,48 @@ public class NewsController {
             stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
 
         });
+    }
+
+    /***
+     * downloadurls with stop time in UI
+     * @return
+     */
+    private void downloadURLs() {
+        try {
+            long start = System.currentTimeMillis();
+            ctrl.downloadURLs(new ParallelDownloader());
+            long finish = System.currentTimeMillis();
+            timeElapsed = finish - start;
+
+            System.out.println(timeElapsed);
+            //start time in ms -> for stopping time
+            long startSequential = System.currentTimeMillis();
+            ctrl.downloadURLs(new SequentialDownloader());
+            long finishSequential = System.currentTimeMillis();
+            timeElapsedSeq = finishSequential - startSequential;
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
+                }
+            });
+
+
+        } catch (NewsAPIException | IllegalStateException e) {
+            System.err.println(e.getMessage());
+        }
+        finally {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    parallelTimer.setText("Parallel: " + timeElapsed + " ms");
+                    sequentialTimer.setText("Sequential: " + timeElapsedSeq + " ms");
+                }
+            });
+
+            System.out.println("Parallel: " + timeElapsed + " ms");
+            System.out.println("Sequential: " + timeElapsedSeq + " ms");
+        }
+
     }
 }

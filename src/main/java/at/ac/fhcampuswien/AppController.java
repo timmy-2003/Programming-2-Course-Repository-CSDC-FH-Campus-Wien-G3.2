@@ -1,29 +1,51 @@
 package at.ac.fhcampuswien;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import at.ac.fhcampuswien.apiStuff.NewsApi;
+import at.ac.fhcampuswien.exceptions.NewsAPIException;
+import at.ac.fhcampuswien.downloader.Downloader;
+import at.ac.fhcampuswien.downloader.ParallelDownloader;
+import at.ac.fhcampuswien.downloader.SequentialDownloader;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
+import at.ac.fhcampuswien.exceptions.NewsAPIException;
+import at.ac.fhcampuswien.gui.NewsController;
 
-// singleton pattern
+
 public class AppController {
 
     public List<Article> articles = new ArrayList<>();
     private WriteTXT writeTXT = new WriteTXT();
 
+    NewsApi newsApi = NewsApi.getInstance();
+
     /***
      * when instanced sets the list
      */
 
-    public AppController() throws IOException {
+    private AppController() {
         // setArticles(NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "")));
+    }
+
+    // Singleton Pattern
+    private volatile static AppController appController = new AppController();
+
+    public static AppController getInstance() {
+        // double-checked locking
+        AppController result = appController;
+        if (result != null) {
+            return result;
+        }
+        synchronized (AppController.class) {
+            if (appController == null) {
+                appController = new AppController();
+            }
+            return appController;
+        }
     }
 
     /***
@@ -56,7 +78,7 @@ public class AppController {
      */
     public List<Article> getCustomNews(Enum endpoint, String query, Enum... args) throws IOException {
         // Requests top-headlines with the query corona from the news api
-        return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(endpoint, query, args));
+        return articles = NewsApi.jsonToArticleList(newsApi.handleRequest(endpoint, query, args));
     }
 
     /***
@@ -66,7 +88,7 @@ public class AppController {
     public List<Article> getTopHeadlinesAustria() throws IOException {
         saveOriginalArticles();
         // Requests top-headlines with the query corona from the news api
-        return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.TOP_HEADLINES, "", Country.AT));
+        return articles = NewsApi.jsonToArticleList(newsApi.handleRequest(Endpoint.TOP_HEADLINES, "", Country.AT));
     }
 
     /***
@@ -76,7 +98,7 @@ public class AppController {
     public List<Article> getAllNewsBitcoin() throws IOException {
         //return filterList(articles, "bitcoin");
         // Requests everything with the query bitcoin from the news api
-        return articles = NewsApi.jsonToArticleList(new NewsApi().handleRequest(Endpoint.EVERYTHING, "bitcoin"));
+        return articles = NewsApi.jsonToArticleList(newsApi.handleRequest(Endpoint.EVERYTHING, "bitcoin"));
     }
 
     // Returns the source with the most articles
@@ -152,8 +174,42 @@ public class AppController {
         }
     }
 
+    /***
+     * save the articles in originalarticles.txt
+     */
     public void saveOriginalArticles() {
         writeTXT.write(articles);
+    }
+
+
+    /***
+     * the article URLs are extracted using streams
+     * @param downloader
+     * @return
+     * @throws NewsAPIException
+     */
+
+    public int downloadURLs(Downloader downloader) throws NewsAPIException{
+        // TODO extract urls from articles with java stream
+        //In  downloadURLs() method of AppController the urls of the articles are extracted using streams
+        if( articles == null)
+            throw new NewsAPIException();
+
+        List<String> urls =articles.stream().map(Article::getUrlToImage).filter(Objects::nonNull).collect(Collectors.toList());
+
+
+
+        articles.forEach(e->{
+            urls.add(e.getUrlToImage());
+            urls.add(e.getUrl());
+
+
+            String sentUrlImage = e.getUrlToImage();
+            String sentUrl = e.getUrl();
+            System.out.println(sentUrlImage + sentUrl);
+
+        });
+        return downloader.process(urls);
     }
 
     /***
