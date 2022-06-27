@@ -111,8 +111,9 @@ public class AppController {
                 .stream()
                 .max(Map.Entry.comparingByValue());
          */
-        return articles.stream().map(Article::getSourceName)
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+        // source (articles) || .map (intermediate operation) || .collect .max .orelse  (terminal operation)
+        return articles.stream().map(Article::getSourceName) //get back sourcename
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting())) //count the articles
                 .entrySet().stream()
                 .max(Map.Entry.comparingByValue()).map(Map.Entry::getKey)
                 .orElse(null);
@@ -122,10 +123,11 @@ public class AppController {
     public String longestAuthorName() {
         //for articles with no author
         removeNullFromAuthor();
+        // source (articles) || .sorted (intermediate operation) || .collect (terminal operation)
         return articles.stream()
-                .sorted(Comparator.comparingInt((Article a) -> a.getAuthor().length()))
+                .sorted(Comparator.comparingInt((Article a) -> a.getAuthor().length())) //sorts elements -> length
 
-                .collect(Collectors.toList()).get(articles.size() - 1).getAuthor();
+                .collect(Collectors.toList()).get(articles.size() - 1).getAuthor(); //accumulates elements in a stream into a container such as a collection
     }
 
     // Returns all articles where the source is the new york times
@@ -146,6 +148,7 @@ public class AppController {
         //articles.add(new Article("author31", "4", "besc"));
         //articles.add(new Article("4author1", "bitcoin", "xesc"));
         removeNullFromDescription();
+        // source (articles) || .sorted .thenComparing (intermediate operation) || .collect (terminal operation)
         return articles.stream()
                 .sorted(Comparator.comparingInt((Article a) -> a.getDescription().length())
                         .thenComparing(Article::getDescription, String.CASE_INSENSITIVE_ORDER))

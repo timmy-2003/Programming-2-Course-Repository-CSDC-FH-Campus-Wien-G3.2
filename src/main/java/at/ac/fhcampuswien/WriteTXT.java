@@ -18,7 +18,7 @@ public class WriteTXT {
     public void write(List<Article> lines) {
         FileWriter writer = null;
         try {
-            writer = new FileWriter("src/main/resources/files/originalarticles.txt");
+            writer = new FileWriter("src/main/resources/files/originalarticles.txt"); //could go wrong -> only write in try what in really necessary!
         } catch (IOException e) {
             e.printStackTrace();
         }

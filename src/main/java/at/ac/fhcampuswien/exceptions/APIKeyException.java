@@ -17,7 +17,7 @@ public class APIKeyException extends Exception {
     }
 
     public APIKeyException(String msg) throws IOException {
-        super(msg);
+        super(msg); //overwrite the message here
         nC.alert(msg);
     }
 }

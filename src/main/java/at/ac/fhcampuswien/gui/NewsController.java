@@ -544,7 +544,7 @@ public class NewsController {
                 } catch (urlException e) {
                     System.out.println("Required params are missing");
                 }
-            } else if (NewsApi.errorMessage.contains("apiKeyDisabled")) {
+            } else if (NewsApi.errorMessage.contains("apiKeyDisabled")) { //custom exception we throw a APIException
                 try {
                     throw new APIKeyException("Your api key has been disabled!");
                 } catch (APIKeyException e) {
