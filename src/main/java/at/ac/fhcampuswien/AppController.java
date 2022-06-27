@@ -32,7 +32,9 @@ public class AppController {
     }
 
     // Singleton Pattern
-    private volatile static AppController appController = new AppController();
+    private volatile static AppController appController; // volatile keyword ensures that multiple threads read the correct instance value -> we suggest the compiler to never store the value of the variable in cache memory
+
+    // in the following code, only one thread can enter the getInstance and execute code at the time
 
     public static AppController getInstance() {
         // double-checked locking
