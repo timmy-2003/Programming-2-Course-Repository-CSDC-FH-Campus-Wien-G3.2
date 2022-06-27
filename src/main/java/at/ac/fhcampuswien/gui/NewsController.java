@@ -44,6 +44,7 @@ import java.util.List;
 import java.util.Objects;
 
 
+//javafx -> framework
 public class NewsController {
     private AppController ctrl = AppController.getInstance();
     private WriteJSON writeJSON = WriteJSON.getInstance();
@@ -253,6 +254,8 @@ public class NewsController {
      */
     @FXML
     void GetSortAsc(ActionEvent event) {
+        //() -> {parameter list}-> parameter || -> {function body}   -> what is done
+        //no param
         Platform.runLater(() -> {
             try {
                 getList(Endpoint.TOP_HEADLINES, "", "sortasc", Country.AT); // Endpoint and Country will not get used so not important what standing there
@@ -433,6 +436,7 @@ public class NewsController {
      */
     @FXML
     void GetDownloadURls(ActionEvent event) {
+        //method reference call -> to start thread
         new Thread(this::downloadURLs).start();
 
     }

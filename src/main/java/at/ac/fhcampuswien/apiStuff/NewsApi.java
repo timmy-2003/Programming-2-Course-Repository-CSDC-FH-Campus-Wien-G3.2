@@ -3,9 +3,9 @@ package at.ac.fhcampuswien.apiStuff;
 import at.ac.fhcampuswien.Article;
 import at.ac.fhcampuswien.exceptions.NoInternetException;
 import at.ac.fhcampuswien.exceptions.urlException;
-import com.google.gson.Gson;
+import com.google.gson.Gson; //library
 import com.google.gson.GsonBuilder;
-import okhttp3.OkHttpClient;
+import okhttp3.OkHttpClient;  //library
 import okhttp3.Request;
 import okhttp3.Response;
 
@@ -96,6 +96,12 @@ public class NewsApi {
 
     }
 
+    /***
+     * sending http request with our information and get it back (request | response)
+     * @param url
+     * @return
+     * @throws IOException
+     */
     public static String request(String url) throws IOException {
         OkHttpClient client = new OkHttpClient();
         if (!checkForEndpoints(url)) {
@@ -110,13 +116,18 @@ public class NewsApi {
                 .build();
         try (Response response = client.newCall(request).execute()) {
             //System.out.println(response.body().string());
-            return response.body().string();
+            return response.body().string(); //uses jsonToArticleList
         } catch (Exception e){
             System.out.println("Something went wrong");
             return "";
         }
     }
 
+    /***
+     * with gson get from server side json the articleList
+     * @param jsonString
+     * @return
+     */
     public static List<Article> jsonToArticleList(String jsonString) {
         // Creates a new gson builder
         GsonBuilder builder = new GsonBuilder();

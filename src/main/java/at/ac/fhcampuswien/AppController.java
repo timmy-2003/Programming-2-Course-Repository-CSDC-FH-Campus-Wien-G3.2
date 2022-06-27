@@ -199,6 +199,9 @@ public class AppController {
 
 
 
+        // {function_body}-> parameter  {body} -> what is done
+        //one param -> could be also ((e) ->
+        //two param -> must be with (a,b) ->
         articles.forEach(e->{
             urls.add(e.getUrlToImage());
             urls.add(e.getUrl());

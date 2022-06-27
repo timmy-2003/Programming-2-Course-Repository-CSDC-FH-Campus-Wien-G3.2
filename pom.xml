@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>at.ac.fhcampuswien</groupId>
-    <artifactId>newsApp</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>at.ac.fhcampuswien</groupId> <!-- package root -->
+    <artifactId>newsApp</artifactId>      <!-- name of project -->
+    <version>1.0-SNAPSHOT</version> <!-- version of project -->
 
-    <properties>
+    <properties> <!-- standard parameters -->
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,8 +16,8 @@
 
 
 
-    <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+    <dependencies> <!-- dependencies libraries (so that everyone in team has the same) -->
+        <!-- https://mvnrepository.com/artifact/org.    junit.jupiter/junit-jupiter-engine -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
