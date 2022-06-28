@@ -769,6 +769,10 @@ public class NewsController {
      * @return
      */
     private void downloadURLs() {
+        Platform.runLater(()->{
+            parallelTimer.setText("Download in progress...");
+            sequentialTimer.setText("");
+        });
         try {
             long start = System.currentTimeMillis();
             ctrl.downloadURLs(new ParallelDownloader());
